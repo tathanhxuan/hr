@@ -12,6 +12,8 @@ public class App
         System.out.println( "Hello Thai!");
 
         System.out.println( "Hello World! Xuan");
+        
+        System.out.println( "Hello World! Xuan2");
 
     }
 }
