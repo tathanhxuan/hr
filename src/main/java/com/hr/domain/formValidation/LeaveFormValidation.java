@@ -11,7 +11,9 @@ public class LeaveFormValidation extends FormValidationStrategy{
 	public HashMap<String, String> Validate(Form model) {
 		// TODO Auto-generated method stub
 		DateFromRequiredValidator dateFromRequiredValidator = new DateFromRequiredValidator();
+		
 		DateToRequiredValidator dateToRequiredValidator = new DateToRequiredValidator();
+		
 	    dateFromRequiredValidator.setSuccessor(dateToRequiredValidator);
 	
 	    //continue validation in chain

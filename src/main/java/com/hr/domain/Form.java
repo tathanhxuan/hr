@@ -22,12 +22,8 @@ public abstract class Form {
 	public void setEmpID(String empID) {
 		this.empID = empID;
 	}
-	public Date getDateFrom() {
-		return dateFrom;
-	}
-	public void setDateFrom(Date dateFrom) {
-		this.dateFrom = dateFrom;
-	}
+	public abstract Date getDateFrom();
+
 	public Date getDateTo() {
 		return dateTo;
 	}
@@ -41,7 +37,6 @@ public abstract class Form {
 		this.status = status;
 	}
 
- 
  abstract Boolean Submit();
  abstract Boolean Approve();
  abstract Boolean Update();

@@ -18,7 +18,7 @@ public class DateFromRequiredValidator extends FormValidatorBase {
 
             return ErrorsResult;
         }
-
+		
         if (Successor != null)
 
             return Successor.HandleValidation(model);

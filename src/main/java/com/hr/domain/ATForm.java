@@ -1,5 +1,7 @@
 package com.hr.domain;
 
+import java.util.Date;
+
 public class ATForm extends Form {
 
 	@Override
@@ -16,6 +18,12 @@ public class ATForm extends Form {
 
 	@Override
 	Boolean Update() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Date getDateFrom() {
 		// TODO Auto-generated method stub
 		return null;
 	}
