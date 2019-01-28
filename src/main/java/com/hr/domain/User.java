@@ -1,19 +1,22 @@
 package com.hr.domain;
 
+import com.hr.repository.Auth;
+
 public abstract class User {
-	int id;
+	String id;
 	int group_id;
 	String email;
 	String address;
 	String nick_name;
 	String name;
 	String mobile;
+	Auth authorization;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
