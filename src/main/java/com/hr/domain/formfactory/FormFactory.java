@@ -6,17 +6,17 @@ import com.hr.domain.*;
 
 public class FormFactory {
 
-	public Form creatForm(FormType type)
+	public Form creatForm(FormType type,String FormCode, String EmpID, FormStatus status)
 	{
 		if (type == null) return null;
 		
 		switch (type) {
 		case LEAVE:
-			return new LeaveForm();
+			return new LeaveForm(FormCode,EmpID,status);
 		case OVERTIME:
-			return new OTForm();
+			return new OTForm(FormCode,EmpID,status);
 		case ATTENDANT:
-			return new ATForm();
+			return new ATForm(FormCode,EmpID,status);
 		default:
 			return null;
 		}
