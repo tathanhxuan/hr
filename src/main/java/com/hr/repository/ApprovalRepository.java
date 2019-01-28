@@ -1,5 +1,15 @@
 package com.hr.repository;
 
-public interface ApprovalRepository {
+import java.util.List;
 
+import com.hr.domain.Approval;
+
+public interface ApprovalRepository {
+	public List<Approval> getAllApprovals();
+
+	public Approval getApproval(int id);
+
+	public void updateApproval(Approval approval);
+
+	public void deleteApproval(Approval approval);
 }

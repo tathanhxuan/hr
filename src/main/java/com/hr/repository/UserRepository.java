@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hr.domain.User;
 
+// Data Access Object Pattern
 public interface UserRepository {
 	public List<User> getAllUsers();
 
