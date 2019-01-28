@@ -97,7 +97,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	static void loadUserMap(List<UserServiceImpl> allUsers) {
 		HashMap<String, UserServiceImpl> users = new HashMap<String, UserServiceImpl>();
-		allUsers.forEach(user -> users.put(user.getId(), user));
+		allUsers.forEach(user -> users.put(user.getEmpID(), user));
 		saveToStorage(StorageType.USERS, users);
 	}
 
