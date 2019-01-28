@@ -9,14 +9,6 @@ import com.hr.repository.Auth;
 import com.hr.repository.DataAccessRepository;
 import com.hr.service.impl.UserServiceImpl;
 
-
-
-/*import model.domain.Address;
-import model.domain.Author;
-import model.domain.Book;
-import model.domain.LibraryMember;
-import model.domain.User;*/
-
 public class TestData {
 	@SuppressWarnings("serial")
 	List<UserServiceImpl> allUsers = new ArrayList<UserServiceImpl>() {
@@ -37,20 +29,12 @@ public class TestData {
 		td.authorData();
 		td.addressData();*/
 		
-		
-		
-		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		DataAccessRepository da = new DataAccessRepositoryFacade();
 		System.out.println(da.readUserMap());
 	}
 	
-	
-	
 	//create users
 	public void userData() {
-		/*System.out.println(allUsers);
-		for (UserServiceImpl user: this.allUsers) {
-			System.out.println(user.getId());
-		}*/
 		DataAccessRepositoryFacade.loadUserMap(allUsers);
 	}
 

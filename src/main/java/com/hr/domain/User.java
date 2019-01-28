@@ -1,8 +1,14 @@
 package com.hr.domain;
 
+import java.io.Serializable;
+
 import com.hr.repository.Auth;
 
-public abstract class User {
+public abstract class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String id;
 	int group_id;
 	String email;
