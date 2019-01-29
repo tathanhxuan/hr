@@ -1,17 +1,22 @@
 package com.hr.domain;
+import java.util.ArrayList;
 import java.util.Date;
-import com.hr.domain.approval.IApproverList;
+import com.hr.domain.approval.IApproval;
+import com.hr.domain.formValidation.FormValidationStrategy;
 
-public abstract class Form {
+public abstract class Form implements Cloneable{
 	
 	 String formCode;
-	 String empID;
+	 Employee owner;
 	 FormStatus status;
+	 FormValidationStrategy validationStrategy;
 	 
-	 public Form(String formCode,String empID, FormStatus status) {
+	 public Form(String formCode,Employee owner, FormStatus status,FormValidationStrategy validationStrategy) {
+		
 		 this.formCode = formCode;
-		 this.empID = empID;
+		 this.owner = owner;
 		 this.status = status;
+		 this.validationStrategy=validationStrategy;
 	 }
 	 
 	 public String getFormCode() {
@@ -22,11 +27,11 @@ public abstract class Form {
 		this.formCode = formCode;
 	}
 	
-	public String getEmpID() {
-		return empID;
+	public Employee getOwner() {
+		return owner;
 	}
-	public void setEmpID(String empID) {
-		this.empID = empID;
+	public void setOwner(Employee owner) {
+		this.owner = owner;
 	}
 	public abstract Date getDateFrom();
 
@@ -36,11 +41,40 @@ public abstract class Form {
 	public void setStatus(FormStatus status) {
 		this.status = status;
 	}
+	
+	//Apply prototype pattern
+	public Object clone() {
+	   Object clone = null;
+	      
+	  try {
+	         clone = super.clone();
+	         
+	      } catch (CloneNotSupportedException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      return clone;
+	   }
 
- abstract Boolean Submit(IApproverList approverList);
- 
- abstract Boolean Approve(FormApprover approvalModel);
- 
- abstract Boolean ReSubmit();
- 
+	
+	//Template Method design pattern
+	public final Boolean formSubmit() {
+		
+		//validate form
+		if (validationStrategy.Validate(this) !=null )
+			return false;
+		
+		// get approver List
+		DepartmentApprover approvers = new DepartmentApprover(owner.getDepartment().getDeptID());
+		
+		return Submit(approvers.getListApprover());
+	}
+	
+	
+	 abstract Boolean Submit(ArrayList<StepApprover> approvers);
+	 
+	 abstract Boolean Approve(StepApprover approvalModel);
+	 
+	 abstract Boolean ReSubmit();
+	 
 }

@@ -1,12 +1,13 @@
 package com.hr.domain;
 
-public class FormApprover {
+public class StepApprover {
+	
 	String aproverID;
 	String approveStep;
 	String approveDate;
 	String comments;
 	
-	public FormApprover(String aproverID,String approveStep,String approveDate,String comments) {
+	public StepApprover(String aproverID,String approveStep,String approveDate,String comments) {
 		this.aproverID=aproverID;
 		this.approveStep=approveStep;
 		this.approveDate=approveDate;
