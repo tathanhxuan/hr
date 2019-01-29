@@ -1,12 +1,13 @@
 package com.hr.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.hr.domain.approval.IApproval;
 import com.hr.domain.formValidation.FormValidationStrategy;
 
-public class OTForm extends Form {
+public class OTForm extends Form implements Serializable {
 
 	public OTForm(String formCode, Employee emp, FormStatus status,FormValidationStrategy validationStrategy) {
 		super(formCode, emp, status,validationStrategy);
