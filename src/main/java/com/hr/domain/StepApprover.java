@@ -1,6 +1,15 @@
 package com.hr.domain;
 
 public class StepApprover {
+
+	Form form;
+	public Form getForm() {
+		return form;
+	}
+
+	public void setForm(Form form) {
+		this.form = form;
+	}
 	
 	String aproverID;
 	String approveStep;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import com.hr.domain.formValidation.FormValidationStrategy;
 
-public abstract class LeaveForm extends Form {
+public class LeaveForm extends Form {
 
 	String formCode;
 	int formType;
@@ -14,16 +14,9 @@ public abstract class LeaveForm extends Form {
 	Date leaveDateTo;
 	String description;
 
-	public LeaveForm(String formCode, String empID, FormStatus status, String formCode2, int formType, String empID2,
-			FormStatus status2, Date leaveDateFrom, Date leaveDateTo, String description) {
-		super(formCode, empID, status);
-		formCode = formCode2;
-		this.formType = formType;
-		empID = empID2;
-		status = status2;
-		this.leaveDateFrom = leaveDateFrom;
-		this.leaveDateTo = leaveDateTo;
-		this.description = description;
+	public LeaveForm(String formCode, Employee emp, FormStatus status, FormValidationStrategy validationStrategy) {
+		super(formCode, emp, status,validationStrategy);
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getFormCode() {
@@ -81,11 +74,6 @@ public abstract class LeaveForm extends Form {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public LeaveForm(String formCode, Employee emp, FormStatus status, FormValidationStrategy validationStrategy) {
-		super(formCode, emp, status,validationStrategy);
-		// TODO Auto-generated constructor stub
-	}
 	
 	@Override
 	public Date getDateFrom() {
@@ -107,6 +95,20 @@ public abstract class LeaveForm extends Form {
 
 	@Override
 	Boolean Submit(ArrayList<StepApprover> approvers) {
+		// TODO Auto-generated method stub
+		
+		//SAVE IN DB
+		return null;
+	}
+
+	@Override
+	ArrayList<Form> getEmployeeForms(FormStatus status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	Boolean SubmitNotify() {
 		// TODO Auto-generated method stub
 		return null;
 	}

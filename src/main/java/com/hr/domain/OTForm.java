@@ -2,8 +2,6 @@ package com.hr.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
-
-import com.hr.domain.approval.IApproval;
 import com.hr.domain.formValidation.FormValidationStrategy;
 
 public class OTForm extends Form {
@@ -33,6 +31,21 @@ public class OTForm extends Form {
 
 	@Override
 	Boolean Submit(ArrayList<StepApprover> approvers) {
+		// TODO Auto-generated method stub
+		
+		
+		//save into DB
+		return null;
+	}
+
+	@Override
+	ArrayList<Form> getEmployeeForms(FormStatus status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	Boolean SubmitNotify() {
 		// TODO Auto-generated method stub
 		return null;
 	}

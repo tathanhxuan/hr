@@ -9,6 +9,7 @@ public class LeaveFormValidation extends FormValidationStrategy{
 
 	@Override
 	public HashMap<String, String> Validate(Form model) {
+		
 		// TODO Auto-generated method stub
 		DateFromRequiredValidator dateFromRequiredValidator = new DateFromRequiredValidator();
 		

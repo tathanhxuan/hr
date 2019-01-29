@@ -10,7 +10,16 @@ public class Employee {
 	String address;
 	Position position;
 	Department dept;
+	Boolean isApprover;
 	
+	public Boolean getIsApprover() {
+		return isApprover;
+	}
+
+	public void setIsApprover(Boolean isApprover) {
+		this.isApprover = isApprover;
+	}
+
 	public Employee(String empID,Department dept) {
 		this.empID = empID;
 		this.dept = dept;

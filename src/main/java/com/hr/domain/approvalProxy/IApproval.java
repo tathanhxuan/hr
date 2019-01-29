@@ -1,4 +1,4 @@
-package com.hr.domain.approval;
+package com.hr.domain.approvalProxy;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,9 @@ import com.hr.domain.StepApprover;
 
 public interface IApproval {
 	
-	public ArrayList<StepApprover> getListApprover();
-	public ArrayList<Form> getWaitedApproveForms(Employee emp);
+	public ArrayList<Form> getWaitedApproveForms();
+	
+	public Boolean Approve(StepApprover approvalModel);
+	
 	
 }

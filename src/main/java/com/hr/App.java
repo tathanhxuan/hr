@@ -18,10 +18,20 @@ public class App
     	
     	//FORM SUBMIT
     	FormValidationStrategy vf = new LeaveFormValidation();
+    	
         Department dept = new Department("001", "IT");
     	Employee emp = new Employee("2615",dept);
     	
+    	
+    	//FORM CODE CREATION FORMAT
+    	// OT FORM : OT_EMPID_DATETIME
+    	// AT FORM : AT_EMPID_DATETIME
+    	// LEVAE FORM : LA_EMPID_DATETIME
+    	
         Form f = FormFactory.creatForm(FormType.LEAVE,"L123",emp,FormStatus.CREATED,vf);
+        f.setStatus(FormStatus.CREATED)
+        
+        //template
         f.formSubmit();
         
 

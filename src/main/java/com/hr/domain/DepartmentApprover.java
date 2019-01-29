@@ -1,9 +1,9 @@
 package com.hr.domain;
 import java.util.ArrayList;
 
-import com.hr.domain.approval.IApproval;
+import com.hr.domain.approvalProxy.IApproval;
 
-public class DepartmentApprover implements IApproval {
+public class DepartmentApprover{
 	String deptID;
 	
 	public DepartmentApprover(String deptID) {
@@ -17,9 +17,7 @@ public class DepartmentApprover implements IApproval {
 		return null;
 	}
 
-	public ArrayList<Form> getWaitedApproveForms(Employee emp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+
 
 }
