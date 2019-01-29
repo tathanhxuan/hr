@@ -18,18 +18,18 @@ public class TestData {
 
 	public static void main(String[] args) {
 		TestData td = new TestData();
-		/*td.userData();
+		td.userData();
 		td.systemUserData();
 		td.attendanceData();
-		td.shiftData();*/
+		td.shiftData();
 		td.overtimeData();
 
 		
 		DataAccessRepository da = new DataAccessRepositoryFacade();
-		/*System.out.println(da.readUserMap());
+		System.out.println(da.readUserMap());
 		System.out.println(da.readSystemUserMap());
 		System.out.println(da.readAttendanceMap());
-		System.out.println(da.readShiftMap());*/
+		System.out.println(da.readShiftMap());
 		System.out.println(da.readOvertimeMap());
 	}
 
