@@ -14,15 +14,30 @@ public ReportMaker() {
 		aTReport = new ATReport();
 	}
 	
-	public void makeOTReport() {
-		oTReport.makeReport();
+	public void oTReportByDate(String startDate, String endDate) {
+		oTReport.reportByDate(startDate, endDate);
+		//
 	}
 	
-	public void makeATReport() {
-		aTReport.makeReport();
+	public void aTReportByDate(String startDate, String endDate) {
+		aTReport.reportByDate(startDate, endDate);
 	}
 	
-	public void makeLeaveReport() {
-		leaveReport.makeReport();
+	public void leaveReportByDate(String startDate, String endDate) {
+		leaveReport.reportByDate(startDate, endDate);
+	}
+	
+	//Generate report by department
+	
+	public void oTReportByDepartment(Department department) {
+		oTReport.reportByDepartment(department);
+	}
+	
+	public void aTReportByDepartment(Department department) {
+		aTReport.reportByDepartment(department);
+	}
+	
+	public void leaveReportByDepartment(Department department) {
+		leaveReport.reportByDepartment(department);
 	}
 }
