@@ -1,11 +1,13 @@
 package com.hr.domain.report;
 
+import java.util.Date;
+
 import com.hr.domain.Department;
 
 public class OTReport implements HRReport{
 
 	@Override
-	public void reportByDate(String startDate, String endDate) {
+	public void reportByDate(Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
 		
 	}

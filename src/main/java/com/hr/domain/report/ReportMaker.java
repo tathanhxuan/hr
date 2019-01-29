@@ -1,5 +1,7 @@
 package com.hr.domain.report;
 
+import java.util.Date;
+
 import com.hr.domain.Department;
 
 /** 
@@ -17,16 +19,16 @@ public ReportMaker() {
 		aTReport = new ATReport();
 	}
 	
-	public void oTReportByDate(String startDate, String endDate) {
+	public void oTReportByDate(Date startDate, Date endDate) {
 		oTReport.reportByDate(startDate, endDate);
 		//
 	}
 	
-	public void aTReportByDate(String startDate, String endDate) {
+	public void aTReportByDate(Date startDate, Date endDate) {
 		aTReport.reportByDate(startDate, endDate);
 	}
 	
-	public void leaveReportByDate(String startDate, String endDate) {
+	public void leaveReportByDate(Date startDate, Date endDate) {
 		leaveReport.reportByDate(startDate, endDate);
 	}
 	
