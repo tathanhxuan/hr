@@ -3,7 +3,6 @@ package com.hr.repository;
 import java.util.HashMap;
 
 import com.hr.domain.User;
-import com.hr.domain.Approval;
 import com.hr.domain.Form;
 import com.hr.domain.History;
 import com.hr.domain.Report;
@@ -22,7 +21,7 @@ public interface DataAccessRepository {
 	
 	public HashMap<String, EmployeeGroupRepository> readEmployeeGroupMap();
 
-	public HashMap<String, ApprovalRepository> readApprovalMap();
+	public HashMap<String, DepartmentApproverRepository> readApprovalMap();
 
 	public HashMap<String, FormRepository> readFormMap();
 
@@ -32,7 +31,7 @@ public interface DataAccessRepository {
 
 	public void saveNewUser(User user);
 
-	public void saveNewApproval(Approval approval);
+	public void saveNewApproval(DepartmentApproverRepository approval);
 
 	public void saveNewForm(Form form);
 

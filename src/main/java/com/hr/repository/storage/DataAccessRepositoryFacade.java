@@ -9,14 +9,15 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 
-import com.hr.domain.Approval;
+import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Form;
 import com.hr.domain.History;
 import com.hr.domain.Report;
 import com.hr.domain.User;
-import com.hr.repository.ApprovalRepository;
+
 import com.hr.repository.AttendanceRepository;
 import com.hr.repository.DataAccessRepository;
+import com.hr.repository.DepartmentApproverRepository;
 import com.hr.repository.EmployeeGroupRepository;
 import com.hr.repository.FormRepository;
 import com.hr.repository.HistoryRepository;
@@ -89,7 +90,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return (HashMap<String, EmployeeGroupRepository>) readFromStorage(StorageType.EMPLOYEE_GROUP);
 	}
 
-	public HashMap<String, ApprovalRepository> readApprovalMap() {
+	public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -114,7 +115,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	}
 
-	public void saveNewApproval(Approval approval) {
+	public void saveNewApproval(DepartmentApprover approval) {
 		// TODO Auto-generated method stub
 
 	}
@@ -206,6 +207,11 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 			}
 		}
 		return retVal;
+	}
+
+	public void saveNewApproval(DepartmentApproverRepository approval) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
