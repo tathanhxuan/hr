@@ -1,4 +1,7 @@
 package com.hr.domain.report;
+
+import com.hr.domain.Department;
+
 /** 
   facade pattern
  **/

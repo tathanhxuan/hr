@@ -1,5 +1,7 @@
 package com.hr.domain.report;
 
+import com.hr.domain.Department;
+
 public class LeaveReport implements HRReport{
 
 	@Override
