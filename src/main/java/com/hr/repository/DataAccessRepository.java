@@ -19,6 +19,8 @@ public interface DataAccessRepository {
 	public HashMap<String, ShiftRepository> readShiftMap();
 	
 	public HashMap<String, OvertimeRepository> readOvertimeMap();
+	
+	public HashMap<String, EmployeeGroupRepository> readEmployeeGroupMap();
 
 	public HashMap<String, ApprovalRepository> readApprovalMap();
 

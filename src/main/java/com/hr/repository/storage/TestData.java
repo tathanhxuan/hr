@@ -9,6 +9,7 @@ import com.hr.domain.User;
 import com.hr.repository.Auth;
 import com.hr.repository.DataAccessRepository;
 import com.hr.service.impl.AttendanceServiceImpl;
+import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
 import com.hr.service.impl.ShiftServiceImpl;
 import com.hr.service.impl.SystemUserServiceImpl;
@@ -18,19 +19,21 @@ public class TestData {
 
 	public static void main(String[] args) {
 		TestData td = new TestData();
-		td.userData();
+		/*td.userData();
 		td.systemUserData();
 		td.attendanceData();
 		td.shiftData();
-		td.overtimeData();
+		td.overtimeData();*/
+		td.employeeGroupsData();
 
 		
 		DataAccessRepository da = new DataAccessRepositoryFacade();
-		System.out.println(da.readUserMap());
+		/*System.out.println(da.readUserMap());
 		System.out.println(da.readSystemUserMap());
 		System.out.println(da.readAttendanceMap());
 		System.out.println(da.readShiftMap());
-		System.out.println(da.readOvertimeMap());
+		System.out.println(da.readOvertimeMap());*/
+		System.out.println(da.readEmployeeGroupMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -109,6 +112,21 @@ public class TestData {
 	// create shifts
 	public void overtimeData() {
 		DataAccessRepositoryFacade.loadOvertimesMap(allOvertimes);
+	}
+	
+	@SuppressWarnings("serial")
+	List<EmployeeGroupServiceImpl> allEmployeeGroups = new ArrayList<EmployeeGroupServiceImpl>() {
+
+		{
+			add(new EmployeeGroupServiceImpl("1", "Dev 1", "Group 1"));
+			add(new EmployeeGroupServiceImpl("2", "Dev 2", "Group 2"));
+
+		}
+	};
+
+	// create employee_groups
+	public void employeeGroupsData() {
+		DataAccessRepositoryFacade.loadEmployeeGroupsMap(allEmployeeGroups);
 	}
 
 }
