@@ -12,9 +12,10 @@ import java.util.List;
 import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Form;
 import com.hr.domain.History;
+import com.hr.domain.OTForm;
 import com.hr.domain.Report;
 import com.hr.domain.User;
-
+import com.hr.repository.ATFormRepository;
 import com.hr.repository.AttendanceRepository;
 import com.hr.repository.DataAccessRepository;
 import com.hr.repository.DepartmentApproverRepository;
@@ -22,30 +23,30 @@ import com.hr.repository.EmployeeGroupRepository;
 import com.hr.repository.FormRepository;
 import com.hr.repository.HistoryRepository;
 import com.hr.repository.LeaveFormRepository;
+import com.hr.repository.OTFormRepository;
 import com.hr.repository.OvertimeRepository;
 import com.hr.repository.ReportRepository;
 import com.hr.repository.ShiftRepository;
 import com.hr.repository.SystemUserRepository;
 import com.hr.repository.UserRepository;
+import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
+import com.hr.service.impl.OTFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
 import com.hr.service.impl.ShiftServiceImpl;
 import com.hr.service.impl.SystemUserServiceImpl;
 import com.hr.service.impl.UserServiceImpl;
 
-//import model.dataaccess.DataAccessFacade.StorageType;
-//import model.domain.LibraryMember;
 
-//import model.dataaccess.DataAccessFacade.StorageType;
 
-//import model.dataaccess.DataAccessFacade.StorageType;
 
 public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	enum StorageType {
-		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT, LEAVE_FORM;
+		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT, LEAVE_FORM,
+		OT_FORM, AT_FORM;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -85,19 +86,34 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		// TODO Auto-generated method stub
 		return (HashMap<String, OvertimeRepository>) readFromStorage(StorageType.OVERTIME);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, EmployeeGroupRepository> readEmployeeGroupMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, EmployeeGroupRepository>) readFromStorage(StorageType.EMPLOYEE_GROUP);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, LeaveFormRepository> readLeaveFormMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, LeaveFormRepository>) readFromStorage(StorageType.LEAVE_FORM);
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public HashMap<String, OTFormRepository> readOTFormMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, OTFormRepository>) readFromStorage(StorageType.OT_FORM);
+	}
+	
+	@Override
+	public HashMap<String, ATFormRepository> readATFormMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, ATFormRepository>) readFromStorage(StorageType.AT_FORM);
+	}
+
 
 	public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
 		// TODO Auto-generated method stub
@@ -118,8 +134,27 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	
+	/*public void saveNewOTForm(OTForm oTForm) {
+		// TODO Auto-generated method stub
+		HashMap<String, OTForm> oTForms = readOTFormMap();
+		String formCode = oTForm.getFormCode();
+		oTForms.put(formCode, oTForm);
+		saveToStorage(StorageType.OT_FORM, oTForms);
+	}
 
 	public void saveNewUser(User user) {
+		// TODO Auto-generated method stub
+		HashMap<String, User> users = readUserMap();
+		String street = address.getStreet();
+		users.put(street, address);
+		saveToStorage(StorageType.USERS, users);
+
+	}
+
+	public void saveNewApproval(DepartmentApproverRepository approval) {
 		// TODO Auto-generated method stub
 
 	}
@@ -142,7 +177,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public void saveNewReport(Report report) {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 	static void loadUserMap(List<UserServiceImpl> allUsers) {
 		HashMap<String, UserServiceImpl> users = new HashMap<String, UserServiceImpl>();
@@ -179,11 +214,23 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		allEmployeeGroups.forEach(employeeGroup -> employeeGroups.put(employeeGroup.getGroup_id(), employeeGroup));
 		saveToStorage(StorageType.EMPLOYEE_GROUP, employeeGroups);
 	}
-	
+
 	static void loadLeaveFormsMap(List<LeaveFormServiceImpl> allLeaveForms) {
-		HashMap<String, LeaveFormServiceImpl> empLeaveForms = new HashMap<String, LeaveFormServiceImpl>();
-		allLeaveForms.forEach(empLeaveForm -> empLeaveForms.put(empLeaveForm.getFormCode(), empLeaveForm));
-		saveToStorage(StorageType.LEAVE_FORM, empLeaveForms);
+		HashMap<String, LeaveFormServiceImpl> leaveForms = new HashMap<String, LeaveFormServiceImpl>();
+		allLeaveForms.forEach(leaveForm -> leaveForms.put(leaveForm.getFormCode(), leaveForm));
+		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
+	}
+
+	static void loadOTFormsMap(List<OTFormServiceImpl> allOTForms) {
+		HashMap<String, OTFormServiceImpl> oTForms = new HashMap<String, OTFormServiceImpl>();
+		allOTForms.forEach(oTForm -> oTForms.put(oTForm.getFormCode(), oTForm));
+		saveToStorage(StorageType.OT_FORM, oTForms);
+	}
+	
+	static void loadATFormsMap(List<ATFormServiceImpl> allATForms) {
+		HashMap<String, ATFormServiceImpl> aTForms = new HashMap<String, ATFormServiceImpl>();
+		allATForms.forEach(aTForm -> aTForms.put(aTForm.getFormCode(), aTForm));
+		saveToStorage(StorageType.AT_FORM, aTForms);
 	}
 
 	static void saveToStorage(StorageType type, Object ob) {
@@ -223,14 +270,5 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		}
 		return retVal;
 	}
-
-	public void saveNewApproval(DepartmentApproverRepository approval) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-
-	
 
 }

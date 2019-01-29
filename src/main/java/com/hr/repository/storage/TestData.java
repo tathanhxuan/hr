@@ -1,49 +1,64 @@
 package com.hr.repository.storage;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 
+import com.hr.domain.Department;
+import com.hr.domain.Employee;
+import com.hr.domain.Form;
 import com.hr.domain.FormStatus;
+import com.hr.domain.OTForm;
 import com.hr.domain.User;
+import com.hr.domain.formValidation.FormValidationStrategy;
 import com.hr.repository.Auth;
 import com.hr.repository.DataAccessRepository;
+import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
+import com.hr.service.impl.OTFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
 import com.hr.service.impl.ShiftServiceImpl;
 import com.hr.service.impl.SystemUserServiceImpl;
 import com.hr.service.impl.UserServiceImpl;
 
-public class TestData {
+public class TestData implements Serializable {
 
 	public static void main(String[] args) {
 		TestData td = new TestData();
 
-		//td.userData();
-		//td.systemUserData();
-		//td.attendanceData();
-		//td.shiftData();
-		//td.overtimeData();
+		// td.userData();
+		// td.systemUserData();
+		// td.attendanceData();
+		// td.shiftData();
+		// td.overtimeData();
 
-		//td.employeeGroupsData();
-		td.leaveFormsData();
+		// td.employeeGroupsData();
+		// td.leaveFormsData();
+		//td.oTFormsData();
+		td.aTFormsData();
+		
 
 		DataAccessRepository da = new DataAccessRepositoryFacade();
+
+		// System.out.println(da.readUserMap());
+		// System.out.println(da.readSystemUserMap());
+		// System.out.println(da.readAttendanceMap());
+		// System.out.println(da.readShiftMap());
+		// System.out.println(da.readOvertimeMap());
+
+		// System.out.println(da.readEmployeeGroupMap());
+		// System.out.println(da.readLeaveFormMap());
 		
-		  //System.out.println(da.readUserMap());
-		  //System.out.println(da.readSystemUserMap());
-		  //System.out.println(da.readAttendanceMap());
-		  //System.out.println(da.readShiftMap());
-		  //System.out.println(da.readOvertimeMap());
-		 
-		//System.out.println(da.readEmployeeGroupMap());
-		System.out.println(da.readLeaveFormMap());
+		// System.out.println(da.readOTFormMap());
+		System.out.println(da.readATFormMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -149,9 +164,6 @@ public class TestData {
 
 			add(new LeaveFormServiceImpl("F001", 1, "101", "Submited", date1, date1, "Des 1"));
 			add(new LeaveFormServiceImpl("F002", 1, "102", "Pedding", date2, date2, "Des 2"));
-			// add(new LeaveFormServiceImpl("2", "Dev 2", "Group 2"));
-			// String sDate1 = "31/12/1998";
-			// Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
 
 		}
 	};
@@ -159,6 +171,82 @@ public class TestData {
 	// create leave_forms
 	public void leaveFormsData() {
 		DataAccessRepositoryFacade.loadLeaveFormsMap(allLeaveForms);
+	}
+
+	@SuppressWarnings("serial")
+	List<OTFormServiceImpl> allOTForms = new ArrayList<OTFormServiceImpl>() {
+
+		{
+
+			Department dept1 = new Department("11", "IT");
+			Employee em1 = new Employee("101", dept1);
+			FormValidationStrategy fvs1 = new FormValidationStrategy() {
+
+				@Override
+				public HashMap<String, String> Validate(Form Model) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			};
+			
+			Department dept2 = new Department("22", "HR");
+			Employee em2 = new Employee("102", dept2);
+			FormValidationStrategy fvs2 = new FormValidationStrategy() {
+
+				@Override
+				public HashMap<String, String> Validate(Form Model) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			};
+
+			add(new OTFormServiceImpl("OT001", em1, FormStatus.APPROVED, fvs1));
+			add(new OTFormServiceImpl("OT002", em2, FormStatus.APPROVED, fvs2));
+
+		}
+	};
+
+	// create ot_forms
+	public void oTFormsData() {
+		DataAccessRepositoryFacade.loadOTFormsMap(allOTForms);
+	}
+	
+	@SuppressWarnings("serial")
+	List<ATFormServiceImpl> allATForms = new ArrayList<ATFormServiceImpl>() {
+
+		{
+
+			Department dept1 = new Department("11", "IT");
+			Employee em1 = new Employee("101", dept1);
+			FormValidationStrategy fvs1 = new FormValidationStrategy() {
+
+				@Override
+				public HashMap<String, String> Validate(Form Model) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			};
+			
+			Department dept2 = new Department("22", "HR");
+			Employee em2 = new Employee("102", dept2);
+			FormValidationStrategy fvs2 = new FormValidationStrategy() {
+
+				@Override
+				public HashMap<String, String> Validate(Form Model) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			};
+
+			add(new ATFormServiceImpl("AT003", em1, FormStatus.APPROVED, fvs1));
+			add(new ATFormServiceImpl("AT004", em2, FormStatus.APPROVED, fvs2));
+
+		}
+	};
+
+	// create at_forms
+	public void aTFormsData() {
+		DataAccessRepositoryFacade.loadATFormsMap(allATForms);
 	}
 
 }

@@ -1,8 +1,9 @@
 package com.hr.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Employee {
+public class Employee implements Serializable {
 
 	String empID;
 	String empName;
@@ -61,6 +62,11 @@ public class Employee {
 	}
 	public void setDepartment(Department dept) {
 		this.dept = dept;
+	}
+	
+	@Override
+	public String toString() {
+		return "[empID: " + empID + ", empName: " + empName + ", Dept: " + dept + "]";
 	}
 	
 }
