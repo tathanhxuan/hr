@@ -8,13 +8,13 @@ public class OTReport implements HRReport{
 
 	@Override
 	public void reportByDate(Date startDate, Date endDate) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method
 		
 	}
 
 	@Override
 	public void reportByDepartment(Department department) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method
 		
 	}
 

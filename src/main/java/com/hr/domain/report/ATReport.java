@@ -9,7 +9,6 @@ public class ATReport implements HRReport {
 	@Override
 	public void reportByDate(Date startDate, Date endDate) {
 		
-		
 	}
 
 	@Override
