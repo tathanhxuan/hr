@@ -11,6 +11,14 @@ import com.hr.domain.Report;
 public interface DataAccessRepository {
 
 	public HashMap<String, UserRepository> readUserMap();
+	
+	public HashMap<String, SystemUserRepository> readSystemUserMap();
+	
+	public HashMap<String, AttendanceRepository> readAttendanceMap();
+	
+	public HashMap<String, ShiftRepository> readShiftMap();
+	
+	public HashMap<String, OvertimeRepository> readOvertimeMap();
 
 	public HashMap<String, ApprovalRepository> readApprovalMap();
 
