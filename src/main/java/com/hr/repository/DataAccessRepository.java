@@ -25,6 +25,8 @@ public interface DataAccessRepository {
 	public HashMap<String, LeaveFormRepository> readLeaveFormMap();
 	
 	public HashMap<String, OTFormRepository> readOTFormMap();
+	
+	public HashMap<String, ATFormRepository> readATFormMap();
 
 	public HashMap<String, DepartmentApproverRepository> readApprovalMap();
 

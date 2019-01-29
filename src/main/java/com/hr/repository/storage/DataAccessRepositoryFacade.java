@@ -15,7 +15,7 @@ import com.hr.domain.History;
 import com.hr.domain.OTForm;
 import com.hr.domain.Report;
 import com.hr.domain.User;
-
+import com.hr.repository.ATFormRepository;
 import com.hr.repository.AttendanceRepository;
 import com.hr.repository.DataAccessRepository;
 import com.hr.repository.DepartmentApproverRepository;
@@ -29,6 +29,7 @@ import com.hr.repository.ReportRepository;
 import com.hr.repository.ShiftRepository;
 import com.hr.repository.SystemUserRepository;
 import com.hr.repository.UserRepository;
+import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
@@ -45,7 +46,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	enum StorageType {
 		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT, LEAVE_FORM,
-		OT_FORM;
+		OT_FORM, AT_FORM;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -106,6 +107,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		// TODO Auto-generated method stub
 		return (HashMap<String, OTFormRepository>) readFromStorage(StorageType.OT_FORM);
 	}
+	
+	@Override
+	public HashMap<String, ATFormRepository> readATFormMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, ATFormRepository>) readFromStorage(StorageType.AT_FORM);
+	}
+
 
 	public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
 		// TODO Auto-generated method stub
@@ -218,6 +226,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		allOTForms.forEach(oTForm -> oTForms.put(oTForm.getFormCode(), oTForm));
 		saveToStorage(StorageType.OT_FORM, oTForms);
 	}
+	
+	static void loadATFormsMap(List<ATFormServiceImpl> allATForms) {
+		HashMap<String, ATFormServiceImpl> aTForms = new HashMap<String, ATFormServiceImpl>();
+		allATForms.forEach(aTForm -> aTForms.put(aTForm.getFormCode(), aTForm));
+		saveToStorage(StorageType.AT_FORM, aTForms);
+	}
 
 	static void saveToStorage(StorageType type, Object ob) {
 		ObjectOutputStream out = null;
@@ -256,12 +270,5 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		}
 		return retVal;
 	}
-
-	
-
-	
-	
-	
-	
 
 }

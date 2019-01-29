@@ -19,6 +19,7 @@ import com.hr.domain.User;
 import com.hr.domain.formValidation.FormValidationStrategy;
 import com.hr.repository.Auth;
 import com.hr.repository.DataAccessRepository;
+import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
@@ -42,6 +43,7 @@ public class TestData implements Serializable {
 		// td.employeeGroupsData();
 		// td.leaveFormsData();
 		//td.oTFormsData();
+		td.aTFormsData();
 		
 
 		DataAccessRepository da = new DataAccessRepositoryFacade();
@@ -55,21 +57,8 @@ public class TestData implements Serializable {
 		// System.out.println(da.readEmployeeGroupMap());
 		// System.out.println(da.readLeaveFormMap());
 		
-		/*Department dept3 = new Department("33", "TT");
-		Employee em3 = new Employee("103", dept3);
-		FormValidationStrategy fvs3 = new FormValidationStrategy() {
-
-			@Override
-			public HashMap<String, String> Validate(Form Model) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		};
-		
-		OTForm oTForm =  new OTForm("OT003", em3, FormStatus.REFUSED, fvs3);*/
-		//oTForm = new OTForm(formCode, emp, status, validationStrategy);
-		//da.saveNewOTForm(oTForm);
-		System.out.println(da.readOTFormMap());
+		// System.out.println(da.readOTFormMap());
+		System.out.println(da.readATFormMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -220,6 +209,44 @@ public class TestData implements Serializable {
 	// create ot_forms
 	public void oTFormsData() {
 		DataAccessRepositoryFacade.loadOTFormsMap(allOTForms);
+	}
+	
+	@SuppressWarnings("serial")
+	List<ATFormServiceImpl> allATForms = new ArrayList<ATFormServiceImpl>() {
+
+		{
+
+			Department dept1 = new Department("11", "IT");
+			Employee em1 = new Employee("101", dept1);
+			FormValidationStrategy fvs1 = new FormValidationStrategy() {
+
+				@Override
+				public HashMap<String, String> Validate(Form Model) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			};
+			
+			Department dept2 = new Department("22", "HR");
+			Employee em2 = new Employee("102", dept2);
+			FormValidationStrategy fvs2 = new FormValidationStrategy() {
+
+				@Override
+				public HashMap<String, String> Validate(Form Model) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			};
+
+			add(new ATFormServiceImpl("AT003", em1, FormStatus.APPROVED, fvs1));
+			add(new ATFormServiceImpl("AT004", em2, FormStatus.APPROVED, fvs2));
+
+		}
+	};
+
+	// create at_forms
+	public void aTFormsData() {
+		DataAccessRepositoryFacade.loadATFormsMap(allATForms);
 	}
 
 }
