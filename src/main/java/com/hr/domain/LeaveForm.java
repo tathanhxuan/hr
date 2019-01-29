@@ -1,8 +1,8 @@
 package com.hr.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
-
-import com.hr.domain.approval.IApproverList;
+import com.hr.domain.formValidation.FormValidationStrategy;
 
 public abstract class LeaveForm extends Form {
 
@@ -82,11 +82,11 @@ public abstract class LeaveForm extends Form {
 		this.description = description;
 	}
 
-	public LeaveForm(String formCode, String empID, FormStatus status) {
-		super(formCode, empID, status);
+	public LeaveForm(String formCode, Employee emp, FormStatus status, FormValidationStrategy validationStrategy) {
+		super(formCode, emp, status,validationStrategy);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	@Override
 	public Date getDateFrom() {
 		// TODO Auto-generated method stub
@@ -100,13 +100,13 @@ public abstract class LeaveForm extends Form {
 	}
 
 	@Override
-	Boolean Approve(FormApprover approvalModel) {
+	Boolean Approve(StepApprover approvalModel) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	Boolean Submit(IApproverList approverList) {
+	Boolean Submit(ArrayList<StepApprover> approvers) {
 		// TODO Auto-generated method stub
 		return null;
 	}
