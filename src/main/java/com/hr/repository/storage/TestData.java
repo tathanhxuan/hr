@@ -1,15 +1,20 @@
 package com.hr.repository.storage;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import com.hr.domain.FormStatus;
 import com.hr.domain.User;
 import com.hr.repository.Auth;
 import com.hr.repository.DataAccessRepository;
 import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
+import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
 import com.hr.service.impl.ShiftServiceImpl;
 import com.hr.service.impl.SystemUserServiceImpl;
@@ -19,21 +24,26 @@ public class TestData {
 
 	public static void main(String[] args) {
 		TestData td = new TestData();
-		/*td.userData();
-		td.systemUserData();
-		td.attendanceData();
-		td.shiftData();
-		td.overtimeData();*/
-		td.employeeGroupsData();
 
-		
+		//td.userData();
+		//td.systemUserData();
+		//td.attendanceData();
+		//td.shiftData();
+		//td.overtimeData();
+
+		//td.employeeGroupsData();
+		td.leaveFormsData();
+
 		DataAccessRepository da = new DataAccessRepositoryFacade();
-		/*System.out.println(da.readUserMap());
-		System.out.println(da.readSystemUserMap());
-		System.out.println(da.readAttendanceMap());
-		System.out.println(da.readShiftMap());
-		System.out.println(da.readOvertimeMap());*/
-		System.out.println(da.readEmployeeGroupMap());
+		
+		  //System.out.println(da.readUserMap());
+		  //System.out.println(da.readSystemUserMap());
+		  //System.out.println(da.readAttendanceMap());
+		  //System.out.println(da.readShiftMap());
+		  //System.out.println(da.readOvertimeMap());
+		 
+		//System.out.println(da.readEmployeeGroupMap());
+		System.out.println(da.readLeaveFormMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -68,7 +78,7 @@ public class TestData {
 	public void systemUserData() {
 		DataAccessRepositoryFacade.loadSystemUserMap(allSystemUsers);
 	}
-	
+
 	@SuppressWarnings("serial")
 	List<AttendanceServiceImpl> allAttendances = new ArrayList<AttendanceServiceImpl>() {
 
@@ -83,7 +93,7 @@ public class TestData {
 	public void attendanceData() {
 		DataAccessRepositoryFacade.loadAttendancesMap(allAttendances);
 	}
-	
+
 	@SuppressWarnings("serial")
 	List<ShiftServiceImpl> allShifts = new ArrayList<ShiftServiceImpl>() {
 
@@ -98,7 +108,7 @@ public class TestData {
 	public void shiftData() {
 		DataAccessRepositoryFacade.loadShiftsMap(allShifts);
 	}
-	
+
 	@SuppressWarnings("serial")
 	List<OvertimeServiceImpl> allOvertimes = new ArrayList<OvertimeServiceImpl>() {
 
@@ -113,7 +123,7 @@ public class TestData {
 	public void overtimeData() {
 		DataAccessRepositoryFacade.loadOvertimesMap(allOvertimes);
 	}
-	
+
 	@SuppressWarnings("serial")
 	List<EmployeeGroupServiceImpl> allEmployeeGroups = new ArrayList<EmployeeGroupServiceImpl>() {
 
@@ -127,6 +137,28 @@ public class TestData {
 	// create employee_groups
 	public void employeeGroupsData() {
 		DataAccessRepositoryFacade.loadEmployeeGroupsMap(allEmployeeGroups);
+	}
+
+	@SuppressWarnings("serial")
+	List<LeaveFormServiceImpl> allLeaveForms = new ArrayList<LeaveFormServiceImpl>() {
+
+		{
+
+			Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
+			Date date2 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
+
+			add(new LeaveFormServiceImpl("F001", 1, "101", "Submited", date1, date1, "Des 1"));
+			add(new LeaveFormServiceImpl("F002", 1, "102", "Pedding", date2, date2, "Des 2"));
+			// add(new LeaveFormServiceImpl("2", "Dev 2", "Group 2"));
+			// String sDate1 = "31/12/1998";
+			// Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+
+		}
+	};
+
+	// create leave_forms
+	public void leaveFormsData() {
+		DataAccessRepositoryFacade.loadLeaveFormsMap(allLeaveForms);
 	}
 
 }

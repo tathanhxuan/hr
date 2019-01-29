@@ -1,5 +1,8 @@
 package com.hr;
 
+import com.hr.repository.DataAccessRepository;
+import com.hr.repository.storage.DataAccessRepositoryFacade;
+
 /**
  * Hello world!
  *
@@ -14,6 +17,9 @@ public class App
         System.out.println( "Hello World! Xuan");
         
         System.out.println( "Hello World! Xuan2");
+        
+
+        
 
     }
 }
