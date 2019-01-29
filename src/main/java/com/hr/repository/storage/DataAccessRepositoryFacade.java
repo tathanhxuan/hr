@@ -21,6 +21,7 @@ import com.hr.repository.DepartmentApproverRepository;
 import com.hr.repository.EmployeeGroupRepository;
 import com.hr.repository.FormRepository;
 import com.hr.repository.HistoryRepository;
+import com.hr.repository.LeaveFormRepository;
 import com.hr.repository.OvertimeRepository;
 import com.hr.repository.ReportRepository;
 import com.hr.repository.ShiftRepository;
@@ -28,6 +29,7 @@ import com.hr.repository.SystemUserRepository;
 import com.hr.repository.UserRepository;
 import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
+import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
 import com.hr.service.impl.ShiftServiceImpl;
 import com.hr.service.impl.SystemUserServiceImpl;
@@ -43,7 +45,7 @@ import com.hr.service.impl.UserServiceImpl;
 public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	enum StorageType {
-		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT;
+		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT, LEAVE_FORM;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -88,6 +90,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public HashMap<String, EmployeeGroupRepository> readEmployeeGroupMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, EmployeeGroupRepository>) readFromStorage(StorageType.EMPLOYEE_GROUP);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public HashMap<String, LeaveFormRepository> readLeaveFormMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, LeaveFormRepository>) readFromStorage(StorageType.LEAVE_FORM);
 	}
 
 	public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
@@ -170,6 +179,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		allEmployeeGroups.forEach(employeeGroup -> employeeGroups.put(employeeGroup.getGroup_id(), employeeGroup));
 		saveToStorage(StorageType.EMPLOYEE_GROUP, employeeGroups);
 	}
+	
+	static void loadLeaveFormsMap(List<LeaveFormServiceImpl> allLeaveForms) {
+		HashMap<String, LeaveFormServiceImpl> empLeaveForms = new HashMap<String, LeaveFormServiceImpl>();
+		allLeaveForms.forEach(empLeaveForm -> empLeaveForms.put(empLeaveForm.getFormCode(), empLeaveForm));
+		saveToStorage(StorageType.LEAVE_FORM, empLeaveForms);
+	}
 
 	static void saveToStorage(StorageType type, Object ob) {
 		ObjectOutputStream out = null;
@@ -213,6 +228,8 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 	
 
