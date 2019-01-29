@@ -1,23 +1,84 @@
 package com.hr.domain;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import com.hr.repository.Auth;
 
-public abstract class User {
-	String id;
+public abstract class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	int group_id;
+	String mobile;
 	String email;
 	String address;
+	String empID;
 	String nick_name;
 	String name;
-	String mobile;
+	String gender;
+	String date_of_birth;
+	String status;
+	String type;
+	String attendance_count;
 	Auth authorization;
 
-	public String getId() {
-		return id;
+	public String getEmpID() {
+		return empID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setEmpID(String empID) {
+		this.empID = empID;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getDate_of_birth() {
+		return date_of_birth;
+	}
+
+	public void setDate_of_birth(String date_of_birth) {
+		this.date_of_birth = date_of_birth;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getAttendance_count() {
+		return attendance_count;
+	}
+
+	public void setAttendance_count(String attendance_count) {
+		this.attendance_count = attendance_count;
+	}
+
+	public Auth getAuthorization() {
+		return authorization;
+	}
+
+	public void setAuthorization(Auth authorization) {
+		this.authorization = authorization;
 	}
 
 	public int getGroup_id() {
