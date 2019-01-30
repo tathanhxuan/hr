@@ -24,6 +24,7 @@ import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.DepartmentApproverServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
+import com.hr.service.impl.EmployeeServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OTFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
@@ -46,7 +47,8 @@ public class TestData implements Serializable {
 		// td.leaveFormsData();		 
 		// td.aTFormsData();
 		// td.oTFormsData();
-		td.departmentApproversData();
+		//td.departmentApproversData();
+		td.employeesData();
 		
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
@@ -102,7 +104,17 @@ public class TestData implements Serializable {
 		//System.out.println(da.readOTFormServiceImplMap());	
 		/*DepartmentApproverServiceImpl dep = new DepartmentApproverServiceImpl("D006", "IT", 1, "Son");
 		da.saveNewDepartmentApprover(dep);*/
-		System.out.println(da.readDepartmentApproverServiceImplMap());
+		//System.out.println(da.readDepartmentApproverServiceImplMap());
+		//da.removeDepartmentApprover("D002");
+		//System.out.println(da.readDepartmentApproverServiceImplMap());
+		
+		
+		/*System.out.println(da.readEmployeeServiceImplMap());
+		Date date3 = new GregorianCalendar(1980, Calendar.MAY, 11).getTime();
+		EmployeeServiceImpl emp3 = new EmployeeServiceImpl("101", "Azee", date3, "Nigeria", null, null, true);
+		da.updateEmployee(emp3);*/
+		
+		System.out.println(da.readEmployeeServiceImplMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -306,6 +318,22 @@ public class TestData implements Serializable {
 	// create department approver
 	public void departmentApproversData() {
 		DataAccessRepositoryFacade.loadDepartmentApproversMap(allDepartmentApprovers);
+	}
+	
+	@SuppressWarnings("serial")
+	List<EmployeeServiceImpl> allEmployees = new ArrayList<EmployeeServiceImpl>() {
+
+		{			
+			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
+			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
+			add(new EmployeeServiceImpl("101", "Azee", date1, "Nigeria", null, null, true));
+			add(new EmployeeServiceImpl("102", "Thai", date2, "Ha Noi", null, null, true));
+		}
+	};
+
+	// create Employees
+	public void employeesData() {
+		DataAccessRepositoryFacade.loadEmployeesMap(allEmployees);
 	}
 
 }
