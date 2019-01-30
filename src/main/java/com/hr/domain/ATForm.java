@@ -2,6 +2,7 @@ package com.hr.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 import com.hr.domain.formValidation.FormValidationStrategy;
 
 public class ATForm extends Form {
@@ -23,11 +24,6 @@ public class ATForm extends Form {
 		return null;
 	}
 
-	@Override
-	Boolean Approve(StepApprover approvalModel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	Boolean Submit(ArrayList<StepApprover> approvers) {

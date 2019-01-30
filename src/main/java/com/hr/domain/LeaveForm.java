@@ -2,6 +2,7 @@ package com.hr.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 import com.hr.domain.formValidation.FormValidationStrategy;
 
 public class LeaveForm extends Form {
@@ -83,12 +84,6 @@ public class LeaveForm extends Form {
 
 	@Override
 	Boolean ReSubmit() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	Boolean Approve(StepApprover approvalModel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

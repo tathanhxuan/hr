@@ -3,6 +3,7 @@ package com.hr.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+
 import com.hr.domain.formValidation.FormValidationStrategy;
 
 public class OTForm extends Form implements Serializable {
@@ -24,11 +25,6 @@ public class OTForm extends Form implements Serializable {
 		return null;
 	}
 
-	@Override
-	Boolean Approve(StepApprover approvalModel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	Boolean Submit(ArrayList<StepApprover> approvers) {

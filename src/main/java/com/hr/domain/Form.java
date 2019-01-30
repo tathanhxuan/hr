@@ -94,9 +94,7 @@ public abstract class Form implements Cloneable{
 	 abstract Boolean Submit(ArrayList<StepApprover> approvers);
 	 
 	 abstract Boolean SubmitNotify();
-	 
-	 abstract Boolean Approve(StepApprover approvalModel);
-	 
+	 	 
 	 abstract Boolean ReSubmit();
 	 
 	 abstract ArrayList<Form> getEmployeeForms(FormStatus status);

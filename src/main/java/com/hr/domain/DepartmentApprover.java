@@ -1,7 +1,7 @@
 package com.hr.domain;
 import java.util.ArrayList;
 
-import com.hr.domain.approvalProxy.IApproval;
+import com.hr.domain.ApprovalCore.IApproval;
 
 public class DepartmentApprover{
 	String deptID;
