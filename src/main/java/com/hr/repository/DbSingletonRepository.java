@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * How to Create a Database Connection Class Using a Singleton
+ * Create a Database Connection Class Using a Singleton
  */
 
 public class DbSingletonRepository {
