@@ -46,7 +46,7 @@ public class TestData implements Serializable {
 		// td.leaveFormsData();		 
 		// td.aTFormsData();
 		// td.oTFormsData();
-		td.departmentApproversData();
+		//td.departmentApproversData();
 		
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
@@ -102,6 +102,8 @@ public class TestData implements Serializable {
 		//System.out.println(da.readOTFormServiceImplMap());	
 		/*DepartmentApproverServiceImpl dep = new DepartmentApproverServiceImpl("D006", "IT", 1, "Son");
 		da.saveNewDepartmentApprover(dep);*/
+		//System.out.println(da.readDepartmentApproverServiceImplMap());
+		//da.removeDepartmentApprover("D002");
 		System.out.println(da.readDepartmentApproverServiceImplMap());
 	}
 

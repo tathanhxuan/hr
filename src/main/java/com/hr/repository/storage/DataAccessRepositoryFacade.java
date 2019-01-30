@@ -228,7 +228,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		oTForms.put(formCode, oTForm);
 		saveToStorage(StorageType.OT_FORM, oTForms);
 	}
-	
+			
 	public void saveNewATForm(ATFormServiceImpl aTForm) {
 		// TODO Auto-generated method stub
 		HashMap<String, ATFormServiceImpl> aTForms = readATFormServiceImplMap();
@@ -236,7 +236,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		aTForms.put(formCode, aTForm);
 		saveToStorage(StorageType.AT_FORM, aTForms);
 	}
-	
+		
 	public void saveNewLeaveForm(LeaveFormServiceImpl leaveForm) {
 		// TODO Auto-generated method stub
 		HashMap<String, LeaveFormServiceImpl> leaveForms = readLeaveFormServiceImplMap();
@@ -244,7 +244,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		leaveForms.put(formCode, leaveForm);
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
 	}
-	
+			
 	public void saveNewDepartmentApprover(DepartmentApproverServiceImpl departmentApprover) {
 		// TODO Auto-generated method stub
 		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = readDepartmentApproverServiceImplMap();
@@ -253,7 +253,30 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
+	public void removeOTForm(String formCode) {
+		HashMap<String, OTFormServiceImpl> oTForms = readOTFormServiceImplMap();
+		oTForms.remove(formCode);		
+		saveToStorage(StorageType.OT_FORM, oTForms);
+	}
 	
+	public void removeATForm(String formCode) {
+		HashMap<String, ATFormServiceImpl> aTForms = readATFormServiceImplMap();
+		aTForms.remove(formCode);		
+		saveToStorage(StorageType.AT_FORM, aTForms);
+	}
+	
+	public void removeLeaveForm(String formCode) {
+		HashMap<String, LeaveFormServiceImpl> leaveForms = readLeaveFormServiceImplMap();
+		leaveForms.remove(formCode);		
+		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
+	}
+	
+	public void removeDepartmentApprover(String deptID) {
+		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = readDepartmentApproverServiceImplMap();
+		departmentApprovers.remove(deptID);		
+		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
+	}
+		
 	static void loadUserMap(List<UserServiceImpl> allUsers) {
 		HashMap<String, UserServiceImpl> users = new HashMap<String, UserServiceImpl>();
 		allUsers.forEach(user -> users.put(user.getEmpID(), user));
