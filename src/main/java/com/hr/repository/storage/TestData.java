@@ -107,6 +107,13 @@ public class TestData implements Serializable {
 		//System.out.println(da.readDepartmentApproverServiceImplMap());
 		//da.removeDepartmentApprover("D002");
 		//System.out.println(da.readDepartmentApproverServiceImplMap());
+		
+		
+		/*System.out.println(da.readEmployeeServiceImplMap());
+		Date date3 = new GregorianCalendar(1980, Calendar.MAY, 11).getTime();
+		EmployeeServiceImpl emp3 = new EmployeeServiceImpl("101", "Azee", date3, "Nigeria", null, null, true);
+		da.updateEmployee(emp3);*/
+		
 		System.out.println(da.readEmployeeServiceImplMap());
 	}
 
