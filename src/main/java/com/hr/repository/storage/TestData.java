@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.hr.domain.Department;
 import com.hr.domain.Employee;
@@ -41,12 +42,12 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		// td.leaveFormsData();
+		// td.leaveFormsData();		 
+		// td.aTFormsData();
 		//td.oTFormsData();
-		td.aTFormsData();
 		
 
-		DataAccessRepository da = new DataAccessRepositoryFacade();
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
 		// System.out.println(da.readUserMap());
 		// System.out.println(da.readSystemUserMap());
@@ -56,9 +57,47 @@ public class TestData implements Serializable {
 
 		// System.out.println(da.readEmployeeGroupMap());
 		// System.out.println(da.readLeaveFormMap());
+		System.out.println(da.readLeaveFormServiceImplMap());
+		
+		/*Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
+		Date date2 = new GregorianCalendar(2017, Calendar.FEBRUARY, 11).getTime();
+		
+		LeaveFormServiceImpl leaveForm = new LeaveFormServiceImpl("F004", 1, "101", "Submited", date1, date1, "Des 1");
+		
+		da.saveNewLeaveForm(leaveForm);
+
+		System.out.println(da.readLeaveFormServiceImplMap());*/
+		
+		// System.out.println(da.readATFormMap());
+		// System.out.println(da.readATForm());
+		// System.out.println(da.readOTFormMap());
+		// System.out.println(da.readOTForm());
 		
 		// System.out.println(da.readOTFormMap());
-		System.out.println(da.readATFormMap());
+		// System.out.println(da.readOTFormServiceImplMap());
+		
+		/*Department dept1 = new Department("11", "IT");
+		Employee em1 = new Employee("101", dept1);
+		FormValidationStrategy fvs1 = new FormValidationStrategy() {
+
+			@Override
+			public HashMap<String, String> Validate(Form Model) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		};
+		OTFormServiceImpl oTForm1 = new OTFormServiceImpl("OT004", em1, FormStatus.CREATED, fvs1);
+		da.saveNewOTForm(oTForm1);
+		
+		HashMap<String, OTForm> oTForm = da.readOTForm();		
+		
+		for ( Map.Entry<String, OTForm> entry : oTForm.entrySet()) {
+		    String key = entry.getKey();
+		    System.out.println("Key: "+ key);
+		    System.out.println("Value: "+ oTForm.get(key));
+		}*/
+		
+		//System.out.println(da.readOTFormServiceImplMap());	
 	}
 
 	@SuppressWarnings("serial")
