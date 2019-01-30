@@ -22,6 +22,7 @@ import com.hr.repository.Auth;
 import com.hr.repository.DataAccessRepository;
 import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
+import com.hr.service.impl.DepartmentApproverServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OTFormServiceImpl;
@@ -42,9 +43,10 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		td.leaveFormsData();		 
+		// td.leaveFormsData();		 
 		// td.aTFormsData();
-		//td.oTFormsData();
+		// td.oTFormsData();
+		td.departmentApproversData();
 		
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
@@ -57,7 +59,7 @@ public class TestData implements Serializable {
 
 		// System.out.println(da.readEmployeeGroupMap());
 		// System.out.println(da.readLeaveFormMap());
-		System.out.println(da.readLeaveFormServiceImplMap());
+		// System.out.println(da.readLeaveFormServiceImplMap());
 		
 		/*Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
 		Date date2 = new GregorianCalendar(2017, Calendar.FEBRUARY, 11).getTime();
@@ -98,6 +100,9 @@ public class TestData implements Serializable {
 		}*/
 		
 		//System.out.println(da.readOTFormServiceImplMap());	
+		/*DepartmentApproverServiceImpl dep = new DepartmentApproverServiceImpl("D006", "IT", 1, "Son");
+		da.saveNewDepartmentApprover(dep);*/
+		System.out.println(da.readDepartmentApproverServiceImplMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -286,6 +291,21 @@ public class TestData implements Serializable {
 	// create at_forms
 	public void aTFormsData() {
 		DataAccessRepositoryFacade.loadATFormsMap(allATForms);
+	}
+	
+	@SuppressWarnings("serial")
+	List<DepartmentApproverServiceImpl> allDepartmentApprovers = new ArrayList<DepartmentApproverServiceImpl>() {
+
+		{			
+			add(new DepartmentApproverServiceImpl("D001", "IT", 1, "Thai"));
+			add(new DepartmentApproverServiceImpl("D002", "IT", 2, "Xuan"));
+			add(new DepartmentApproverServiceImpl("D003", "IT", 3, "Azeez"));
+		}
+	};
+
+	// create department approver
+	public void departmentApproversData() {
+		DataAccessRepositoryFacade.loadDepartmentApproversMap(allDepartmentApprovers);
 	}
 
 }

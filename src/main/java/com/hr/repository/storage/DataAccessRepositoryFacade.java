@@ -33,6 +33,7 @@ import com.hr.repository.SystemUserRepository;
 import com.hr.repository.UserRepository;
 import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
+import com.hr.service.impl.DepartmentApproverServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OTFormServiceImpl;
@@ -45,7 +46,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	enum StorageType {
 		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT, LEAVE_FORM,
-		OT_FORM, AT_FORM;
+		OT_FORM, AT_FORM, DEPARTMENT_APPROVER;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -149,6 +150,18 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		// TODO Auto-generated method stub
 		return (HashMap<String, ATFormServiceImpl>) readFromStorage(StorageType.AT_FORM);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, DepartmentApproverRepository> readDepartmentApproverMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, DepartmentApproverRepository>) readFromStorage(StorageType.DEPARTMENT_APPROVER);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, DepartmentApproverServiceImpl> readDepartmentApproverServiceImplMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, DepartmentApproverServiceImpl>) readFromStorage(StorageType.DEPARTMENT_APPROVER);
+	}
 
 
 	public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
@@ -232,6 +245,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
 	}
 	
+	public void saveNewDepartmentApprover(DepartmentApproverServiceImpl departmentApprover) {
+		// TODO Auto-generated method stub
+		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = readDepartmentApproverServiceImplMap();
+		String deptID = departmentApprover.getDeptID();
+		departmentApprovers.put(deptID, departmentApprover);
+		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
+	}
+	
 	
 	static void loadUserMap(List<UserServiceImpl> allUsers) {
 		HashMap<String, UserServiceImpl> users = new HashMap<String, UserServiceImpl>();
@@ -285,6 +306,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		HashMap<String, ATFormServiceImpl> aTForms = new HashMap<String, ATFormServiceImpl>();
 		allATForms.forEach(aTForm -> aTForms.put(aTForm.getFormCode(), aTForm));
 		saveToStorage(StorageType.AT_FORM, aTForms);
+	}
+	
+	static void loadDepartmentApproversMap(List<DepartmentApproverServiceImpl> allDepartmentApprovers) {
+		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = new HashMap<String, DepartmentApproverServiceImpl>();
+		allDepartmentApprovers.forEach(departmentApprover -> departmentApprovers.put(departmentApprover.getDeptID(), departmentApprover));
+		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 
 	static void saveToStorage(StorageType type, Object ob) {
