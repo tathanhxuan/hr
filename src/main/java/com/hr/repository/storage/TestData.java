@@ -42,7 +42,7 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		// td.leaveFormsData();		 
+		td.leaveFormsData();		 
 		// td.aTFormsData();
 		//td.oTFormsData();
 		
@@ -201,8 +201,8 @@ public class TestData implements Serializable {
 			Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
 
-			add(new LeaveFormServiceImpl("F001", 1, "101", "Submited", date1, date1, "Des 1"));
-			add(new LeaveFormServiceImpl("F002", 1, "102", "Pedding", date2, date2, "Des 2"));
+			add(new LeaveFormServiceImpl("F001", 1, "101", FormStatus.APPROVED, date1, date1, "Des 1"));
+			add(new LeaveFormServiceImpl("F002", 1, "102", FormStatus.REFUSED, date2, date2, "Des 2"));
 
 		}
 	};
