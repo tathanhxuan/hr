@@ -10,14 +10,14 @@ public class LeaveFormServiceImpl implements Serializable {
 	String formCode;
 	int formType;
 	String empID;
-	String status;
+	FormStatus status;
 	Date leaveDateFrom;
 	Date leaveDateTo;
 	String description;
 	
 	
 	
-	public LeaveFormServiceImpl(String formCode, int formType, String empID, String status, Date leaveDateFrom,
+	public LeaveFormServiceImpl(String formCode, int formType, String empID, FormStatus status, Date leaveDateFrom,
 			Date leaveDateTo, String description) {
 		super();
 		this.formCode = formCode;
@@ -83,11 +83,11 @@ public class LeaveFormServiceImpl implements Serializable {
 
 	
 
-	public String getStatus() {
+	public FormStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(FormStatus status) {
 		this.status = status;
 	}
 
@@ -117,7 +117,7 @@ public class LeaveFormServiceImpl implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "[formCode: " + formCode + ", Form Type: " + formType + ", empID: " + empID.toString() + "]";
+		return "[formCode: " + formCode + ", Form Type: " + formType + ", Form Status: " + status + ", empID: " + empID.toString() + "]";
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.hr.domain.Department;
 import com.hr.domain.Employee;
@@ -21,6 +22,7 @@ import com.hr.repository.Auth;
 import com.hr.repository.DataAccessRepository;
 import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
+import com.hr.service.impl.DepartmentApproverServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OTFormServiceImpl;
@@ -41,12 +43,13 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		// td.leaveFormsData();
-		//td.oTFormsData();
-		td.aTFormsData();
+		// td.leaveFormsData();		 
+		// td.aTFormsData();
+		// td.oTFormsData();
+		td.departmentApproversData();
 		
 
-		DataAccessRepository da = new DataAccessRepositoryFacade();
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
 		// System.out.println(da.readUserMap());
 		// System.out.println(da.readSystemUserMap());
@@ -56,9 +59,50 @@ public class TestData implements Serializable {
 
 		// System.out.println(da.readEmployeeGroupMap());
 		// System.out.println(da.readLeaveFormMap());
+		// System.out.println(da.readLeaveFormServiceImplMap());
+		
+		/*Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
+		Date date2 = new GregorianCalendar(2017, Calendar.FEBRUARY, 11).getTime();
+		
+		LeaveFormServiceImpl leaveForm = new LeaveFormServiceImpl("F004", 1, "101", "Submited", date1, date1, "Des 1");
+		
+		da.saveNewLeaveForm(leaveForm);
+
+		System.out.println(da.readLeaveFormServiceImplMap());*/
+		
+		// System.out.println(da.readATFormMap());
+		// System.out.println(da.readATForm());
+		// System.out.println(da.readOTFormMap());
+		// System.out.println(da.readOTForm());
 		
 		// System.out.println(da.readOTFormMap());
-		System.out.println(da.readATFormMap());
+		// System.out.println(da.readOTFormServiceImplMap());
+		
+		/*Department dept1 = new Department("11", "IT");
+		Employee em1 = new Employee("101", dept1);
+		FormValidationStrategy fvs1 = new FormValidationStrategy() {
+
+			@Override
+			public HashMap<String, String> Validate(Form Model) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		};
+		OTFormServiceImpl oTForm1 = new OTFormServiceImpl("OT004", em1, FormStatus.CREATED, fvs1);
+		da.saveNewOTForm(oTForm1);
+		
+		HashMap<String, OTForm> oTForm = da.readOTForm();		
+		
+		for ( Map.Entry<String, OTForm> entry : oTForm.entrySet()) {
+		    String key = entry.getKey();
+		    System.out.println("Key: "+ key);
+		    System.out.println("Value: "+ oTForm.get(key));
+		}*/
+		
+		//System.out.println(da.readOTFormServiceImplMap());	
+		/*DepartmentApproverServiceImpl dep = new DepartmentApproverServiceImpl("D006", "IT", 1, "Son");
+		da.saveNewDepartmentApprover(dep);*/
+		System.out.println(da.readDepartmentApproverServiceImplMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -162,8 +206,8 @@ public class TestData implements Serializable {
 			Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
 
-			add(new LeaveFormServiceImpl("F001", 1, "101", "Submited", date1, date1, "Des 1"));
-			add(new LeaveFormServiceImpl("F002", 1, "102", "Pedding", date2, date2, "Des 2"));
+			add(new LeaveFormServiceImpl("F001", 1, "101", FormStatus.APPROVED, date1, date1, "Des 1"));
+			add(new LeaveFormServiceImpl("F002", 1, "102", FormStatus.REFUSED, date2, date2, "Des 2"));
 
 		}
 	};
@@ -247,6 +291,21 @@ public class TestData implements Serializable {
 	// create at_forms
 	public void aTFormsData() {
 		DataAccessRepositoryFacade.loadATFormsMap(allATForms);
+	}
+	
+	@SuppressWarnings("serial")
+	List<DepartmentApproverServiceImpl> allDepartmentApprovers = new ArrayList<DepartmentApproverServiceImpl>() {
+
+		{			
+			add(new DepartmentApproverServiceImpl("D001", "IT", 1, "Thai"));
+			add(new DepartmentApproverServiceImpl("D002", "IT", 2, "Xuan"));
+			add(new DepartmentApproverServiceImpl("D003", "IT", 3, "Azeez"));
+		}
+	};
+
+	// create department approver
+	public void departmentApproversData() {
+		DataAccessRepositoryFacade.loadDepartmentApproversMap(allDepartmentApprovers);
 	}
 
 }
