@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import com.hr.domain.Form;
+import com.hr.domain.HRFormCore.FormValidatorBase;
 
 public class DateToRequiredValidator extends FormValidatorBase {
 

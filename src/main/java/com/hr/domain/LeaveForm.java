@@ -1,23 +1,23 @@
 package com.hr.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
-import com.hr.domain.formValidation.FormValidationStrategy;
+import com.hr.domain.HRFormCore.FormValidationStrategy;
+import com.hr.domain.HRFormCore.IFormCode;
 
-public class LeaveForm extends Form {
+public class LeaveForm extends Form implements IFormCode {
 
-	String formCode;
-	int formType;
-	String empID;
-	FormStatus status;
 	Date leaveDateFrom;
 	Date leaveDateTo;
 	String description;
 
-	public LeaveForm(String formCode, Employee emp, FormStatus status, FormValidationStrategy validationStrategy) {
-		super(formCode, emp, status,validationStrategy);
+	public LeaveForm( Employee emp, FormStatus status, FormValidationStrategy validationStrategy) {
+		super(emp, status,validationStrategy);
 		// TODO Auto-generated constructor stub
+	    this.formCode = CodeInterpreter();
 	}
 
 	public String getFormCode() {
@@ -28,29 +28,6 @@ public class LeaveForm extends Form {
 		this.formCode = formCode;
 	}
 
-	public int getFormType() {
-		return formType;
-	}
-
-	public void setFormType(int formType) {
-		this.formType = formType;
-	}
-
-	public String getEmpID() {
-		return empID;
-	}
-
-	public void setEmpID(String empID) {
-		this.empID = empID;
-	}
-
-	public FormStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(FormStatus status) {
-		this.status = status;
-	}
 
 	public Date getLeaveDateFrom() {
 		return leaveDateFrom;
@@ -84,7 +61,7 @@ public class LeaveForm extends Form {
 
 	@Override
 	Boolean ReSubmit() {
-		// TODO Auto-generated method stub
+		// update form
 		return null;
 	}
 
@@ -106,6 +83,11 @@ public class LeaveForm extends Form {
 	Boolean SubmitNotify() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String CodeInterpreter() {
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+		return "LA" + this.getOwner().empID + this.getOwner().getDepartment().getDeptID() + "_"+ timeStamp ;
 	}
 
 }

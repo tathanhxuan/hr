@@ -1,4 +1,4 @@
-package com.hr.domain.formValidation;
+package com.hr.domain.HRFormCore;
 import java.io.Serializable;
 import java.util.HashMap;
 import com.hr.domain.Form;

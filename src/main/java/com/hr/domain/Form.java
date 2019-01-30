@@ -1,7 +1,8 @@
 package com.hr.domain;
 import java.util.ArrayList;
 import java.util.Date;
-import com.hr.domain.formValidation.FormValidationStrategy;
+
+import com.hr.domain.HRFormCore.FormValidationStrategy;
 
 public abstract class Form implements Cloneable{
 	
@@ -10,9 +11,9 @@ public abstract class Form implements Cloneable{
 	 FormStatus status;
 	 FormValidationStrategy validationStrategy;
 	 
-	 public Form(String formCode,Employee owner, FormStatus status,FormValidationStrategy validationStrategy) {
+	 public Form(Employee owner, FormStatus status,FormValidationStrategy validationStrategy) {
 		
-		 this.formCode = formCode;
+		// this.formCode = formCode;
 		 this.owner = owner;
 		 this.status = status;
 		 this.validationStrategy = validationStrategy;

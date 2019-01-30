@@ -17,7 +17,7 @@ import com.hr.domain.Form;
 import com.hr.domain.FormStatus;
 import com.hr.domain.OTForm;
 import com.hr.domain.User;
-import com.hr.domain.formValidation.FormValidationStrategy;
+import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.repository.Auth;
 import com.hr.repository.DataAccessRepository;
 import com.hr.service.impl.ATFormServiceImpl;
