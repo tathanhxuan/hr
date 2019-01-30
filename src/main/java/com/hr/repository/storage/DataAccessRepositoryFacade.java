@@ -35,6 +35,7 @@ import com.hr.service.impl.ATFormServiceImpl;
 import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.DepartmentApproverServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
+import com.hr.service.impl.EmployeeServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OTFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
@@ -46,7 +47,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	enum StorageType {
 		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT, LEAVE_FORM,
-		OT_FORM, AT_FORM, DEPARTMENT_APPROVER;
+		OT_FORM, AT_FORM, DEPARTMENT_APPROVER, EMPLOYEE;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -162,6 +163,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		// TODO Auto-generated method stub
 		return (HashMap<String, DepartmentApproverServiceImpl>) readFromStorage(StorageType.DEPARTMENT_APPROVER);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, EmployeeServiceImpl> readEmployeeServiceImplMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, EmployeeServiceImpl>) readFromStorage(StorageType.EMPLOYEE);
+	}
+	
+	
 
 
 	public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
@@ -253,6 +262,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
+	public void saveNewEmployee(EmployeeServiceImpl employee) {
+		// TODO Auto-generated method stub
+		HashMap<String, EmployeeServiceImpl> employees = readEmployeeServiceImplMap();
+		String empID = employee.getEmpID();
+		employees.put(empID, employee);
+		saveToStorage(StorageType.EMPLOYEE, employees);
+	}
+	
 	public void removeOTForm(String formCode) {
 		HashMap<String, OTFormServiceImpl> oTForms = readOTFormServiceImplMap();
 		oTForms.remove(formCode);		
@@ -275,6 +292,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = readDepartmentApproverServiceImplMap();
 		departmentApprovers.remove(deptID);		
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
+	}
+	
+	public void removeEmployee(String empID) {
+		HashMap<String, EmployeeServiceImpl> employees = readEmployeeServiceImplMap();
+		employees.remove(empID);		
+		saveToStorage(StorageType.EMPLOYEE, employees);
 	}
 		
 	static void loadUserMap(List<UserServiceImpl> allUsers) {
@@ -335,6 +358,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = new HashMap<String, DepartmentApproverServiceImpl>();
 		allDepartmentApprovers.forEach(departmentApprover -> departmentApprovers.put(departmentApprover.getDeptID(), departmentApprover));
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
+	}
+	
+	static void loadEmployeesMap(List<EmployeeServiceImpl> allEmployees) {
+		HashMap<String, EmployeeServiceImpl> employees = new HashMap<String, EmployeeServiceImpl>();
+		allEmployees.forEach(employee -> employees.put(employee.getEmpID(), employee));
+		saveToStorage(StorageType.EMPLOYEE, employees);
 	}
 
 	static void saveToStorage(StorageType type, Object ob) {
