@@ -484,8 +484,8 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.DEPARTMENT, departments);
 	}
 		
-	public void updateEmployee(EmployeeServiceImpl employee) {
-		HashMap<String, EmployeeServiceImpl> employees = readEmployeeServiceImplMap();
+	public void updateEmployee(Employee employee) {
+		HashMap<String, Employee> employees = readEmployeeMap();
 		String empID = employee.getEmpID();
 		employees.replace(empID, employee);
 		saveToStorage(StorageType.EMPLOYEE, employees);
