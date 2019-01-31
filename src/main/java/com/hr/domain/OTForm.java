@@ -5,9 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.domain.HRFormCore.IFormCode;
+import com.hr.repository.storage.DataAccessRepositoryFacade;
+import com.hr.service.impl.OTFormServiceImpl;
 
 public class OTForm extends Form implements Serializable, IFormCode {
 
@@ -16,7 +19,7 @@ public class OTForm extends Form implements Serializable, IFormCode {
 		// TODO Auto-generated constructor stub
 		this.formCode = CodeInterpreter();
 	}
-	
+		
 	@Override
 	public Date getDateFrom() {
 		// TODO Auto-generated method stub
@@ -31,12 +34,25 @@ public class OTForm extends Form implements Serializable, IFormCode {
 
 
 	@Override
-	Boolean Submit(ArrayList<StepApprover> approvers) {
+	Boolean Submit(ArrayList<DepartmentApprover> approvers) {
 		// TODO Auto-generated method stub
 		
-		
-		//save into DB
-		return null;
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		for (DepartmentApprover approver: approvers) {
+			Employee emp = this.getOwner();
+			String formCode = CodeInterpreter();
+			FormValidationStrategy fvs = this.validationStrategy;
+			// Save into OT_FORM			
+			OTForm oTForm = new  OTForm(emp, FormStatus.CREATED, fvs);
+			//da.saveNewOTForm(oTForm);
+			
+			// Save into Form Approver
+			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getNameApprover());
+			da.saveNewFormApprover(formApprover);
+		}
+		//System.out.println(da.readOTForm());
+		System.out.println(da.readFormApproverMap());		
+		return true;
 	}
 
 	@Override

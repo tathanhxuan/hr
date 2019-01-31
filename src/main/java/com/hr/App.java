@@ -26,12 +26,13 @@ public class App
     	// AT FORM : AT_EMPID_DATETIME
     	// LEVAE FORM : LA_EMPID_DATETIME
     	
-        Form f = FormFactory.creatForm(FormType.LEAVE,emp,FormStatus.CREATED,vf);
+        Form f = FormFactory.creatForm(FormType.OVERTIME,emp,FormStatus.CREATED,vf);
 
         f.setStatus(FormStatus.CREATED);
+        f.setOwner(emp);
         
         
-       // f.formSubmit();
+        f.formSubmit();
         
         FormCodeGeneration t = new FormCodeGeneration();
         System.out.println(t.GenerateLeaveCode("001", "2456"));

@@ -31,7 +31,7 @@ public class ATForm extends Form implements IFormCode {
 
 
 	@Override
-	Boolean Submit(ArrayList<StepApprover> approvers) {
+	Boolean Submit(ArrayList<DepartmentApprover> approvers) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,28 +1,25 @@
-package com.hr.domain;
+package com.hr.service.impl;
 
-public class StepApprover {
+import java.io.Serializable;
 
-	Form form;
-	public Form getForm() {
-		return form;
-	}
+import com.hr.domain.Form;
 
-	public void setForm(Form form) {
-		this.form = form;
-	}
-	
+public class StepApproverServiceImpl implements Serializable {
 	String aproverID;
 	String approveStep;
 	String approveDate;
 	String comments;
-	
-	public StepApprover(String aproverID,String approveStep,String approveDate,String comments) {
-		this.aproverID=aproverID;
-		this.approveStep=approveStep;
-		this.approveDate=approveDate;
-		this.comments=comments;
+	Form form;
+			
+	public StepApproverServiceImpl(String aproverID, String approveStep, String approveDate, String comments,
+			Form form) {
+		super();
+		this.aproverID = aproverID;
+		this.approveStep = approveStep;
+		this.approveDate = approveDate;
+		this.comments = comments;
+		this.form = form;
 	}
-	
 	public String getAproverID() {
 		return aproverID;
 	}
@@ -47,9 +44,16 @@ public class StepApprover {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+	public Form getForm() {
+		return form;
+	}
+	public void setForm(Form form) {
+		this.form = form;
+	}
 	
 	@Override
 	public String toString() {
 		return "[Aprover ID: " + aproverID + ", Approve Step: " + approveStep.toString() + ", Approve Date: " + approveDate.toString() + ", Comments: " + comments.toString() + "]";
 	}
+	
 }

@@ -66,7 +66,7 @@ public class LeaveForm extends Form implements IFormCode {
 	}
 
 	@Override
-	Boolean Submit(ArrayList<StepApprover> approvers) {
+	Boolean Submit(ArrayList<DepartmentApprover> approvers) {
 		// TODO Auto-generated method stub
 		
 		//SAVE IN DB
