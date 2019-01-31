@@ -5,12 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.domain.HRFormCore.IFormCode;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
-import com.hr.service.impl.OTFormServiceImpl;
 
 public class OTForm extends Form implements Serializable, IFormCode {
 
@@ -51,6 +49,7 @@ public class OTForm extends Form implements Serializable, IFormCode {
 			da.saveNewFormApprover(formApprover);
 		}
 		//System.out.println(da.readOTForm());
+		//System.out.println(da.getListOTForm());
 		//System.out.println(da.readFormApproverMap());		
 		return true;
 	}

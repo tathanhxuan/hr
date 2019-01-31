@@ -131,6 +131,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		// TODO Auto-generated method stub
 		return (HashMap<String, OTForm>) readFromStorage(StorageType.OT_FORM);
 	}
+	
+	public ArrayList<OTForm> getListOTForm() {
+		HashMap<String, OTForm> oTFormsMap = readOTForm();
+		Collection<OTForm> values = oTFormsMap.values();
+		ArrayList<OTForm> listOTForms = new ArrayList<OTForm>(values);
+		return listOTForms;
+	}
 			
 	@SuppressWarnings("unchecked")
 	public HashMap<String, OTFormServiceImpl> readOTFormServiceImplMap() {
