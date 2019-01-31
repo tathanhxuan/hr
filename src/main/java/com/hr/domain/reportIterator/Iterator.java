@@ -1,12 +1,12 @@
-package com.hr.domain.reportChart;
+package com.hr.domain.reportIterator;
 
 /*Iterator pattern
  * 
  */
 
 public interface Iterator {
-	public boolean hasNext();
 
+	public boolean hasNext();
 	public Object next();
 	
 	

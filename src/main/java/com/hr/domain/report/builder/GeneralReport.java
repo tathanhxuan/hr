@@ -1,4 +1,8 @@
-package com.hr.domain.report;
+package com.hr.domain.report.builder;
+
+import com.hr.domain.report.ATReport;
+import com.hr.domain.report.LeaveReport;
+import com.hr.domain.report.OTReport;
 
 public class GeneralReport {
 	private ATReport aTReport;
@@ -31,8 +35,6 @@ public class GeneralReport {
     	this.leaveReport = leaveReport;
     	return this;
     }
-    
-    public Builder() {}
 			
 		@Override
 		public GeneralReport build() {
