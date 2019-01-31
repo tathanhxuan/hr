@@ -7,13 +7,13 @@ import com.hr.domain.HRFormCore.FormFactory;
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.domain.formValidation.LeaveFormValidation;
 import com.hr.domain.report.ATReport;
-import com.hr.domain.report.GeneralReport;
-import com.hr.domain.report.GeneralReport.Builder;
 import com.hr.domain.report.ReportMaker;
-import com.hr.domain.reportChart.ATReportIterator;
+import com.hr.domain.report.builder.GeneralReport;
+import com.hr.domain.report.builder.GeneralReport.Builder;
 import com.hr.domain.reportChart.ChartTemplate;
-import com.hr.domain.reportChart.LeaveReportIterator;
-import com.hr.domain.reportChart.OTReportIterator;
+import com.hr.domain.reportIterator.ATReportIterator;
+import com.hr.domain.reportIterator.LeaveReportIterator;
+import com.hr.domain.reportIterator.OTReportIterator;
 import com.hr.repository.DataAccessRepository;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 /**

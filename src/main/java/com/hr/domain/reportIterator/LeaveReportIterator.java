@@ -1,34 +1,36 @@
-package com.hr.domain.reportChart;
+package com.hr.domain.reportIterator;
 
-
+import com.hr.domain.reportChart.ChartTemplate;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
-public class OTReportIterator extends ChartTemplate implements ChartAggregate{
+public class LeaveReportIterator extends ChartTemplate implements ChartAggregate{
 
-	
+		
 	DataAccessRepositoryFacade dataReport = new DataAccessRepositoryFacade();
 	int totalRecord = dataReport.readLeaveForm().values().size();
+	
+	@Override
 	public int getTotalRecord() {
 		return totalRecord;
 	}
 
-	Object [] otReports = dataReport.readLeaveForm().entrySet().toArray();
+	Object [] leaveReports = dataReport.readLeaveForm().entrySet().toArray();
     
-     
+		
 	@Override
 	public Iterator getIterator() {
 
-		return new OTReportRepository();
+		return new LeaveReportRepository();
 	}
 
-	private class OTReportRepository implements Iterator {
+	private class LeaveReportRepository implements Iterator {
 		
 		
 		int index=0;
 
 		@Override
 		public boolean hasNext() {
-			if (index < otReports.length) {
+			if (index < leaveReports.length) {
 				return true;
 			}
 			return false;
@@ -37,7 +39,7 @@ public class OTReportIterator extends ChartTemplate implements ChartAggregate{
 		@Override
 		public Object next() {
 			if(this.hasNext()) {
-				return otReports[index++];
+				return leaveReports[index++];
 			}
 			return null;
 		}

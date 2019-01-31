@@ -1,19 +1,14 @@
-package com.hr.domain.reportChart;
+package com.hr.domain.reportIterator;
 
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
-public class ATReportIterator extends ChartTemplate implements ChartAggregate {
+public class ATReportIterator implements ChartAggregate {
 
 	DataAccessRepositoryFacade dataReport = new DataAccessRepositoryFacade();
 	int totalRecord = dataReport.readATForm().values().size();
 	Object [] ATReports = dataReport.readATForm().entrySet().toArray();
     
-	@Override
-	public int getTotalRecord() {
 		
-		return totalRecord;
-	}
-	
 	@Override
 	public Iterator getIterator() {
 

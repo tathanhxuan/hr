@@ -1,4 +1,4 @@
-package com.hr.domain.reportChart;
+package com.hr.domain.reportIterator;
 
 /*Iterator pattern
  * 
