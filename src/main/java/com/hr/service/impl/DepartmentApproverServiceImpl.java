@@ -19,6 +19,7 @@ public class DepartmentApproverServiceImpl implements Serializable {
 		this.deptName = deptName;
 		this.approvalLevel = approvalLevel;
 		this.empID = empID;
+		this.nameApprover = nameApprover;
 	}
 	public String getDeptID() {
 		return deptID;
