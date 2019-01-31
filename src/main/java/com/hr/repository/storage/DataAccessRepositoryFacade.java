@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -171,6 +173,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public HashMap<String, DepartmentApprover> readDepartmentApproverMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, DepartmentApprover>) readFromStorage(StorageType.DEPARTMENT_APPROVER);
+	}
+	
+	public ArrayList<DepartmentApprover> getListDepartmentApprover() {
+		HashMap<String, DepartmentApprover> departmentApproversMap = readDepartmentApproverMap();
+		Collection<DepartmentApprover> values = departmentApproversMap.values();
+		ArrayList<DepartmentApprover> listDepartmentApprovers = new ArrayList<DepartmentApprover>(values);
+		return listDepartmentApprovers;
 	}
 	
 	@SuppressWarnings("unchecked")

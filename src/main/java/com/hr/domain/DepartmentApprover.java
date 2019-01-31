@@ -19,10 +19,7 @@ public class DepartmentApprover implements Serializable {
 
 		// Respository
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
-		HashMap<String, DepartmentApprover> approvers = da.readDepartmentApproverMap();
-		Collection<DepartmentApprover> values = approvers.values();
-		ArrayList<DepartmentApprover> listApprovers = new ArrayList<DepartmentApprover>(values);
-		return listApprovers;
+		return da.getListDepartmentApprover();
 	}
 
 	

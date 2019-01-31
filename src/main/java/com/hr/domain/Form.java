@@ -1,10 +1,11 @@
 package com.hr.domain;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 
-public abstract class Form implements Cloneable{
+public abstract class Form implements Serializable, Cloneable{
 	
 	 String formCode;
 	 Employee owner;
@@ -99,5 +100,5 @@ public abstract class Form implements Cloneable{
 	 abstract Boolean ReSubmit();
 	 
 	 abstract ArrayList<Form> getEmployeeForms(FormStatus status);
-	 
+	 	 	 	
 }

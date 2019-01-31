@@ -18,8 +18,8 @@ public class OTForm extends Form implements Serializable, IFormCode {
 		super( emp, status,validationStrategy);
 		// TODO Auto-generated constructor stub
 		this.formCode = CodeInterpreter();
-	}
-		
+	}		
+			
 	@Override
 	public Date getDateFrom() {
 		// TODO Auto-generated method stub
@@ -43,15 +43,15 @@ public class OTForm extends Form implements Serializable, IFormCode {
 			String formCode = CodeInterpreter();
 			FormValidationStrategy fvs = this.validationStrategy;
 			// Save into OT_FORM			
-			OTForm oTForm = new  OTForm(emp, FormStatus.CREATED, fvs);
-			//da.saveNewOTForm(oTForm);
+			OTForm oTForm = new OTForm(emp, FormStatus.CREATED, fvs);
+			da.saveNewOTForm(oTForm);
 			
 			// Save into Form Approver
 			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getNameApprover());
 			da.saveNewFormApprover(formApprover);
 		}
 		//System.out.println(da.readOTForm());
-		System.out.println(da.readFormApproverMap());		
+		//System.out.println(da.readFormApproverMap());		
 		return true;
 	}
 
@@ -73,5 +73,10 @@ public class OTForm extends Form implements Serializable, IFormCode {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 		return "OT" + this.getOwner().empID + this.getOwner().getDepartment().getDeptID() + "_"+ timeStamp ;
 	}
+	
+	/*@Override
+	public String toString() {
+		return "[formCode: " + this.formCode  + "]";
+	}*/
 
 }
