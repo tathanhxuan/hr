@@ -49,8 +49,8 @@ public class TestData implements Serializable {
 		// td.employeeGroupsData();
 		// td.leaveFormsData();		 
 		// td.aTFormsData();
-		td.oTFormsData();
-		//td.departmentApproversData();
+		//td.oTFormsData();
+		td.departmentApproversData();
 		// td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
@@ -80,7 +80,7 @@ public class TestData implements Serializable {
 		// System.out.println(da.readATFormMap());
 		// System.out.println(da.readATForm());
 		// System.out.println(da.readOTFormMap());
-		System.out.println(da.readOTForm());
+		//System.out.println(da.readOTForm());
 		
 		// System.out.println(da.readOTFormMap());
 		// System.out.println(da.readOTFormServiceImplMap());
@@ -122,7 +122,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readEmployeeServiceImplMap());
 		//System.out.println(da.readStepApproverServiceImplMap());
 		//System.out.println(da.readFormApproverMap());
-		//System.out.println(da.readDepartmentApproverMap());
+		System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 	}
 
@@ -333,9 +333,9 @@ public class TestData implements Serializable {
 	List<DepartmentApprover> allDepartmentApprovers = new ArrayList<DepartmentApprover>() {
 
 		{			
-			add(new DepartmentApprover("D001", "IT", 1, "Thai"));
-			add(new DepartmentApprover("D002", "IT", 2, "Xuan"));
-			add(new DepartmentApprover("D003", "IT", 3, "Azeez"));
+			add(new DepartmentApprover("D001", "IT", 1, "101"));
+			add(new DepartmentApprover("D002", "IT", 2, "102"));
+			add(new DepartmentApprover("D003", "IT", 3, "103"));
 		}
 	};
 

@@ -12,7 +12,7 @@ public class DepartmentApprover implements Serializable {
 	String deptID;
 	String deptName;
 	int approvalLevel;
-	String nameApprover;
+	String empID;
 
 	public ArrayList<DepartmentApprover> getListApprover() {
 		// TODO Auto-generated method stub
@@ -23,12 +23,12 @@ public class DepartmentApprover implements Serializable {
 	}
 
 	
-	public DepartmentApprover(String deptID, String deptName, int approvalLevel, String nameApprover) {
+	public DepartmentApprover(String deptID, String deptName, int approvalLevel, String empID) {
 		super();
 		this.deptID = deptID;
 		this.deptName = deptName;
 		this.approvalLevel = approvalLevel;
-		this.nameApprover = nameApprover;
+		this.empID = empID;
 	}
 
 
@@ -57,13 +57,17 @@ public class DepartmentApprover implements Serializable {
 		this.approvalLevel = approvalLevel;
 	}
 
-	public String getNameApprover() {
-		return nameApprover;
+	
+
+	public String getEmpID() {
+		return empID;
 	}
 
-	public void setNameApprover(String nameApprover) {
-		this.nameApprover = nameApprover;
+
+	public void setEmpID(String empID) {
+		this.empID = empID;
 	}
+
 
 	public DepartmentApprover(String deptID) {
 		this.deptID = deptID;
@@ -71,7 +75,7 @@ public class DepartmentApprover implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "[Dept ID: " + deptID + ", Dept Name: " + deptName.toString() + ", Approval Level: " + approvalLevel + ", Name Approver: " + nameApprover.toString() + "]";
+		return "[Dept ID: " + deptID + ", Dept Name: " + deptName.toString() + ", Approval Level: " + approvalLevel + ", empID: " + empID.toString() + "]";
 	}
 
 }
