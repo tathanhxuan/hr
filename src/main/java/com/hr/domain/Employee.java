@@ -5,20 +5,16 @@ import java.util.Date;
 
 public class Employee implements Serializable {
 
-	String empID;
-	String empName;
-	Date dateOfBirth;
-	String address;
-	Position position;
-	Department dept;
-	Boolean isApprover;
+	private String empID;
+	private String empName;
+	private Date dateOfBirth;
+	private String address;
+	private Position position;
+	private Department dept;
+	private Boolean isApprover;
 	
 	public Boolean getIsApprover() {
 		return isApprover;
-	}
-
-	public void setIsApprover(Boolean isApprover) {
-		this.isApprover = isApprover;
 	}
 
 	public Employee(String empID,Department dept) {

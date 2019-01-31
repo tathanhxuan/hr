@@ -1,0 +1,6 @@
+package com.hr.domain.Notify;
+
+public interface Observer {
+	public void update();
+	public void setSubject(Subject sub);
+}

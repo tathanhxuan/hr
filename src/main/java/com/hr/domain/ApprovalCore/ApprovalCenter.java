@@ -2,6 +2,7 @@ package com.hr.domain.ApprovalCore;
 
 import java.util.ArrayList;
 
+import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Employee;
 import com.hr.domain.Form;
 import com.hr.domain.StepApprover;
@@ -26,4 +27,20 @@ public class ApprovalCenter implements IApproval {
 		return null;
 	}
 
+	//approve forms base on employee
+	public Boolean Refuse(StepApprover approvalModel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boolean SetDepartmentApprover(ArrayList<DepartmentApprover> approvers) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boolean ApproveAll(ArrayList<Form> forms, StepApprover approvalModel) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
