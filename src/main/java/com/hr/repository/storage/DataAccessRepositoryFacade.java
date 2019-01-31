@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.hr.domain.ATForm;
+import com.hr.domain.Department;
 import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Form;
 import com.hr.domain.FormApprover;
@@ -52,7 +53,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	enum StorageType {
 		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT, LEAVE_FORM,
-		OT_FORM, AT_FORM, DEPARTMENT_APPROVER, EMPLOYEE, STEP_APPROVER, FORM_APPROVER;
+		OT_FORM, AT_FORM, DEPARTMENT_APPROVER, EMPLOYEE, STEP_APPROVER, FORM_APPROVER, DEPARTMENT;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -180,6 +181,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public HashMap<String, DepartmentApprover> readDepartmentApproverMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, DepartmentApprover>) readFromStorage(StorageType.DEPARTMENT_APPROVER);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, Department> readDepartmentMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, Department>) readFromStorage(StorageType.DEPARTMENT);
 	}
 	
 	public ArrayList<DepartmentApprover> getListDepartmentApprover() {
@@ -523,6 +530,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		HashMap<String, FormApprover> formApprovers = new HashMap<String, FormApprover>();
 		allFormApprovers.forEach(formApprover -> formApprovers.put(formApprover.getFormCode(), formApprover));
 		saveToStorage(StorageType.FORM_APPROVER, formApprovers);
+	}
+	
+	static void loadDepartmentsMap(List<Department> allDepartments) {
+		HashMap<String, Department> departments = new HashMap<String, Department>();
+		allDepartments.forEach(department -> departments.put(department.getDeptID(), department));
+		saveToStorage(StorageType.DEPARTMENT, departments);
 	}
 
 	static void saveToStorage(StorageType type, Object ob) {

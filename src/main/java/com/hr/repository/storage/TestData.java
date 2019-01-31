@@ -49,11 +49,12 @@ public class TestData implements Serializable {
 		// td.employeeGroupsData();
 		// td.leaveFormsData();		 
 		// td.aTFormsData();
-		 td.oTFormsData();
-		td.departmentApproversData();
+		// td.oTFormsData();
+		//td.departmentApproversData();
 		// td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
+		td.departmentsData();
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
@@ -79,7 +80,7 @@ public class TestData implements Serializable {
 		// System.out.println(da.readATFormMap());
 		// System.out.println(da.readATForm());
 		// System.out.println(da.readOTFormMap());
-		System.out.println(da.readOTForm());
+		//System.out.println(da.readOTForm());
 		
 		// System.out.println(da.readOTFormMap());
 		// System.out.println(da.readOTFormServiceImplMap());
@@ -121,7 +122,8 @@ public class TestData implements Serializable {
 		//System.out.println(da.readEmployeeServiceImplMap());
 		//System.out.println(da.readStepApproverServiceImplMap());
 		//System.out.println(da.readFormApproverMap());
-		System.out.println(da.readDepartmentApproverMap());
+		//System.out.println(da.readDepartmentApproverMap());
+		System.out.println(da.readDepartmentMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -386,6 +388,20 @@ public class TestData implements Serializable {
 	// create Employees
 	public void formApproversData() {
 		DataAccessRepositoryFacade.loadFormApproversMap(allFormApprovers);
+	}
+	
+	@SuppressWarnings("serial")
+	List<Department> allDepartments = new ArrayList<Department>() {
+
+		{
+			add(new Department("D01", "IT"));
+			add(new Department("D02", "HR"));
+		}
+	};
+
+	// create Employees
+	public void departmentsData() {
+		DataAccessRepositoryFacade.loadDepartmentsMap(allDepartments);
 	}
 
 }
