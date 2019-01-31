@@ -34,15 +34,15 @@ public ReportMaker() {
 	
 	//Generate report by department
 	
-	public void oTReportByDepartment(Department department) {
+	public void oTReportByDepartment(String department) {
 		oTReport.reportByDepartment(department);
 	}
 	
-	public void aTReportByDepartment(Department department) {
+	public void aTReportByDepartment(String department) {
 		aTReport.reportByDepartment(department);
 	}
 	
-	public void leaveReportByDepartment(Department department) {
+	public void leaveReportByDepartment(String department) {
 		leaveReport.reportByDepartment(department);
 	}
 }

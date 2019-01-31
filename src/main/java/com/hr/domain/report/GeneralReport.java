@@ -31,8 +31,6 @@ public class GeneralReport {
     	this.leaveReport = leaveReport;
     	return this;
     }
-    
-    public Builder() {}
 			
 		@Override
 		public GeneralReport build() {

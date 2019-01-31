@@ -5,8 +5,8 @@ package com.hr.domain.reportChart;
  */
 
 public interface Iterator {
-	public boolean hasNext();
 
+	public boolean hasNext();
 	public Object next();
 	
 	

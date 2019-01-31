@@ -3,28 +3,44 @@ package com.hr.domain.reportChart;
 
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
-public class OTReportIterator extends DataAccessRepositoryFacade implements ChartAggregate{
+public class OTReportIterator extends ChartTemplate implements ChartAggregate{
 
 	
+	DataAccessRepositoryFacade dataReport = new DataAccessRepositoryFacade();
+	int totalRecord = dataReport.readLeaveForm().values().size();
+	public int getTotalRecord() {
+		return totalRecord;
+	}
+
+	Object [] otReports = dataReport.readLeaveForm().entrySet().toArray();
+    
+     
 	@Override
 	public Iterator getIterator() {
-		
+
 		return new OTReportRepository();
 	}
-	
-	private class OTReportRepository implements Iterator{
+
+	private class OTReportRepository implements Iterator {
+		
+		
+		int index=0;
 
 		@Override
 		public boolean hasNext() {
-			// TODO Auto-generated method stub
+			if (index < otReports.length) {
+				return true;
+			}
 			return false;
 		}
 
 		@Override
 		public Object next() {
-			// TODO Auto-generated method stub
+			if(this.hasNext()) {
+				return otReports[index++];
+			}
 			return null;
 		}
-		
+
 	}
 }
