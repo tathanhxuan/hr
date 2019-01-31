@@ -10,7 +10,7 @@ public class DepartmentApprover{
 		this.deptID = deptID;
 	}
 
-	public ArrayList<StepApprover> getListApprover() {
+	public ArrayList<DepartmentApprover> getListApprover() {
 		// TODO Auto-generated method stub
 		
 		//respository 

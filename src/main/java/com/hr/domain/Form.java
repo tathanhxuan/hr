@@ -69,14 +69,13 @@ public abstract class Form implements Cloneable{
 		
 		if(Submit(approvers.getListApprover()))
 		 {
-			SubmitNotify();
+			SubmitNotify(this);
 			return true;
 		 }
 		
 		return false;
 	}
 
-	
 	public final Boolean formReSubmit() {
 		        //validate form
 				if (validationStrategy.Validate(this) !=null )
@@ -84,20 +83,20 @@ public abstract class Form implements Cloneable{
 				
 				if(ReSubmit())
 				 {
-					SubmitNotify();
+					SubmitNotify(this);
 					return true;
 				 }
 				
 				return false;
 	}
-	
-	
-	 abstract Boolean Submit(ArrayList<StepApprover> approvers);
+		
+	 abstract Boolean Submit(ArrayList<DepartmentApprover> approvers);
 	 
-	 abstract Boolean SubmitNotify();
+	 abstract Boolean SubmitNotify(Form f);
 	 	 
 	 abstract Boolean ReSubmit();
 	 
 	 abstract ArrayList<Form> getEmployeeForms(FormStatus status);
 	 
+	 abstract int getCurrentStatus();
 }
