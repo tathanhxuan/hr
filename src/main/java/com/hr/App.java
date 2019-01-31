@@ -6,13 +6,24 @@ import com.hr.domain.*;
 import com.hr.domain.HRFormCore.FormFactory;
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.domain.formValidation.LeaveFormValidation;
+import com.hr.domain.report.ATReport;
+import com.hr.domain.report.ReportMaker;
+import com.hr.domain.report.builder.GeneralReport;
+import com.hr.domain.report.builder.GeneralReport.Builder;
+import com.hr.domain.reportChart.ChartTemplate;
+import com.hr.domain.reportIterator.ATReportIterator;
+import com.hr.domain.reportIterator.LeaveReportIterator;
+import com.hr.domain.reportIterator.OTReportIterator;
+import com.hr.repository.DataAccessRepository;
+import com.hr.repository.storage.DataAccessRepositoryFacade;
 /**
  * Hello world!
  *
  */
 public class App 
 {
-    public static void main( String[] args )
+    @SuppressWarnings("null")
+	public static void main( String[] args )
     {
     	
     	//Employee emp = Login();
@@ -28,6 +39,10 @@ public class App
     	}
     	
     	
+
+     /*
+    	Form f = FormFactory.creatForm(FormType.OVERTIME,emp,FormStatus.CREATED,vf);
+
 //    	//FORM SUBMIT
  	FormValidationStrategy vf = new LeaveFormValidation();
 //    	
@@ -49,14 +64,41 @@ public class App
 
         Form f = FormFactory.creatForm(FormType.OVERTIME,emp,FormStatus.CREATED,vf);
 
+<<<<<<< HEAD
 //        f.setStatus(FormStatus.CREATED);
 //        f.setOwner(emp);
 //        
 //        
 //        f.formSubmit();
+=======
+
+        f.setStatus(FormStatus.CREATED);
+        f.setOwner(emp);
+        
+        
+        f.formSubmit();
+>>>>>>> b35d524da73067fa126db5efd36baed915eab44a
 
         
         
+    */
+    	
+    	//i want to get data from
+    	DataAccessRepositoryFacade dt = new DataAccessRepositoryFacade();
+    //	int counter = 0;
+    	//for(int a: dt.readLeaveForm().values().size())
+   	System.out.println(dt.readATForm().values().size());
+    
+   	
+   	ReportMaker Rm = new ReportMaker();
+    //	Department stDepartment=null;
+    //	stDepartment.setDeptName("IT");
+    	
+    //	Rm.oTReportByDepartment("HR");
+    //	ChartTemplate ch=null;
+    //	ch.getReportChart();
+    	
+       	
     }
 
 

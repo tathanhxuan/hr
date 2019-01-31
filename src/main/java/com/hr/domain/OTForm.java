@@ -54,7 +54,7 @@ public class OTForm extends Form implements Serializable, IFormCode {
 			da.saveNewOTForm(oTForm);
 			
 			// Save into Form Approver
-			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getNameApprover());
+			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getEmpID());
 			da.saveNewFormApprover(formApprover);
 		}
 		//System.out.println(da.readOTForm());

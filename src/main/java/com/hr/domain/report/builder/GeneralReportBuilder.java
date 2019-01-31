@@ -1,4 +1,4 @@
-package com.hr.domain.report;
+package com.hr.domain.report.builder;
 
 public interface GeneralReportBuilder {
    /*
