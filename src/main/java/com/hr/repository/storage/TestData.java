@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.hr.domain.Department;
+import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Employee;
 import com.hr.domain.Form;
+import com.hr.domain.FormApprover;
 import com.hr.domain.FormStatus;
 import com.hr.domain.OTForm;
 import com.hr.domain.User;
@@ -29,6 +31,7 @@ import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OTFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
 import com.hr.service.impl.ShiftServiceImpl;
+import com.hr.service.impl.StepApproverServiceImpl;
 import com.hr.service.impl.SystemUserServiceImpl;
 import com.hr.service.impl.UserServiceImpl;
 
@@ -48,8 +51,10 @@ public class TestData implements Serializable {
 		// td.aTFormsData();
 		// td.oTFormsData();
 		//td.departmentApproversData();
-		td.employeesData();
-		
+		// td.employeesData();
+		// td.stepApproversData();
+		//td.formApproversData();
+		td.departmentsData();
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
@@ -75,7 +80,7 @@ public class TestData implements Serializable {
 		// System.out.println(da.readATFormMap());
 		// System.out.println(da.readATForm());
 		// System.out.println(da.readOTFormMap());
-		// System.out.println(da.readOTForm());
+		//System.out.println(da.readOTForm());
 		
 		// System.out.println(da.readOTFormMap());
 		// System.out.println(da.readOTFormServiceImplMap());
@@ -114,7 +119,11 @@ public class TestData implements Serializable {
 		EmployeeServiceImpl emp3 = new EmployeeServiceImpl("101", "Azee", date3, "Nigeria", null, null, true);
 		da.updateEmployee(emp3);*/
 		
-		System.out.println(da.readEmployeeServiceImplMap());
+		//System.out.println(da.readEmployeeServiceImplMap());
+		//System.out.println(da.readStepApproverServiceImplMap());
+		//System.out.println(da.readFormApproverMap());
+		//System.out.println(da.readDepartmentApproverMap());
+		System.out.println(da.readDepartmentMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -305,13 +314,28 @@ public class TestData implements Serializable {
 		DataAccessRepositoryFacade.loadATFormsMap(allATForms);
 	}
 	
-	@SuppressWarnings("serial")
+	/*@SuppressWarnings("serial")
 	List<DepartmentApproverServiceImpl> allDepartmentApprovers = new ArrayList<DepartmentApproverServiceImpl>() {
 
 		{			
 			add(new DepartmentApproverServiceImpl("D001", "IT", 1, "Thai"));
 			add(new DepartmentApproverServiceImpl("D002", "IT", 2, "Xuan"));
 			add(new DepartmentApproverServiceImpl("D003", "IT", 3, "Azeez"));
+		}
+	};
+
+	// create department approver
+	public void departmentApproversData() {
+		DataAccessRepositoryFacade.loadDepartmentApproversMap(allDepartmentApprovers);
+	}*/
+	
+	@SuppressWarnings("serial")
+	List<DepartmentApprover> allDepartmentApprovers = new ArrayList<DepartmentApprover>() {
+
+		{			
+			add(new DepartmentApprover("D001", "IT", 1, "Thai"));
+			add(new DepartmentApprover("D002", "IT", 2, "Xuan"));
+			add(new DepartmentApprover("D003", "IT", 3, "Azeez"));
 		}
 	};
 
@@ -334,6 +358,50 @@ public class TestData implements Serializable {
 	// create Employees
 	public void employeesData() {
 		DataAccessRepositoryFacade.loadEmployeesMap(allEmployees);
+	}
+	
+	
+	@SuppressWarnings("serial")
+	List<StepApproverServiceImpl> allStepApprovers = new ArrayList<StepApproverServiceImpl>() {
+
+		{
+			add(new StepApproverServiceImpl("101", "Approve Step", "Approve Date", "comments", null));
+			add(new StepApproverServiceImpl("102", "Approve Step2", "Approve Date2", "comments2", null));
+		}
+	};
+
+	// create Employees
+	public void stepApproversData() {
+		DataAccessRepositoryFacade.loadStepApproversMap(allStepApprovers);
+	}
+	
+	@SuppressWarnings("serial")
+	List<FormApprover> allFormApprovers = new ArrayList<FormApprover>() {
+
+		{
+			add(new FormApprover("OT01", 1, "Xuan"));
+			add(new FormApprover("OT02", 3, "Thai"));
+			//add(new FormApprover("102", "Approve Step2", "Approve Date2", "comments2", null));
+		}
+	};
+
+	// create Employees
+	public void formApproversData() {
+		DataAccessRepositoryFacade.loadFormApproversMap(allFormApprovers);
+	}
+	
+	@SuppressWarnings("serial")
+	List<Department> allDepartments = new ArrayList<Department>() {
+
+		{
+			add(new Department("D01", "IT"));
+			add(new Department("D02", "HR"));
+		}
+	};
+
+	// create Employees
+	public void departmentsData() {
+		DataAccessRepositoryFacade.loadDepartmentsMap(allDepartments);
 	}
 
 }

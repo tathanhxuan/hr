@@ -77,10 +77,8 @@ public class LeaveForm extends Form implements IFormCode {
 	}
 
 	@Override
-	int getCurrentStatus() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
+	int getCurrentStatus() {return 0;}
 
 	@Override
 	ArrayList<Form> getEmployeeForms(FormStatus status) {

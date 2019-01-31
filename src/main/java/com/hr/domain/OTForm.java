@@ -10,10 +10,14 @@ import com.hr.domain.ApprovalCore.IApprovalVisitor;
 import com.hr.domain.ApprovalCore.IFormApproval;
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.domain.HRFormCore.IFormCode;
+
 import com.hr.domain.Notify.EmailAlert;
 import com.hr.domain.Notify.NotifyService;
 import com.hr.domain.Notify.Observer;
 import com.hr.domain.Notify.SMSAlert;
+
+import com.hr.repository.storage.DataAccessRepositoryFacade;
+
 
 public class OTForm extends Form implements Serializable, IFormCode {
 
@@ -21,8 +25,8 @@ public class OTForm extends Form implements Serializable, IFormCode {
 		super( emp, status,validationStrategy);
 		// TODO Auto-generated constructor stub
 		this.formCode = CodeInterpreter();
-	}
-	
+	}		
+			
 	@Override
 	public Date getDateFrom() {
 		// TODO Auto-generated method stub
@@ -40,8 +44,24 @@ public class OTForm extends Form implements Serializable, IFormCode {
 	Boolean Submit(ArrayList<DepartmentApprover> approvers) {
 		// TODO Auto-generated method stub
 		
-		//save into DB
-		return null;
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		for (DepartmentApprover approver: approvers) {
+			Employee emp = this.getOwner();
+			String formCode = CodeInterpreter();
+			FormValidationStrategy fvs = this.validationStrategy;
+			// Save into OT_FORM			
+			OTForm oTForm = new OTForm(emp, FormStatus.CREATED, fvs);
+			da.saveNewOTForm(oTForm);
+			
+			// Save into Form Approver
+			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getNameApprover());
+			da.saveNewFormApprover(formApprover);
+		}
+		//System.out.println(da.readOTForm());
+		//System.out.println(da.getListOTForm());
+		//System.out.println(da.readFormApproverMap());		
+		return true;
+
 	}
 
 	@Override
@@ -79,5 +99,10 @@ public class OTForm extends Form implements Serializable, IFormCode {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	/*@Override
+	public String toString() {
+		return "[formCode: " + this.formCode  + "]";
+	}*/
 
 }

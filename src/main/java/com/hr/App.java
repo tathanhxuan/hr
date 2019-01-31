@@ -29,6 +29,7 @@ public class App
     	 System.out.println(inputString + " " + pass );
     	//check user login
     	
+
     	if(true) {
 
     	System.out.println("SYSTEM MENU:");
@@ -43,10 +44,10 @@ public class App
     	
     	
 //    	//FORM SUBMIT
-//    	FormValidationStrategy vf = new LeaveFormValidation();
+ 	FormValidationStrategy vf = new LeaveFormValidation();
 //    	
-//        Department dept = new Department("001", "IT");
-//    	Employee emp = new Employee("2615",dept);
+       Department dept = new Department("001", "IT");
+ 	Employee emp = new Employee("2615",dept);
 //    	
 //    	
 //    	//FORM CODE CREATION FORMAT
@@ -60,6 +61,15 @@ public class App
 //        
 //        
 //        f.formSubmit();
+
+        Form f = FormFactory.creatForm(FormType.OVERTIME,emp,FormStatus.CREATED,vf);
+
+        f.setStatus(FormStatus.CREATED);
+        f.setOwner(emp);
+        
+        
+        f.formSubmit();
+
         
         
     }
