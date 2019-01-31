@@ -14,6 +14,7 @@ import java.util.List;
 import com.hr.domain.ATForm;
 import com.hr.domain.Department;
 import com.hr.domain.DepartmentApprover;
+import com.hr.domain.Employee;
 import com.hr.domain.Form;
 import com.hr.domain.FormApprover;
 import com.hr.domain.History;
@@ -133,12 +134,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return (HashMap<String, OTForm>) readFromStorage(StorageType.OT_FORM);
 	}
 	
-	public ArrayList<OTForm> getListOTForm() {
-		HashMap<String, OTForm> oTFormsMap = readOTForm();
-		Collection<OTForm> values = oTFormsMap.values();
-		ArrayList<OTForm> listOTForms = new ArrayList<OTForm>(values);
-		return listOTForms;
+	@SuppressWarnings("unchecked")
+	public HashMap<String, Employee> readEmployeeMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, Employee>) readFromStorage(StorageType.EMPLOYEE);
 	}
+	
+	
 			
 	@SuppressWarnings("unchecked")
 	public HashMap<String, OTFormServiceImpl> readOTFormServiceImplMap() {
@@ -201,6 +203,34 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		Collection<Department> values = departmentsMap.values();
 		ArrayList<Department> listDepartments = new ArrayList<Department>(values);
 		return listDepartments;
+	}
+	
+	public ArrayList<Employee> getListEmployee() {
+		HashMap<String, Employee> employeesMap = readEmployeeMap();
+		Collection<Employee> values = employeesMap.values();
+		ArrayList<Employee> listEmployees = new ArrayList<Employee>(values);
+		return listEmployees;
+	}
+	
+	public ArrayList<OTForm> getListOTForm() {
+		HashMap<String, OTForm> oTFormsMap = readOTForm();
+		Collection<OTForm> values = oTFormsMap.values();
+		ArrayList<OTForm> listOTForms = new ArrayList<OTForm>(values);
+		return listOTForms;
+	}
+	
+	public ArrayList<ATForm> getListATForm() {
+		HashMap<String, ATForm> aTFormsMap = readATForm();
+		Collection<ATForm> values = aTFormsMap.values();
+		ArrayList<ATForm> listATForms = new ArrayList<ATForm>(values);
+		return listATForms;
+	}
+	
+	public ArrayList<LeaveForm> getListLeaveForm() {
+		HashMap<String, LeaveForm> leaveFormsMap = readLeaveForm();
+		Collection<LeaveForm> values = leaveFormsMap.values();
+		ArrayList<LeaveForm> listLeaveForms = new ArrayList<LeaveForm>(values);
+		return listLeaveForms;
 	}
 	
 	@SuppressWarnings("unchecked")
