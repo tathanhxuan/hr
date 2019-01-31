@@ -196,6 +196,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return listDepartmentApprovers;
 	}
 	
+	public ArrayList<Department> getListDepartment() {
+		HashMap<String, Department> departmentsMap = readDepartmentMap();
+		Collection<Department> values = departmentsMap.values();
+		ArrayList<Department> listDepartments = new ArrayList<Department>(values);
+		return listDepartments;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, EmployeeServiceImpl> readEmployeeServiceImplMap() {
 		// TODO Auto-generated method stub
@@ -320,6 +327,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
+	public void saveNewDepartment(Department department) {
+		// TODO Auto-generated method stub
+		HashMap<String, Department> departments = readDepartmentMap();
+		String deptID = department.getDeptID();
+		departments.put(deptID, department);
+		saveToStorage(StorageType.DEPARTMENT, departments);
+	}
+	
 	
 	public void saveNewEmployee(EmployeeServiceImpl employee) {
 		// TODO Auto-generated method stub
@@ -373,6 +388,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
+	public void removeDepartment(String deptID) {
+		HashMap<String, Department> departments = readDepartmentMap();
+		departments.remove(deptID);		
+		saveToStorage(StorageType.DEPARTMENT, departments);
+	}
+	
 	public void removeEmployee(String empID) {
 		HashMap<String, EmployeeServiceImpl> employees = readEmployeeServiceImplMap();
 		employees.remove(empID);		
@@ -423,6 +444,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		String deptID = departmentApprover.getDeptID();
 		departmentApprovers.replace(deptID, departmentApprover);
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
+	}
+	
+	public void updateDepartment(Department department) {
+		// TODO Auto-generated method stub
+		HashMap<String, Department> departments = readDepartmentMap();
+		String deptID = department.getDeptID();
+		departments.replace(deptID, department);
+		saveToStorage(StorageType.DEPARTMENT, departments);
 	}
 		
 	public void updateEmployee(EmployeeServiceImpl employee) {
