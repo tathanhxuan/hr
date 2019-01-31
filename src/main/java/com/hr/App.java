@@ -15,39 +15,24 @@ public class App
     public static void main( String[] args )
     {
     	
-    	
-    	
-    	System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
-    	System.out.println("Login:");
-    	System.out.println("Username : ");
-    	 Scanner scanner = new Scanner(System. in);
-         String inputString = scanner. nextLine(); 
-    	 
-    	System.out.println("Passwords : ");
-    	 String pass = scanner. nextLine();
-    	
-    	 System.out.println(inputString + " " + pass );
-    	//check user login
-    	
+    	//Employee emp = Login();
 
-    	if(true) {
-
-    	System.out.println("SYSTEM MENU:");
-    	System.out.println("1.CREATE HR FORM");
-    	System.out.println("2.FORM HISTORY");
-    	System.out.println("3.EXIT");
-    	System.out.println(" PLEASE SELECT :");
+    	Employee emp = new Employee("123",new Department("123", ""));
     	
+    	if(emp == null) {
+        System.out.println("Invalid user ! ");
+        return;
     	}
-    	
-    	
+    	else {
+    		LoadStaffMenu();
+    	}
     	
     	
 //    	//FORM SUBMIT
  	FormValidationStrategy vf = new LeaveFormValidation();
 //    	
-       Department dept = new Department("001", "IT");
- 	Employee emp = new Employee("2615",dept);
+       //Department dept = new Department("001", "IT");
+ 	   //Employee emp = new Employee("2615",dept);
 //    	
 //    	
 //    	//FORM CODE CREATION FORMAT
@@ -64,13 +49,70 @@ public class App
 
         Form f = FormFactory.creatForm(FormType.OVERTIME,emp,FormStatus.CREATED,vf);
 
-        f.setStatus(FormStatus.CREATED);
-        f.setOwner(emp);
-        
-        
-        f.formSubmit();
+//        f.setStatus(FormStatus.CREATED);
+//        f.setOwner(emp);
+//        
+//        
+//        f.formSubmit();
 
         
         
     }
+
+
+    public static Employee Login() {
+    	Employee emp =null;
+    	System.out.println("-----------SYSTEM LOGIN-------------:");
+    	System.out.println("Username : ");
+    	Scanner scanner = new Scanner(System. in);
+        String username = scanner. nextLine(); 
+    	System.out.println("Passwords : ");
+    	String pass = scanner. nextLine();
+    	
+    	
+    	//verify user
+    	
+    	return emp;
+    }
+    
+    public static void LoadStaffMenu() {
+    	
+    	System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
+    	System.out.println("1.OT FORM");
+    	System.out.println("2.AT FORM");
+    	System.out.println("3.LEAVE FORM");
+    	System.out.println("4.FORM REFUSE");
+    	System.out.println("5.FORM SEARCH");
+    	System.out.println("6.EXIT");
+    	System.out.println("*******************************************************");
+    	System.out.println("*.SELECT : ");
+    }
+    
+   public static void LoadApproverMenu() {
+    	
+    	System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
+       	System.out.println("1.OT FORM");
+    	System.out.println("2.AT FORM");
+    	System.out.println("3.LEAVE FORM");
+    	System.out.println("4.FORM REFUSE");
+    	System.out.println("5.FORM SEARCH");
+    	System.out.println("6.FORM APPROVAL");
+    	System.out.println("7.REPORT");
+    	System.out.println("8.EXIT");
+    	System.out.println("*******************************************************");
+    	System.out.println("*.SELECT : ");
+    }
+   
+   public static void LoadReportMenu() {
+   	
+   	System.out.println("******REPORT********");
+    System.out.println("1.OT REPORT");
+   	System.out.println("2.AT REPORT");
+   	System.out.println("3.LEAVE REPORT");
+   	System.out.println("4.CHART");
+   	System.out.println("5.EXIT");
+   	System.out.println("*******************************************************");
+   	System.out.println("*.SELECT : ");
+   }
+   
 }

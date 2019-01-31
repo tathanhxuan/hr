@@ -13,6 +13,7 @@ public class DepartmentApprover implements Serializable {
 	String deptName;
 	int approvalLevel;
 	String nameApprover;
+	String EmpID ;
 
 	public ArrayList<DepartmentApprover> getListApprover() {
 		// TODO Auto-generated method stub

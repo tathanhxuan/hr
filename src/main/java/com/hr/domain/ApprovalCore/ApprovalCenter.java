@@ -40,6 +40,8 @@ public class ApprovalCenter implements IApproval {
 
 	public Boolean ApproveAll(ArrayList<Form> forms, StepApprover approvalModel) throws Exception {
 		// TODO Auto-generated method stub
+		
+		//implement transaction here for approve all form
 		return null;
 	}
 	

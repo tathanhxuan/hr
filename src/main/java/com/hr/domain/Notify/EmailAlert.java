@@ -1,7 +1,5 @@
 package com.hr.domain.Notify;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 public class EmailAlert implements Observer {
 
 	private Subject NotifyCenter;

@@ -13,7 +13,7 @@ public class SMSAlert implements Observer {
 				}else
 				{ 
 					// send SMS to persons who concerns 
-					System.out.println("Alert email was sent to concerned persons");
+					System.out.println("SMS was sent to concerned persons");
 			  }
 	}
 
