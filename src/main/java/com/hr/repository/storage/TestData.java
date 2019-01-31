@@ -333,9 +333,9 @@ public class TestData implements Serializable {
 	List<DepartmentApprover> allDepartmentApprovers = new ArrayList<DepartmentApprover>() {
 
 		{			
-			add(new DepartmentApprover("D001", "IT", 1, "101"));
-			add(new DepartmentApprover("D002", "IT", 2, "102"));
-			add(new DepartmentApprover("D003", "IT", 3, "103"));
+			add(new DepartmentApprover("D001", "IT", 1, "101", "Xuan"));
+			add(new DepartmentApprover("D002", "IT", 2, "102", "Thai"));
+			add(new DepartmentApprover("D003", "IT", 3, "103", "Azeez"));
 		}
 	};
 
