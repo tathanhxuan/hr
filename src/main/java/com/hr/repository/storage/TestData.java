@@ -28,6 +28,7 @@ import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.DepartmentApproverServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.EmployeeServiceImpl;
+import com.hr.service.impl.FormStatusServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OTFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
@@ -56,11 +57,12 @@ public class TestData implements Serializable {
 		// td.stepApproversData();
 		//td.formApproversData();
 		//td.departmentsData();
+		td.formStatusData();
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
 		// System.out.println(da.readUserMap());
-		System.out.println(da.readSystemUserMap());
+		//System.out.println(da.readSystemUserMap());
 		// System.out.println(da.readAttendanceMap());
 		// System.out.println(da.readShiftMap());
 		// System.out.println(da.readOvertimeMap());
@@ -125,6 +127,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readFormApproverMap());
 		//System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
+		System.out.println(da.readFormStatusMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -237,8 +240,8 @@ public class TestData implements Serializable {
 			Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
 
-			add(new LeaveFormServiceImpl("F001", 1, "101", FormStatus.APPROVED, date1, date1, "Des 1"));
-			add(new LeaveFormServiceImpl("F002", 1, "102", FormStatus.REFUSED, date2, date2, "Des 2"));
+			add(new LeaveFormServiceImpl("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
+			add(new LeaveFormServiceImpl("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
 
 		}
 	};
@@ -275,8 +278,8 @@ public class TestData implements Serializable {
 				}
 			};
 
-			add(new OTFormServiceImpl("OT001", em1, FormStatus.APPROVED, fvs1));
-			add(new OTFormServiceImpl("OT002", em2, FormStatus.APPROVED, fvs2));
+			add(new OTFormServiceImpl("OT001", em1, FormStatus.APPROVED_1ST, fvs1));
+			add(new OTFormServiceImpl("OT002", em2, FormStatus.APPROVED_2ND, fvs2));
 
 		}
 	};
@@ -313,8 +316,8 @@ public class TestData implements Serializable {
 				}
 			};
 
-			add(new ATFormServiceImpl("AT003", em1, FormStatus.APPROVED, fvs1));
-			add(new ATFormServiceImpl("AT004", em2, FormStatus.APPROVED, fvs2));
+			add(new ATFormServiceImpl("AT003", em1, FormStatus.APPROVED_1ST, fvs1));
+			add(new ATFormServiceImpl("AT004", em2, FormStatus.APPROVED_2ND, fvs2));
 
 		}
 	};
@@ -412,6 +415,24 @@ public class TestData implements Serializable {
 	// create Employees
 	public void departmentsData() {
 		DataAccessRepositoryFacade.loadDepartmentsMap(allDepartments);
+	}
+	
+	@SuppressWarnings("serial")
+	List<FormStatusServiceImpl> allFormStatus = new ArrayList<FormStatusServiceImpl>() {
+
+		{
+			add(new FormStatusServiceImpl("1", "CREATED"));
+			add(new FormStatusServiceImpl("2", "APPROVED_1ST"));
+			add(new FormStatusServiceImpl("3", "APPROVED_2ND"));
+			add(new FormStatusServiceImpl("4", "HRACCEPTED"));
+			add(new FormStatusServiceImpl("5", "HRACCEPTED"));
+			
+		}
+	};
+
+	// create Employees
+	public void formStatusData() {
+		DataAccessRepositoryFacade.loadFormStatusMap(allFormStatus);
 	}
 
 }
