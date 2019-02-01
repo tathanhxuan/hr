@@ -1,4 +1,4 @@
-package com.hr.domain.report;
+package com.hr.domain.reportFacade;
 
 import java.util.Date;
 
@@ -19,21 +19,8 @@ public ReportMaker() {
 		aTReport = new ATReport();
 	}
 	
-	public void oTReportByDate(Date startDate, Date endDate) {
-		oTReport.reportByDate(startDate, endDate);
-		//
-	}
 	
-	public void aTReportByDate(Date startDate, Date endDate) {
-		aTReport.reportByDate(startDate, endDate);
-	}
-	
-	public void leaveReportByDate(Date startDate, Date endDate) {
-		leaveReport.reportByDate(startDate, endDate);
-	}
-	
-	//Generate report by department
-	
+	//by department
 	public void oTReportByDepartment(String department) {
 		oTReport.reportByDepartment(department);
 	}
@@ -44,5 +31,26 @@ public ReportMaker() {
 	
 	public void leaveReportByDepartment(String department) {
 		leaveReport.reportByDepartment(department);
+	}
+	
+	//by employeeid
+	
+	
+	public void searchByEmpId(String empId) {
+		aTReport.serchReportById(empId);
+	}
+	
+	//get report
+	
+	public void getAttendanceReport() {
+		aTReport.getReport();
+	}
+	
+	public void getOvertimeReport() {
+		oTReport.getReport();
+	}
+	
+	public void getLeaveReport() {
+		leaveReport.getReport();
 	}
 }
