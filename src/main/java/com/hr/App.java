@@ -39,11 +39,9 @@ public class App
     	
     	//Employee emp = Login();
     
-    	
     	loginUser = new Employee("101",new Department("D01", ""));
     	
     	//Login();
-    	 
     	CreateLeaveForm(); 
        	
     }
@@ -65,6 +63,7 @@ public class App
     
     public static void LoadStaffMenu() {
     	
+    	System.out.println("******************************************************");
     	System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
     	System.out.println("1.OT FORM");
     	System.out.println("2.AT FORM");
@@ -78,6 +77,7 @@ public class App
     
     public static void LoadApproverMenu() {
     	
+    	System.out.println("******************************************************");
     	System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
        	System.out.println("1.OT FORM");
     	System.out.println("2.AT FORM");
@@ -124,20 +124,31 @@ public class App
         	FormValidationStrategy vf = new LeaveFormValidation();
         	LeaveForm f = (LeaveForm) FormFactory.creatForm(FormType.LEAVE, loginUser);
         	f.setValidationStrategy(vf);
-        	DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
         	
-        	Date dafrom = new GregorianCalendar(2019, Calendar.FEBRUARY, 11).getTime();
+        	DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        	
+        	Date dafrom = format.parse(datefrom);
+        	Date dato = format.parse(dateto);
+        	
         	f.setLeaveDateFrom(dafrom );
-        	f.setLeaveDateTo(dafrom);
+        	f.setLeaveDateTo(dato);
+        	f.setDescription(reason);
+        	
+        	
         	if (f.formSubmit()) {
-        		System.out.println("Return to menu (Y/N):");
+        		
+        		System.out.println("FORM SUBMIT SUCCESSFULL");
+        		if( true) {
+          			LoadApproverMenu();
+            		}
+           		else LoadStaffMenu();
         	}
     	}
     	else {
     		System.out.println("ARE YOU SURE TO CANCEL? (Y/N):");
     		String exit = scanner. nextLine();
     		
-    		if(exit== "Y" && loginUser.getIsApprover()) {
+    		if((exit.equals("y") || exit.equals("Y")) && loginUser.getIsApprover()) {
   			LoadApproverMenu();
     		}
    		else LoadStaffMenu();
