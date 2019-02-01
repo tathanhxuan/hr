@@ -233,6 +233,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return listLeaveForms;
 	}
 	
+	public ArrayList<SystemUser> getListSystemUser() {
+		HashMap<String, SystemUser> systemUserMap = readSystemUserMap();
+		Collection<SystemUser> values = systemUserMap.values();
+		ArrayList<SystemUser> listSystemUsers = new ArrayList<SystemUser>(values);
+		return listSystemUsers;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, EmployeeServiceImpl> readEmployeeServiceImplMap() {
 		// TODO Auto-generated method stub
@@ -392,9 +399,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.FORM_APPROVER, formApprovers);
 	}
 	
-	
-	
-	
+	public void saveNewSystemUser(SystemUser systemUser) {
+		// TODO Auto-generated method stub
+		HashMap<String, SystemUser> systemUsers = readSystemUserMap();
+		String id = systemUser.getId();
+		systemUsers.put(id, systemUser);
+		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
+	}
 	
 	public void removeOTForm(String formCode) {
 		HashMap<String, OTFormServiceImpl> oTForms = readOTFormServiceImplMap();
@@ -444,6 +455,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		HashMap<String, FormApprover> formApprovers = readFormApproverMap();
 		formApprovers.remove(formCode);
 		saveToStorage(StorageType.FORM_APPROVER, formApprovers);
+	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	public void removeSystemUser(SystemUser id) {
+		// TODO Auto-generated method stub
+		HashMap<String, SystemUser> systemUsers = readSystemUserMap();
+		systemUsers.remove(id);
+		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
 	}
 	
 	public void updateOTForm(OTFormServiceImpl oTForm) {
@@ -507,6 +526,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		String formCode = formApprover.getFormCode();
 		formApprovers.replace(formCode, formApprover);
 		saveToStorage(StorageType.FORM_APPROVER, formApprovers);
+	}
+	
+	public void updateSystemUser(SystemUser systemUser) {
+		// TODO Auto-generated method stub
+		HashMap<String, SystemUser> systemUsers = readSystemUserMap();
+		String id = systemUser.getId();
+		systemUsers.replace(id, systemUser);
+		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
 	}
 		
 	static void loadUserMap(List<UserServiceImpl> allUsers) {
