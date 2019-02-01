@@ -51,9 +51,9 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		td.leaveFormsData();		 
-		//td.aTFormsData();
-		// td.oTFormsData();
+		//td.leaveFormsData();		 
+		td.aTFormsData();
+		td.oTFormsData();
 		//td.departmentApproversData();
 		// td.employeesData();
 		// td.stepApproversData();
@@ -70,7 +70,7 @@ public class TestData implements Serializable {
 		// System.out.println(da.readOvertimeMap());
 
 		// System.out.println(da.readEmployeeGroupMap());
-		System.out.println(da.readLeaveFormMap());
+		//System.out.println(da.readLeaveFormMap());
 		// System.out.println(da.readLeaveFormServiceImplMap());
 		
 		/*Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
@@ -83,9 +83,9 @@ public class TestData implements Serializable {
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
 		// System.out.println(da.readATFormMap());
-		//System.out.println(da.readATForm());
+		System.out.println(da.readATForm());
 		//System.out.println(da.readOTFormMap());
-		//System.out.println(da.readOTForm());
+		System.out.println(da.readOTForm());
 		
 		// System.out.println(da.readOTFormMap());
 		// System.out.println(da.readOTFormServiceImplMap());
@@ -293,11 +293,21 @@ public class TestData implements Serializable {
 			
 			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
+			
+			OTForm aTForm1 = new OTForm(em1);
+			aTForm1.setOTDate(date1);
+			aTForm1.setTimeFrom("20:20");
+			aTForm1.setTimeTo("21:10");
+			
+			OTForm aTForm2 = new OTForm(em2);
+			aTForm2.setOTDate(date2);
+			aTForm2.setTimeFrom("19:20");
+			aTForm2.setTimeTo("21:10");
 
 			//add(new OTForm(em1, date1,  "19:00", "21:00"));
 			//add(new OTForm(em2, date2,  "20:00", "22:00"));
-			add(new OTForm(em1));
-			add(new OTForm(em2));
+			add(aTForm1);
+			add(aTForm2);
 			//add(new OTForm("OT002", em2, FormStatus.APPROVED_2ND, fvs2));
 
 		}
@@ -338,8 +348,17 @@ public class TestData implements Serializable {
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
 			//add(new ATForm(em1, date1, "20:20", "21:10"));
 			//add(new ATForm(em2, date2, "19:20", "20:10"));
-			add(new ATForm(em1));
-			add(new ATForm(em2));
+			ATForm aTForm1 = new ATForm(em1);
+			aTForm1.setATDate(date1);
+			aTForm1.setTimeIn("20:20");
+			aTForm1.setTimeOut("21:10");
+			
+			ATForm aTForm2 = new ATForm(em2);
+			aTForm2.setATDate(date1);
+			aTForm2.setTimeIn("19:20");
+			aTForm2.setTimeOut("21:10");
+			add(aTForm1);
+			add(aTForm2);
 			//add(new ATForm("AT003", em1, FormStatus.APPROVED_1ST, fvs1));
 			//add(new ATForm("AT004", em2, FormStatus.APPROVED_2ND, fvs2));
 
