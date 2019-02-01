@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.hr.domain.User;
 import com.hr.domain.ATForm;
+import com.hr.domain.Department;
 import com.hr.domain.Form;
 import com.hr.domain.History;
 import com.hr.domain.LeaveForm;
@@ -20,6 +21,8 @@ public interface DataAccessRepository {
 	public HashMap<String, OTForm> readOTFormMap();
 	
 	public HashMap<String, ATForm> readATFormMap();
+	
+	public HashMap<String, Department> readDepartmentMap();
 
 	/*
 	public HashMap<String, UserRepository> readUserMap();

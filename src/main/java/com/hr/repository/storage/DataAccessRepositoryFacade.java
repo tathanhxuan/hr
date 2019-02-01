@@ -399,9 +399,17 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	}
 	
 	
-	public void saveNewEmployee(EmployeeServiceImpl employee) {
+	/*public void saveNewEmployee(EmployeeServiceImpl employee) {
 		// TODO Auto-generated method stub
 		HashMap<String, EmployeeServiceImpl> employees = readEmployeeServiceImplMap();
+		String empID = employee.getEmpID();
+		employees.put(empID, employee);
+		saveToStorage(StorageType.EMPLOYEE, employees);
+	}*/
+	
+	public void saveNewEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		HashMap<String, Employee> employees = readEmployeeMap();
 		String empID = employee.getEmpID();
 		employees.put(empID, employee);
 		saveToStorage(StorageType.EMPLOYEE, employees);
