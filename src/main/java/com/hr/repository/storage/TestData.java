@@ -51,9 +51,9 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		//td.leaveFormsData();		 
-		td.aTFormsData();
-		td.oTFormsData();
+		td.leaveFormsData();		 
+		//td.aTFormsData();
+		//td.oTFormsData();
 		//td.departmentApproversData();
 		// td.employeesData();
 		// td.stepApproversData();
@@ -70,7 +70,7 @@ public class TestData implements Serializable {
 		// System.out.println(da.readOvertimeMap());
 
 		// System.out.println(da.readEmployeeGroupMap());
-		//System.out.println(da.readLeaveFormMap());
+		System.out.println(da.readLeaveFormMap());
 		// System.out.println(da.readLeaveFormServiceImplMap());
 		
 		/*Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
@@ -83,9 +83,9 @@ public class TestData implements Serializable {
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
 		// System.out.println(da.readATFormMap());
-		System.out.println(da.readATForm());
+		//System.out.println(da.readATForm());
 		//System.out.println(da.readOTFormMap());
-		System.out.println(da.readOTForm());
+		//System.out.println(da.readOTForm());
 		
 		// System.out.println(da.readOTFormMap());
 		// System.out.println(da.readOTFormServiceImplMap());
@@ -251,8 +251,15 @@ public class TestData implements Serializable {
 
 			//add(new LeaveForm(em1, date1, date2));
 			//add(new LeaveForm(em2, date3, date4));
-			add(new LeaveForm(em1));
-			add(new LeaveForm(em2));
+			LeaveForm leaveForm1 = new LeaveForm(em1);
+			leaveForm1.setLeaveDateFrom(date1);
+			leaveForm1.setLeaveDateTo(date2);
+			
+			LeaveForm leaveForm2 = new LeaveForm(em2);
+			leaveForm2.setLeaveDateFrom(date3);
+			leaveForm2.setLeaveDateTo(date4);
+			add(leaveForm1);
+			add(leaveForm2);
 			//add(new LeaveForm("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
 			//add(new LeaveForm("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
 

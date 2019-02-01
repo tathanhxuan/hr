@@ -9,9 +9,9 @@ import java.util.HashMap;
 import com.hr.domain.ATForm;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
-import com.hr.domain.report.ATReport;
-import com.hr.domain.report.LeaveReport;
-import com.hr.domain.report.OTReport;
+import com.hr.domain.reportFacade.ATReport;
+import com.hr.domain.reportFacade.LeaveReport;
+import com.hr.domain.reportFacade.OTReport;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class GeneralReport {
