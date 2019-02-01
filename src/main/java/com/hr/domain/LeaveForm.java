@@ -13,6 +13,7 @@ import com.hr.domain.Notify.EmailAlert;
 import com.hr.domain.Notify.NotifyService;
 import com.hr.domain.Notify.Observer;
 import com.hr.domain.Notify.SMSAlert;
+import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class LeaveForm extends Form implements IFormCode {
 
@@ -115,10 +116,25 @@ public class LeaveForm extends Form implements IFormCode {
 		// TODO Auto-generated method stub
 		
 		//SAVE IN DB
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		for (DepartmentApprover approver: approvers) {
+			Employee emp = this.getOwner();
+			String formCode = CodeInterpreter();
+			FormValidationStrategy fvs = this.validationStrategy;
+			// Save into Leave_FORM			
+			LeaveForm leaveForm = new LeaveForm(emp, FormStatus.CREATED, fvs);
+			da.saveNewLeaveForm(leaveForm);
+			
+			// Save into Form Approver
+			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getEmpID());
+			da.saveNewFormApprover(formApprover);
+		}
+		//System.out.println(da.readLeaveForm());
+		//System.out.println(da.getListLeaveForm());
+		//System.out.println(da.readFormApproverMap());	
+		//write log  - commnad pattern for writing log
+		return true;
 		
-	    //write log  - commnad pattern for writing log
-		
-		return null;
 	}
 
 	
