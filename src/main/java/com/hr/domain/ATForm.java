@@ -13,6 +13,7 @@ import com.hr.domain.Notify.EmailAlert;
 import com.hr.domain.Notify.NotifyService;
 import com.hr.domain.Notify.Observer;
 import com.hr.domain.Notify.SMSAlert;
+import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class ATForm extends Form implements IFormCode {
 
@@ -39,7 +40,23 @@ public class ATForm extends Form implements IFormCode {
 	@Override
 	Boolean Submit(ArrayList<DepartmentApprover> approvers) {
 		// TODO Auto-generated method stub
-		return null;
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		for (DepartmentApprover approver: approvers) {
+			Employee emp = this.getOwner();
+			String formCode = CodeInterpreter();
+			FormValidationStrategy fvs = this.validationStrategy;
+			// Save into AT_FORM			
+			ATForm aTForm = new ATForm(emp, FormStatus.CREATED, fvs);
+			da.saveNewATForm(aTForm);
+			
+			// Save into Form Approver
+			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getEmpID());
+			da.saveNewFormApprover(formApprover);
+		}
+		//System.out.println(da.readATForm());
+		//System.out.println(da.getListATForm());
+		//System.out.println(da.readFormApproverMap());		
+		return true;
 	}
 
 	@Override

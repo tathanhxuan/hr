@@ -333,17 +333,17 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.OT_FORM, oTForms);
 	}
 			
-	public void saveNewATForm(ATFormServiceImpl aTForm) {
+	public void saveNewATForm(ATForm aTForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, ATFormServiceImpl> aTForms = readATFormServiceImplMap();
+		HashMap<String, ATForm> aTForms = readATForm();
 		String formCode = aTForm.getFormCode();
 		aTForms.put(formCode, aTForm);
 		saveToStorage(StorageType.AT_FORM, aTForms);
 	}
 				
-	public void saveNewLeaveForm(LeaveFormServiceImpl leaveForm) {
+	public void saveNewLeaveForm(LeaveForm leaveForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, LeaveFormServiceImpl> leaveForms = readLeaveFormServiceImplMap();
+		HashMap<String, LeaveForm> leaveForms = readLeaveForm();
 		String formCode = leaveForm.getFormCode();
 		leaveForms.put(formCode, leaveForm);
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
@@ -356,6 +356,8 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		departmentApprovers.put(deptID, departmentApprover);
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
+	
+	
 	
 	public void saveNewDepartment(Department department) {
 		// TODO Auto-generated method stub
