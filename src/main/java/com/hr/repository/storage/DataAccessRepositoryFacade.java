@@ -613,8 +613,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.EMPLOYEE_GROUP, employeeGroups);
 	}
 
-	static void loadLeaveFormsMap(List<LeaveFormServiceImpl> allLeaveForms) {
+	/*static void loadLeaveFormsMap(List<LeaveFormServiceImpl> allLeaveForms) {
 		HashMap<String, LeaveFormServiceImpl> leaveForms = new HashMap<String, LeaveFormServiceImpl>();
+		allLeaveForms.forEach(leaveForm -> leaveForms.put(leaveForm.getFormCode(), leaveForm));
+		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
+	}*/
+	
+	static void loadLeaveFormsMap(List<LeaveForm> allLeaveForms) {
+		HashMap<String, LeaveForm> leaveForms = new HashMap<String, LeaveForm>();
 		allLeaveForms.forEach(leaveForm -> leaveForms.put(leaveForm.getFormCode(), leaveForm));
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
 	}

@@ -18,6 +18,7 @@ import com.hr.domain.Employee;
 import com.hr.domain.Form;
 import com.hr.domain.FormApprover;
 import com.hr.domain.FormStatus;
+import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.domain.SystemUser;
 import com.hr.domain.User;
@@ -69,7 +70,7 @@ public class TestData implements Serializable {
 		// System.out.println(da.readOvertimeMap());
 
 		// System.out.println(da.readEmployeeGroupMap());
-		// System.out.println(da.readLeaveFormMap());
+		System.out.println(da.readLeaveFormMap());
 		// System.out.println(da.readLeaveFormServiceImplMap());
 		
 		/*Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
@@ -82,7 +83,7 @@ public class TestData implements Serializable {
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
 		// System.out.println(da.readATFormMap());
-		System.out.println(da.readATForm());
+		//System.out.println(da.readATForm());
 		//System.out.println(da.readOTFormMap());
 		//System.out.println(da.readOTForm());
 		
@@ -234,15 +235,24 @@ public class TestData implements Serializable {
 	}
 
 	@SuppressWarnings("serial")
-	List<LeaveFormServiceImpl> allLeaveForms = new ArrayList<LeaveFormServiceImpl>() {
+	List<LeaveForm> allLeaveForms = new ArrayList<LeaveForm>() {
 
 		{
 
-			Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
-			Date date2 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
+			Department dept1 = new Department("11", "IT");
+			Employee em1 = new Employee("101", dept1);
+			Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
+			Date date2 = new GregorianCalendar(2018, Calendar.FEBRUARY, 12).getTime();
+			
+			Department dept2 = new Department("22", "HR");
+			Employee em2 = new Employee("102", dept2);
+			Date date3 = new GregorianCalendar(2018, Calendar.FEBRUARY, 16).getTime();
+			Date date4 = new GregorianCalendar(2018, Calendar.FEBRUARY, 17).getTime();
 
-			add(new LeaveFormServiceImpl("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
-			add(new LeaveFormServiceImpl("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
+			add(new LeaveForm(em1, date1, date2));
+			add(new LeaveForm(em2, date3, date4));
+			//add(new LeaveForm("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
+			//add(new LeaveForm("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
 
 		}
 	};
