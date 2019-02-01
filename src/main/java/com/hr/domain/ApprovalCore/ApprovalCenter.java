@@ -18,12 +18,19 @@ public class ApprovalCenter implements IApproval {
 	//Get list of waiting approve forms base on employee
 	public ArrayList<Form> getWaitedApproveForms() {
 		// TODO Auto-generated method stub
+		
+		// get step [X] approve info from [department approver] table BASE ON  EMPID AND DEPTID
+		
+		
+		//get data from FORM (OT,AT,LEAVE) table WHERE DEPTID AND step = STEP X-1
 		return null;
 	}
 
 	//approve forms base on employee
 	public Boolean Approve(StepApprover approvalModel) {
 		// TODO Auto-generated method stub
+		
+		
 		return null;
 	}
 

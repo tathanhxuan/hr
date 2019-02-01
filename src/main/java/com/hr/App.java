@@ -11,6 +11,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import com.hr.domain.*;
+import com.hr.domain.ApprovalCore.ApprovalProxy;
 import com.hr.domain.HRFormCore.FormFactory;
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.domain.formValidation.LeaveFormValidation;
@@ -35,12 +36,21 @@ public class App
 	public static String userRole;
 	
     @SuppressWarnings("null")
-	public static void main( String[] args ) throws IOException, ParseException
+	public static void main( String[] args ) throws Exception
     {
     	
     	Login();
     	LoadMenuByUserRole();
-       	
+    	
+//    	ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
+//    	 approvecenter.getWaitedApproveForms();
+//    	 
+//    	 
+//    	 StepApprover s = new StepApprover(;
+//    	 s.setForm(form);
+//    	 
+//    	 
+//    	 approvecenter.ap
     }
 
     public static Employee Login() {

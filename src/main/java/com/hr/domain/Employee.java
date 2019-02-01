@@ -12,7 +12,16 @@ public class Employee implements Serializable {
 	private Position position;
 	private Department dept;
 	private Boolean isApprover;
+	Boolean isHR;
 	
+	public Boolean getIsHR() {
+		return isHR;
+	}
+
+	public void setIsHR(Boolean isHR) {
+		this.isHR = isHR;
+	}
+
 	public Boolean getIsApprover() {
 		return isApprover;
 	}
