@@ -12,7 +12,7 @@ public interface DataAccessRepository {
 
 	public HashMap<String, UserRepository> readUserMap();
 	
-	public HashMap<String, SystemUserRepository> readSystemUserMap();
+	//public HashMap<String, SystemUserRepository> readSystemUserMap();
 	
 	public HashMap<String, AttendanceRepository> readAttendanceMap();
 	
