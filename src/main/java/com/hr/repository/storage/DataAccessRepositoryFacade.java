@@ -288,10 +288,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return (HashMap<String, FormApprover>) readFromStorage(StorageType.FORM_APPROVER);
 	}
 	
-	
-
-
-	public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
+	/*public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -309,8 +306,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public HashMap<String, ReportRepository> readReportMap() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
+	}*/
 	
 	
 	/*
@@ -388,8 +384,6 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
-	
-	
 	public void saveNewDepartment(Department department) {
 		// TODO Auto-generated method stub
 		HashMap<String, Department> departments = readDepartmentMap();
@@ -415,9 +409,17 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.EMPLOYEE, employees);
 	}
 	
-	public void saveNewStepApprover(StepApproverServiceImpl stepApprover) {
+	/*public void saveNewStepApprover(StepApproverServiceImpl stepApprover) {
 		// TODO Auto-generated method stub
 		HashMap<String, StepApproverServiceImpl> stepApprovers = readStepApproverServiceImplMap();
+		String aproverID = stepApprover.getAproverID();
+		stepApprovers.put(aproverID, stepApprover);
+		saveToStorage(StorageType.STEP_APPROVER, stepApprovers);
+	}*/
+	
+	public void saveNewStepApprover(StepApprover stepApprover) {
+		// TODO Auto-generated method stub
+		HashMap<String, StepApprover> stepApprovers = readStepApproverMap();
 		String aproverID = stepApprover.getAproverID();
 		stepApprovers.put(aproverID, stepApprover);
 		saveToStorage(StorageType.STEP_APPROVER, stepApprovers);
