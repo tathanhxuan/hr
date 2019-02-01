@@ -43,6 +43,7 @@ import com.hr.service.impl.AttendanceServiceImpl;
 import com.hr.service.impl.DepartmentApproverServiceImpl;
 import com.hr.service.impl.EmployeeGroupServiceImpl;
 import com.hr.service.impl.EmployeeServiceImpl;
+import com.hr.service.impl.FormStatusServiceImpl;
 import com.hr.service.impl.LeaveFormServiceImpl;
 import com.hr.service.impl.OTFormServiceImpl;
 import com.hr.service.impl.OvertimeServiceImpl;
@@ -55,7 +56,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 
 	enum StorageType {
 		USERS, SYSTEM_USER, ATTENDANCES, EMPLOYEE_GROUP, EMPLOYEE_TYPE, LEAVE_ENTITLEMENT, OVERTIME, SHIFT, LEAVE_FORM,
-		OT_FORM, AT_FORM, DEPARTMENT_APPROVER, EMPLOYEE, STEP_APPROVER, FORM_APPROVER, DEPARTMENT;
+		OT_FORM, AT_FORM, DEPARTMENT_APPROVER, EMPLOYEE, STEP_APPROVER, FORM_APPROVER, DEPARTMENT, FORM_STATUS;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -286,6 +287,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public HashMap<String, FormApprover> readFormApproverMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, FormApprover>) readFromStorage(StorageType.FORM_APPROVER);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, FormStatusServiceImpl> readFormStatusMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, FormStatusServiceImpl>) readFromStorage(StorageType.FORM_STATUS);
 	}
 	
 	/*public HashMap<String, DepartmentApproverRepository> readApprovalMap() {
@@ -658,6 +665,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		HashMap<String, Department> departments = new HashMap<String, Department>();
 		allDepartments.forEach(department -> departments.put(department.getDeptID(), department));
 		saveToStorage(StorageType.DEPARTMENT, departments);
+	}
+	
+	static void loadFormStatusMap(List<FormStatusServiceImpl> allFormStatus) {
+		HashMap<String, FormStatusServiceImpl> formStatuss = new HashMap<String, FormStatusServiceImpl>();
+		allFormStatus.forEach(formStatus -> formStatuss.put(formStatus.getStatusID(), formStatus));
+		saveToStorage(StorageType.FORM_STATUS, formStatuss);
 	}
 
 	static void saveToStorage(StorageType type, Object ob) {
