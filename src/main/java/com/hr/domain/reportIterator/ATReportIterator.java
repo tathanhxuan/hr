@@ -31,12 +31,10 @@ public class ATReportIterator implements ChartAggregate {
 
 		@Override
 		public Object next() {
-			if(this.hasNext()) {
+			if(this.hasNext()==true) {
 				return ATReports[index++];
 			}
 			return null;
-		}
-
 	}
-
+}
 }
