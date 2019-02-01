@@ -22,10 +22,12 @@ public class LeaveForm extends Form implements IFormCode {
 	String description;
 	
 
-	public LeaveForm( Employee emp, FormStatus status, FormValidationStrategy validationStrategy) {
-		super(emp, status,validationStrategy);
+	public LeaveForm( Employee emp,Date leaveDateFrom,Date leaveDateTo) {
+		super(emp);
 		// TODO Auto-generated constructor stub
 	    this.formCode = CodeInterpreter();
+	    this.leaveDateFrom=leaveDateFrom;
+	    this.leaveDateTo=leaveDateTo;
 	}
 
 	public String getFormCode() {
@@ -118,14 +120,11 @@ public class LeaveForm extends Form implements IFormCode {
 		
 		//SAVE IN DB
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
-		for (DepartmentApprover approver: approvers) {
-			Employee emp = this.getOwner();
-			String formCode = CodeInterpreter();
-			FormValidationStrategy fvs = this.validationStrategy;
-			// Save into Leave_FORM			
-			LeaveForm leaveForm = new LeaveForm(emp, FormStatus.CREATED, fvs);
-			da.saveNewLeaveForm(leaveForm);
-			
+		
+		
+		da.saveNewLeaveForm(this);
+		
+		for (DepartmentApprover approver: approvers) {		
 			// Save into Form Approver
 			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getEmpID());
 			da.saveNewFormApprover(formApprover);

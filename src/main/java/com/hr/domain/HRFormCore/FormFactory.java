@@ -6,7 +6,7 @@ import com.hr.domain.*;
 
 public class FormFactory {
 
-	public static Form creatForm(FormType type, Employee emp, FormStatus status,FormValidationStrategy vf)
+	public static Form creatForm(FormType type, Employee emp)
 	{
 		if (type == null) return null;
 		

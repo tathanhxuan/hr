@@ -17,11 +17,42 @@ import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class ATForm extends Form implements IFormCode {
 
-	public ATForm( Employee emp, FormStatus status,FormValidationStrategy validationStrategy) {
-		super(emp, status,validationStrategy);
+	Date ATDate;
+	String timeOut;
+	String timeIn;
+	
+	public Date getATDate() {
+		return ATDate;
+	}
+
+	public void setATDate(Date aTDate) {
+		ATDate = aTDate;
+	}
+
+	public String getTimeOut() {
+		return timeOut;
+	}
+
+	public void setTimeOut(String timeOut) {
+		this.timeOut = timeOut;
+	}
+
+	
+	public String getTimeIn() {
+		return timeIn;
+	}
+
+	public void setTimeIn(String timeIn) {
+		this.timeIn = timeIn;
+	}
+	
+	public ATForm( Employee emp, Date AtDate ,String timeIn, String timeOut ) {
+		super(emp);
 		// TODO Auto-generated constructor stub
-		
 		this.formCode = CodeInterpreter();
+		this.ATDate = AtDate;
+		this.timeIn=timeIn;
+		this.timeOut=timeOut;
 	}
 
 	@Override
@@ -40,15 +71,11 @@ public class ATForm extends Form implements IFormCode {
 	@Override
 	Boolean Submit(ArrayList<DepartmentApprover> approvers) {
 		// TODO Auto-generated method stub
-		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();			
+		da.saveNewATForm(this);
+		
 		for (DepartmentApprover approver: approvers) {
-			Employee emp = this.getOwner();
-			String formCode = CodeInterpreter();
-			FormValidationStrategy fvs = this.validationStrategy;
-			// Save into AT_FORM			
-			ATForm aTForm = new ATForm(emp, FormStatus.CREATED, fvs);
-			da.saveNewATForm(aTForm);
-			
+
 			// Save into Form Approver
 			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getEmpID());
 			da.saveNewFormApprover(formApprover);

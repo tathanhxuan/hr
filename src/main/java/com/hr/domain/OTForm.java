@@ -21,10 +21,41 @@ import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class OTForm extends Form implements Serializable, IFormCode {
 
-	public OTForm( Employee emp, FormStatus status,FormValidationStrategy validationStrategy) {
-		super( emp, status,validationStrategy);
+	Date OTDate;
+	String timeFrom;
+	String timeTo;
+	
+	public String getTimeTo() {
+		return timeTo;
+	}
+
+	public void setTimeTo(String timeTo) {
+		this.timeTo = timeTo;
+	}
+
+	public Date getOTDate() {
+		return OTDate;
+	}
+
+	public void setOTDate(Date oTDate) {
+		OTDate = oTDate;
+	}
+
+	public String getTimeFrom() {
+		return timeFrom;
+	}
+
+	public void setTimeFrom(String timeFrom) {
+		this.timeFrom = timeFrom;
+	}
+	
+	public OTForm( Employee emp,Date OtDate ,String timeFrom, String timeTo) {
+		super( emp);
 		// TODO Auto-generated constructor stub
 		this.formCode = CodeInterpreter();
+		this.OTDate = OtDate;
+		this.timeFrom=timeFrom;
+		this.timeTo=timeTo;
 	}		
 			
 	@Override
@@ -45,14 +76,10 @@ public class OTForm extends Form implements Serializable, IFormCode {
 		// TODO Auto-generated method stub
 		
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
-		for (DepartmentApprover approver: approvers) {
-			Employee emp = this.getOwner();
-			String formCode = CodeInterpreter();
-			FormValidationStrategy fvs = this.validationStrategy;
-			// Save into OT_FORM			
-			OTForm oTForm = new OTForm(emp, FormStatus.CREATED, fvs);
-			da.saveNewOTForm(oTForm);
-			
+		
+		da.saveNewOTForm(this);
+		
+		for (DepartmentApprover approver: approvers) {		
 			// Save into Form Approver
 			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getEmpID());
 			da.saveNewFormApprover(formApprover);

@@ -11,33 +11,31 @@ public abstract class Form implements Serializable, Cloneable{
 	 Employee owner;
 	 FormStatus status;
 	 FormValidationStrategy validationStrategy;
-     String description;
-		
 	
-
-	public Form(Employee owner, FormStatus status,FormValidationStrategy validationStrategy) {
-		
+	 String description;
+	
+ 	public Form(Employee owner) {
 		// this.formCode = formCode;
 		 this.owner = owner;
-		 this.status = status;
-		 this.validationStrategy = validationStrategy;
+		 this.status = FormStatus.CREATED;
+	
 	 }
 	 
 	 public String getFormCode() {
 		return formCode;
 	}
 	 
-	public void setFormCode(String formCode) {
+ 	public void setFormCode(String formCode) {
 		this.formCode = formCode;
 	}
 	
 	 public String getDescription() {
 			return description;
-		}
+	 }
 
-		public void setDescription(String description) {
+	 public void setDescription(String description) {
 			this.description = description;
-		}
+	 }
 		
 	public Employee getOwner() {
 		return owner;
@@ -53,6 +51,15 @@ public abstract class Form implements Serializable, Cloneable{
 	public void setStatus(FormStatus status) {
 		this.status = status;
 	}
+	
+    public FormValidationStrategy getValidationStrategy() {
+		return validationStrategy;
+	}
+
+	public void setValidationStrategy(FormValidationStrategy validationStrategy) {
+		this.validationStrategy = validationStrategy;
+	}
+
 	
 	//Apply prototype pattern
 	public Object clone() {
