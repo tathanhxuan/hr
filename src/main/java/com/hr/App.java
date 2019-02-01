@@ -1,5 +1,6 @@
 package com.hr;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.hr.domain.*;
@@ -22,85 +23,21 @@ import com.hr.repository.storage.DataAccessRepositoryFacade;
  */
 public class App 
 {
+	
+	public static Employee loginUser;
+	
     @SuppressWarnings("null")
-	public static void main( String[] args )
+	public static void main( String[] args ) throws IOException
     {
     	
     	//Employee emp = Login();
 
     	Employee emp = new Employee("123",new Department("123", ""));
-    	
-    	if(emp == null) {
-        System.out.println("Invalid user ! ");
-        return;
-    	}
-    	else {
-    		LoadStaffMenu();
-    	}
-    	
-    	
-
-     /*
-    	Form f = FormFactory.creatForm(FormType.OVERTIME,emp,FormStatus.CREATED,vf);
-
-//    	//FORM SUBMIT
- 	FormValidationStrategy vf = new LeaveFormValidation();
-//    	
-       //Department dept = new Department("001", "IT");
- 	   //Employee emp = new Employee("2615",dept);
-//    	
-//    	
-//    	//FORM CODE CREATION FORMAT
-//    	// OT FORM : OT_EMPID_DATETIME
-//    	// AT FORM : AT_EMPID_DATETIME
-//    	// LEVAE FORM : LA_EMPID_DATETIME
-//    	
-//        Form f = FormFactory.creatForm(FormType.LEAVE,emp,FormStatus.CREATED,vf);
-//
-//        f.setStatus(FormStatus.CREATED);
-//        
-//        
-//        f.formSubmit();
-
-        Form f = FormFactory.creatForm(FormType.OVERTIME,emp,FormStatus.CREATED,vf);
-
-<<<<<<< HEAD
-//        f.setStatus(FormStatus.CREATED);
-//        f.setOwner(emp);
-//        
-//        
-//        f.formSubmit();
-=======
-
-        f.setStatus(FormStatus.CREATED);
-        f.setOwner(emp);
-        
-        
-        f.formSubmit();
->>>>>>> b35d524da73067fa126db5efd36baed915eab44a
-
-        
-        
-    */
-    	
-    	//i want to get data from
-    	DataAccessRepositoryFacade dt = new DataAccessRepositoryFacade();
-    //	int counter = 0;
-    	//for(int a: dt.readLeaveForm().values().size())
-   	System.out.println(dt.readATForm().values().size());
-    
-   	
-   	ReportMaker Rm = new ReportMaker();
-    //	Department stDepartment=null;
-    //	stDepartment.setDeptName("IT");
-    	
-    //	Rm.oTReportByDepartment("HR");
-    //	ChartTemplate ch=null;
-    //	ch.getReportChart();
-    	
+    	Login();
+    	 
+    	CreateLeaveForm(); 
        	
     }
-
 
     public static Employee Login() {
     	Employee emp =null;
@@ -130,7 +67,7 @@ public class App
     	System.out.println("*.SELECT : ");
     }
     
-   public static void LoadApproverMenu() {
+    public static void LoadApproverMenu() {
     	
     	System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
        	System.out.println("1.OT FORM");
@@ -145,7 +82,7 @@ public class App
     	System.out.println("*.SELECT : ");
     }
    
-   public static void LoadReportMenu() {
+    public static void LoadReportMenu() {
    	
    	System.out.println("******REPORT********");
     System.out.println("1.OT REPORT");
@@ -157,4 +94,39 @@ public class App
    	System.out.println("*.SELECT : ");
    }
    
+    public static void CreateLeaveForm() {
+    	
+    	Scanner scanner = new Scanner(System. in);
+    	
+    	System.out.println("******LEAVE REGISTRAR********");
+    	System.out.println("Leave From Date (mm/dd/yyyy):");
+    	String datefrom = scanner. nextLine(); 
+    	System.out.println("Leave From To (mm/dd/yyyy):");
+    	String dateto = scanner. nextLine(); 
+    	System.out.println("Reason:");
+    	String reason = scanner. nextLine();
+    	
+    	System.out.println("Press 'S=SUBMIT' | 'C=CANCEL'':");
+    	String command = scanner. nextLine();
+    	
+    	
+    	if(command == "S") {
+    		FormValidationStrategy vf = new LeaveFormValidation();
+        	LeaveForm f = (LeaveForm) FormFactory.creatForm(FormType.LEAVE, loginUser, FormStatus.CREATED, vf);
+        	
+        	//f.setLeaveDateFrom(datefrom);
+        	
+    	}
+    	else {
+    		System.out.println("ARE YOU SURE TO CANCEL? (Y/N):");
+    		String exit = scanner. nextLine();
+    		
+    		if(exit== "Y" && loginUser.getIsApprover()) {
+    			LoadApproverMenu();
+    		}
+    		else LoadStaffMenu();
+    	}
+
+    }
+    
 }

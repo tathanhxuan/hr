@@ -11,8 +11,11 @@ public abstract class Form implements Serializable, Cloneable{
 	 Employee owner;
 	 FormStatus status;
 	 FormValidationStrategy validationStrategy;
-	 
-	 public Form(Employee owner, FormStatus status,FormValidationStrategy validationStrategy) {
+     String description;
+		
+	
+
+	public Form(Employee owner, FormStatus status,FormValidationStrategy validationStrategy) {
 		
 		// this.formCode = formCode;
 		 this.owner = owner;
@@ -28,6 +31,14 @@ public abstract class Form implements Serializable, Cloneable{
 		this.formCode = formCode;
 	}
 	
+	 public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+		
 	public Employee getOwner() {
 		return owner;
 	}

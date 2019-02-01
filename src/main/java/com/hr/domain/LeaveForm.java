@@ -19,6 +19,7 @@ public class LeaveForm extends Form implements IFormCode {
 	Date leaveDateFrom;
 	Date leaveDateTo;
 	String description;
+	
 
 	public LeaveForm( Employee emp, FormStatus status, FormValidationStrategy validationStrategy) {
 		super(emp, status,validationStrategy);
