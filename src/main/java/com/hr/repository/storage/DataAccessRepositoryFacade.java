@@ -62,10 +62,16 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 			+ "//src//main//java//com//hr//repository//storage";
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public HashMap<String, UserRepository> readUserMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, UserRepository>) readFromStorage(StorageType.USERS);
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, User> readUserMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, User>) readFromStorage(StorageType.USERS);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -74,7 +80,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return (HashMap<String, SystemUser>) readFromStorage(StorageType.SYSTEM_USER);
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, AttendanceRepository> readAttendanceMap() {
 		// TODO Auto-generated method stub
@@ -107,6 +113,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public HashMap<String, LeaveFormRepository> readLeaveFormMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, LeaveFormRepository>) readFromStorage(StorageType.LEAVE_FORM);
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, LeaveForm> readLeaveFormMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, LeaveForm>) readFromStorage(StorageType.LEAVE_FORM);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -115,17 +127,23 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return (HashMap<String, LeaveForm>) readFromStorage(StorageType.LEAVE_FORM);
 	}
 	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public HashMap<String, LeaveFormServiceImpl> readLeaveFormServiceImplMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, LeaveFormServiceImpl>) readFromStorage(StorageType.LEAVE_FORM);
-	}
+	}*/
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, OTFormRepository> readOTFormMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, OTFormRepository>) readFromStorage(StorageType.OT_FORM);
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, OTForm> readOTFormMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, OTForm>) readFromStorage(StorageType.OT_FORM);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -148,13 +166,19 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return (HashMap<String, OTFormServiceImpl>) readFromStorage(StorageType.OT_FORM);
 	}	
 	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, ATFormRepository> readATFormMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, ATFormRepository>) readFromStorage(StorageType.AT_FORM);
-	}
+	}*/
 		
+	@SuppressWarnings("unchecked")
+	public HashMap<String, ATForm> readATFormMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String, ATForm>) readFromStorage(StorageType.AT_FORM);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, ATForm> readATForm() {
 		// TODO Auto-generated method stub
@@ -173,11 +197,11 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return (HashMap<String, DepartmentApproverRepository>) readFromStorage(StorageType.DEPARTMENT_APPROVER);
 	}*/
 	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public HashMap<String, DepartmentApproverServiceImpl> readDepartmentApproverServiceImplMap() {
 		// TODO Auto-generated method stub
 		return (HashMap<String, DepartmentApproverServiceImpl>) readFromStorage(StorageType.DEPARTMENT_APPROVER);
-	}
+	}*/
 	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, DepartmentApprover> readDepartmentApproverMap() {
@@ -213,21 +237,21 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	}
 	
 	public ArrayList<OTForm> getListOTForm() {
-		HashMap<String, OTForm> oTFormsMap = readOTForm();
+		HashMap<String, OTForm> oTFormsMap = readOTFormMap();
 		Collection<OTForm> values = oTFormsMap.values();
 		ArrayList<OTForm> listOTForms = new ArrayList<OTForm>(values);
 		return listOTForms;
 	}
 	
 	public ArrayList<ATForm> getListATForm() {
-		HashMap<String, ATForm> aTFormsMap = readATForm();
+		HashMap<String, ATForm> aTFormsMap = readATFormMap();
 		Collection<ATForm> values = aTFormsMap.values();
 		ArrayList<ATForm> listATForms = new ArrayList<ATForm>(values);
 		return listATForms;
 	}
 	
 	public ArrayList<LeaveForm> getListLeaveForm() {
-		HashMap<String, LeaveForm> leaveFormsMap = readLeaveForm();
+		HashMap<String, LeaveForm> leaveFormsMap = readLeaveFormMap();
 		Collection<LeaveForm> values = leaveFormsMap.values();
 		ArrayList<LeaveForm> listLeaveForms = new ArrayList<LeaveForm>(values);
 		return listLeaveForms;
@@ -334,7 +358,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	
 	public void saveNewOTForm(OTForm oTForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, OTForm> oTForms = readOTForm();
+		HashMap<String, OTForm> oTForms = readOTFormMap();
 		String formCode = oTForm.getFormCode();
 		oTForms.put(formCode, oTForm);
 		saveToStorage(StorageType.OT_FORM, oTForms);
@@ -342,7 +366,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 			
 	public void saveNewATForm(ATForm aTForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, ATForm> aTForms = readATForm();
+		HashMap<String, ATForm> aTForms = readATFormMap();
 		String formCode = aTForm.getFormCode();
 		aTForms.put(formCode, aTForm);
 		saveToStorage(StorageType.AT_FORM, aTForms);
@@ -350,15 +374,15 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 				
 	public void saveNewLeaveForm(LeaveForm leaveForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, LeaveForm> leaveForms = readLeaveForm();
+		HashMap<String, LeaveForm> leaveForms = readLeaveFormMap();
 		String formCode = leaveForm.getFormCode();
 		leaveForms.put(formCode, leaveForm);
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
 	}
 				
-	public void saveNewDepartmentApprover(DepartmentApproverServiceImpl departmentApprover) {
+	public void saveNewDepartmentApprover(DepartmentApprover departmentApprover) {
 		// TODO Auto-generated method stub
-		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = readDepartmentApproverServiceImplMap();
+		HashMap<String, DepartmentApprover> departmentApprovers = readDepartmentApproverMap();
 		String deptID = departmentApprover.getDeptID();
 		departmentApprovers.put(deptID, departmentApprover);
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
@@ -420,13 +444,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	}
 	
 	public void removeLeaveForm(String formCode) {
-		HashMap<String, LeaveFormServiceImpl> leaveForms = readLeaveFormServiceImplMap();
+		HashMap<String, LeaveForm> leaveForms = readLeaveFormMap();
 		leaveForms.remove(formCode);		
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
 	}
 	
 	public void removeDepartmentApprover(String deptID) {
-		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = readDepartmentApproverServiceImplMap();
+		HashMap<String, DepartmentApprover> departmentApprovers = readDepartmentApproverMap();
 		departmentApprovers.remove(deptID);		
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
@@ -481,17 +505,17 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.AT_FORM, aTForms);
 	}
 	
-	public void updateLeaveForm(LeaveFormServiceImpl leaveForm) {
+	public void updateLeaveForm(LeaveForm leaveForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, LeaveFormServiceImpl> leaveForms = readLeaveFormServiceImplMap();
+		HashMap<String, LeaveForm> leaveForms = readLeaveFormMap();
 		String formCode = leaveForm.getFormCode();
 		leaveForms.replace(formCode, leaveForm);
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
 	}
 	
-	public void updateDepartmentApprover(DepartmentApproverServiceImpl departmentApprover) {
+	public void updateDepartmentApprover(DepartmentApprover departmentApprover) {
 		// TODO Auto-generated method stub
-		HashMap<String, DepartmentApproverServiceImpl> departmentApprovers = readDepartmentApproverServiceImplMap();
+		HashMap<String, DepartmentApprover> departmentApprovers = readDepartmentApproverMap();
 		String deptID = departmentApprover.getDeptID();
 		departmentApprovers.replace(deptID, departmentApprover);
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
@@ -512,9 +536,9 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.EMPLOYEE, employees);
 	}
 	
-	public void updateStepApprover(StepApproverServiceImpl stepApprover) {
+	public void updateStepApprover(StepApprover stepApprover) {
 		// TODO Auto-generated method stub
-		HashMap<String, StepApproverServiceImpl> stepApprovers = readStepApproverServiceImplMap();
+		HashMap<String, StepApprover> stepApprovers = readStepApproverMap();
 		String aproverID = stepApprover.getAproverID();
 		stepApprovers.replace(aproverID, stepApprover);
 		saveToStorage(StorageType.STEP_APPROVER, stepApprovers);

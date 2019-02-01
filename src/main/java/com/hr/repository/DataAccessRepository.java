@@ -3,16 +3,28 @@ package com.hr.repository;
 import java.util.HashMap;
 
 import com.hr.domain.User;
+import com.hr.domain.ATForm;
 import com.hr.domain.Form;
 import com.hr.domain.History;
+import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.domain.Report;
+import com.hr.domain.SystemUser;
 
 public interface DataAccessRepository {
+	
+	public HashMap<String, SystemUser> readSystemUserMap();
+	
+	public HashMap<String, LeaveForm> readLeaveFormMap();
+	
+	public HashMap<String, OTForm> readOTFormMap();
+	
+	public HashMap<String, ATForm> readATFormMap();
 
+	/*
 	public HashMap<String, UserRepository> readUserMap();
 	
-	//public HashMap<String, SystemUserRepository> readSystemUserMap();
+	public HashMap<String, SystemUserRepository> readSystemUserMap();
 	
 	public HashMap<String, AttendanceRepository> readAttendanceMap();
 	
@@ -36,7 +48,7 @@ public interface DataAccessRepository {
 
 	public HashMap<String, ReportRepository> readReportMap();
 
-	/*public void saveNewUser(User user);
+	public void saveNewUser(User user);
 
 	public void saveNewApproval(DepartmentApproverRepository approval);
 
