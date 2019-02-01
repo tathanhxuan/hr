@@ -140,7 +140,7 @@ public class LeaveForm extends Form implements Serializable, IFormCode {
 	
 	@Override
 	public String toString() {
-		return "[Form Code: " + this.getFormCode().toString() + ", Leave Date From: " + this.leaveDateFrom.toString()  + ", Leave Date To: " + this.leaveDateTo.toString()  + "]";
+		return "[Form Code: " + this.getFormCode().toString()  + "]";
 	}
 
 	

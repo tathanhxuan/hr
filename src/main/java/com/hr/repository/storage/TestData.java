@@ -51,7 +51,7 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		td.leaveFormsData();		 
+		//td.leaveFormsData();		 
 		//td.aTFormsData();
 		// td.oTFormsData();
 		//td.departmentApproversData();
@@ -249,8 +249,10 @@ public class TestData implements Serializable {
 			Date date3 = new GregorianCalendar(2018, Calendar.FEBRUARY, 16).getTime();
 			Date date4 = new GregorianCalendar(2018, Calendar.FEBRUARY, 17).getTime();
 
-			add(new LeaveForm(em1, date1, date2));
-			add(new LeaveForm(em2, date3, date4));
+			//add(new LeaveForm(em1, date1, date2));
+			//add(new LeaveForm(em2, date3, date4));
+			add(new LeaveForm(em1));
+			add(new LeaveForm(em2));
 			//add(new LeaveForm("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
 			//add(new LeaveForm("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
 
@@ -292,8 +294,10 @@ public class TestData implements Serializable {
 			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
 
-			add(new OTForm(em1, date1,  "19:00", "21:00"));
-			add(new OTForm(em2, date2,  "20:00", "22:00"));
+			//add(new OTForm(em1, date1,  "19:00", "21:00"));
+			//add(new OTForm(em2, date2,  "20:00", "22:00"));
+			add(new OTForm(em1));
+			add(new OTForm(em2));
 			//add(new OTForm("OT002", em2, FormStatus.APPROVED_2ND, fvs2));
 
 		}
@@ -332,8 +336,10 @@ public class TestData implements Serializable {
 			};
 			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
-			add(new ATForm(em1, date1, "20:20", "21:10"));
-			add(new ATForm(em2, date2, "19:20", "20:10"));
+			//add(new ATForm(em1, date1, "20:20", "21:10"));
+			//add(new ATForm(em2, date2, "19:20", "20:10"));
+			add(new ATForm(em1));
+			add(new ATForm(em2));
 			//add(new ATForm("AT003", em1, FormStatus.APPROVED_1ST, fvs1));
 			//add(new ATForm("AT004", em2, FormStatus.APPROVED_2ND, fvs2));
 
