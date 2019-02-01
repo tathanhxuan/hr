@@ -613,20 +613,38 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.EMPLOYEE_GROUP, employeeGroups);
 	}
 
-	static void loadLeaveFormsMap(List<LeaveFormServiceImpl> allLeaveForms) {
+	/*static void loadLeaveFormsMap(List<LeaveFormServiceImpl> allLeaveForms) {
 		HashMap<String, LeaveFormServiceImpl> leaveForms = new HashMap<String, LeaveFormServiceImpl>();
+		allLeaveForms.forEach(leaveForm -> leaveForms.put(leaveForm.getFormCode(), leaveForm));
+		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
+	}*/
+	
+	static void loadLeaveFormsMap(List<LeaveForm> allLeaveForms) {
+		HashMap<String, LeaveForm> leaveForms = new HashMap<String, LeaveForm>();
 		allLeaveForms.forEach(leaveForm -> leaveForms.put(leaveForm.getFormCode(), leaveForm));
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
 	}
 
-	static void loadOTFormsMap(List<OTFormServiceImpl> allOTForms) {
+	/*static void loadOTFormsMap(List<OTFormServiceImpl> allOTForms) {
 		HashMap<String, OTFormServiceImpl> oTForms = new HashMap<String, OTFormServiceImpl>();
 		allOTForms.forEach(oTForm -> oTForms.put(oTForm.getFormCode(), oTForm));
 		saveToStorage(StorageType.OT_FORM, oTForms);
 	}
+*/	
+	static void loadOTFormsMap(List<OTForm> allOTForms) {
+		HashMap<String, OTForm> oTForms = new HashMap<String, OTForm>();
+		allOTForms.forEach(oTForm -> oTForms.put(oTForm.getFormCode(), oTForm));
+		saveToStorage(StorageType.OT_FORM, oTForms);
+	}
 	
-	static void loadATFormsMap(List<ATFormServiceImpl> allATForms) {
+	/*static void loadATFormsMap(List<ATFormServiceImpl> allATForms) {
 		HashMap<String, ATFormServiceImpl> aTForms = new HashMap<String, ATFormServiceImpl>();
+		allATForms.forEach(aTForm -> aTForms.put(aTForm.getFormCode(), aTForm));
+		saveToStorage(StorageType.AT_FORM, aTForms);
+	}*/
+	
+	static void loadATFormsMap(List<ATForm> allATForms) {
+		HashMap<String, ATForm> aTForms = new HashMap<String, ATForm>();
 		allATForms.forEach(aTForm -> aTForms.put(aTForm.getFormCode(), aTForm));
 		saveToStorage(StorageType.AT_FORM, aTForms);
 	}

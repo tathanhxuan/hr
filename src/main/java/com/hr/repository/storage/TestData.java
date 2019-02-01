@@ -11,12 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.hr.domain.ATForm;
 import com.hr.domain.Department;
 import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Employee;
 import com.hr.domain.Form;
 import com.hr.domain.FormApprover;
 import com.hr.domain.FormStatus;
+import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.domain.SystemUser;
 import com.hr.domain.User;
@@ -43,21 +45,21 @@ public class TestData implements Serializable {
 		TestData td = new TestData();
 
 		// td.userData();
-		td.systemUserData();
+		//td.systemUserData();
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		// td.leaveFormsData();		 
+		td.leaveFormsData();		 
 		//td.aTFormsData();
-		//td.oTFormsData();
+		// td.oTFormsData();
 		//td.departmentApproversData();
 		// td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
 		//td.departmentsData();
-		td.formStatusData();
+		//td.formStatusData();
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
@@ -68,7 +70,7 @@ public class TestData implements Serializable {
 		// System.out.println(da.readOvertimeMap());
 
 		// System.out.println(da.readEmployeeGroupMap());
-		// System.out.println(da.readLeaveFormMap());
+		System.out.println(da.readLeaveFormMap());
 		// System.out.println(da.readLeaveFormServiceImplMap());
 		
 		/*Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
@@ -82,7 +84,7 @@ public class TestData implements Serializable {
 		
 		// System.out.println(da.readATFormMap());
 		//System.out.println(da.readATForm());
-		// System.out.println(da.readOTFormMap());
+		//System.out.println(da.readOTFormMap());
 		//System.out.println(da.readOTForm());
 		
 		// System.out.println(da.readOTFormMap());
@@ -127,7 +129,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readFormApproverMap());
 		//System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
-		System.out.println(da.readFormStatusMap());
+		//System.out.println(da.readFormStatusMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -233,15 +235,24 @@ public class TestData implements Serializable {
 	}
 
 	@SuppressWarnings("serial")
-	List<LeaveFormServiceImpl> allLeaveForms = new ArrayList<LeaveFormServiceImpl>() {
+	List<LeaveForm> allLeaveForms = new ArrayList<LeaveForm>() {
 
 		{
 
-			Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
-			Date date2 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
+			Department dept1 = new Department("11", "IT");
+			Employee em1 = new Employee("101", dept1);
+			Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
+			Date date2 = new GregorianCalendar(2018, Calendar.FEBRUARY, 12).getTime();
+			
+			Department dept2 = new Department("22", "HR");
+			Employee em2 = new Employee("102", dept2);
+			Date date3 = new GregorianCalendar(2018, Calendar.FEBRUARY, 16).getTime();
+			Date date4 = new GregorianCalendar(2018, Calendar.FEBRUARY, 17).getTime();
 
-			add(new LeaveFormServiceImpl("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
-			add(new LeaveFormServiceImpl("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
+			add(new LeaveForm(em1, date1, date2));
+			add(new LeaveForm(em2, date3, date4));
+			//add(new LeaveForm("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
+			//add(new LeaveForm("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
 
 		}
 	};
@@ -252,7 +263,7 @@ public class TestData implements Serializable {
 	}
 
 	@SuppressWarnings("serial")
-	List<OTFormServiceImpl> allOTForms = new ArrayList<OTFormServiceImpl>() {
+	List<OTForm> allOTForms = new ArrayList<OTForm>() {
 
 		{
 
@@ -277,9 +288,13 @@ public class TestData implements Serializable {
 					return null;
 				}
 			};
+			
+			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
+			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
 
-			add(new OTFormServiceImpl("OT001", em1, FormStatus.APPROVED_1ST, fvs1));
-			add(new OTFormServiceImpl("OT002", em2, FormStatus.APPROVED_2ND, fvs2));
+			add(new OTForm(em1, date1,  "19:00", "21:00"));
+			add(new OTForm(em2, date2,  "20:00", "22:00"));
+			//add(new OTForm("OT002", em2, FormStatus.APPROVED_2ND, fvs2));
 
 		}
 	};
@@ -290,7 +305,7 @@ public class TestData implements Serializable {
 	}
 	
 	@SuppressWarnings("serial")
-	List<ATFormServiceImpl> allATForms = new ArrayList<ATFormServiceImpl>() {
+	List<ATForm> allATForms = new ArrayList<ATForm>() {
 
 		{
 
@@ -315,9 +330,12 @@ public class TestData implements Serializable {
 					return null;
 				}
 			};
-
-			add(new ATFormServiceImpl("AT003", em1, FormStatus.APPROVED_1ST, fvs1));
-			add(new ATFormServiceImpl("AT004", em2, FormStatus.APPROVED_2ND, fvs2));
+			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
+			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
+			add(new ATForm(em1, date1, "20:20", "21:10"));
+			add(new ATForm(em2, date2, "19:20", "20:10"));
+			//add(new ATForm("AT003", em1, FormStatus.APPROVED_1ST, fvs1));
+			//add(new ATForm("AT004", em2, FormStatus.APPROVED_2ND, fvs2));
 
 		}
 	};

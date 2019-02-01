@@ -119,5 +119,10 @@ public class ATForm extends Form implements IFormCode {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public String toString() {
+		return "[Form Code: " + this.getFormCode() + ", Time Out: " + this.timeOut.toString()  + " ,Time In: " + this.timeIn.toString()  + "]";
+	}
 
 }
