@@ -1,5 +1,6 @@
 package com.hr.domain;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,7 +16,7 @@ import com.hr.domain.Notify.Observer;
 import com.hr.domain.Notify.SMSAlert;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
-public class LeaveForm extends Form implements IFormCode {
+public class LeaveForm extends Form implements Serializable, IFormCode {
 
 	Date leaveDateFrom;
 	Date leaveDateTo;

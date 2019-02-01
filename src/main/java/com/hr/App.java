@@ -38,9 +38,9 @@ public class App
     {
     	
     	//Employee emp = Login();
-
+    
     	
-    	loginUser = new Employee("123",new Department("123", ""));
+    	loginUser = new Employee("101",new Department("D01", ""));
     	
     	//Login();
     	 
@@ -119,7 +119,7 @@ public class App
     	String command = scanner. nextLine();
     	
     	
-    	if(command.equals("S")) {
+    	if(command.equals("S") ||command.equals("s")) {
 
         	FormValidationStrategy vf = new LeaveFormValidation();
         	LeaveForm f = (LeaveForm) FormFactory.creatForm(FormType.LEAVE, loginUser);
