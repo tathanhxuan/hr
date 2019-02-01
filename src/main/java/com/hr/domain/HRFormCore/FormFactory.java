@@ -6,17 +6,18 @@ import com.hr.domain.*;
 
 public class FormFactory {
 
-	public static Form creatForm(FormType type, Employee emp)
+	@SuppressWarnings("unchecked")
+	public static <T extends Form> T creatForm(FormType type, Employee emp)
 	{
 		if (type == null) return null;
 		
 		switch (type) {
 		case LEAVE:
-			return new LeaveForm(emp,status,vf);
+			return (T) new LeaveForm(emp);
 		case OVERTIME:
-			return new OTForm(emp,status,vf);
+			return (T) new OTForm(emp);
 		case ATTENDANT:
-			return new ATForm(emp,status,vf);
+			return (T) new ATForm(emp);
 		default:
 			return null;
 		}

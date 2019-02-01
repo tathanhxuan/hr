@@ -49,13 +49,13 @@ public class OTForm extends Form implements Serializable, IFormCode {
 		this.timeFrom = timeFrom;
 	}
 	
-	public OTForm( Employee emp,Date OtDate ,String timeFrom, String timeTo) {
+	public OTForm( Employee emp) {
 		super( emp);
 		// TODO Auto-generated constructor stub
 		this.formCode = CodeInterpreter();
-		this.OTDate = OtDate;
-		this.timeFrom=timeFrom;
-		this.timeTo=timeTo;
+//		this.OTDate = OtDate;
+//		this.timeFrom=timeFrom;
+//		this.timeTo=timeTo;
 	}		
 			
 	@Override

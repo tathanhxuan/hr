@@ -22,12 +22,12 @@ public class LeaveForm extends Form implements IFormCode {
 	String description;
 	
 
-	public LeaveForm( Employee emp,Date leaveDateFrom,Date leaveDateTo) {
+	public LeaveForm( Employee emp) {
 		super(emp);
 		// TODO Auto-generated constructor stub
 	    this.formCode = CodeInterpreter();
-	    this.leaveDateFrom=leaveDateFrom;
-	    this.leaveDateTo=leaveDateTo;
+//	    this.leaveDateFrom=leaveDateFrom;
+//	    this.leaveDateTo=leaveDateTo;
 	}
 
 	public String getFormCode() {

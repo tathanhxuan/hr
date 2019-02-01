@@ -1,6 +1,13 @@
 package com.hr;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Scanner;
 
 import com.hr.domain.*;
@@ -27,13 +34,15 @@ public class App
 	public static Employee loginUser;
 	
     @SuppressWarnings("null")
-	public static void main( String[] args ) throws IOException
+	public static void main( String[] args ) throws IOException, ParseException
     {
     	
     	//Employee emp = Login();
 
-    	Employee emp = new Employee("123",new Department("123", ""));
-    	Login();
+    	
+    	loginUser = new Employee("123",new Department("123", ""));
+    	
+    	//Login();
     	 
     	CreateLeaveForm(); 
        	
@@ -94,7 +103,7 @@ public class App
    	System.out.println("*.SELECT : ");
    }
    
-    public static void CreateLeaveForm() {
+    public static void CreateLeaveForm() throws ParseException {
     	
     	Scanner scanner = new Scanner(System. in);
     	
@@ -110,22 +119,29 @@ public class App
     	String command = scanner. nextLine();
     	
     	
-    	if(command == "S") {
-    		FormValidationStrategy vf = new LeaveFormValidation();
-        	LeaveForm f = (LeaveForm) FormFactory.creatForm(FormType.LEAVE, loginUser, FormStatus.CREATED, vf);
+    	if(command.equals("S")) {
+
+        	FormValidationStrategy vf = new LeaveFormValidation();
+        	LeaveForm f = (LeaveForm) FormFactory.creatForm(FormType.LEAVE, loginUser);
+        	f.setValidationStrategy(vf);
+        	DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
         	
-        	//f.setLeaveDateFrom(datefrom);
-        	
+        	Date dafrom = new GregorianCalendar(2019, Calendar.FEBRUARY, 11).getTime();
+        	f.setLeaveDateFrom(dafrom );
+        	f.setLeaveDateTo(dafrom);
+        	if (f.formSubmit()) {
+        		System.out.println("Return to menu (Y/N):");
+        	}
     	}
     	else {
     		System.out.println("ARE YOU SURE TO CANCEL? (Y/N):");
     		String exit = scanner. nextLine();
     		
     		if(exit== "Y" && loginUser.getIsApprover()) {
-    			LoadApproverMenu();
+  			LoadApproverMenu();
     		}
-    		else LoadStaffMenu();
-    	}
+   		else LoadStaffMenu();
+   	}
 
     }
     

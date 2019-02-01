@@ -46,13 +46,13 @@ public class ATForm extends Form implements IFormCode {
 		this.timeIn = timeIn;
 	}
 	
-	public ATForm( Employee emp, Date AtDate ,String timeIn, String timeOut ) {
+	public ATForm( Employee emp ) {
 		super(emp);
 		// TODO Auto-generated constructor stub
 		this.formCode = CodeInterpreter();
-		this.ATDate = AtDate;
-		this.timeIn=timeIn;
-		this.timeOut=timeOut;
+//		this.ATDate = AtDate;
+//		this.timeIn=timeIn;
+//		this.timeOut=timeOut;
 	}
 
 	@Override
