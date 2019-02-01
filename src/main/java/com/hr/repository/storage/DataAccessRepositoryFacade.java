@@ -22,6 +22,7 @@ import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.domain.Report;
 import com.hr.domain.StepApprover;
+import com.hr.domain.SystemUser;
 import com.hr.domain.User;
 import com.hr.repository.ATFormRepository;
 import com.hr.repository.AttendanceRepository;
@@ -68,10 +69,9 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
-	public HashMap<String, SystemUserRepository> readSystemUserMap() {
+	public HashMap<String, SystemUser> readSystemUserMap() {
 		// TODO Auto-generated method stub
-		return (HashMap<String, SystemUserRepository>) readFromStorage(StorageType.SYSTEM_USER);
+		return (HashMap<String, SystemUser>) readFromStorage(StorageType.SYSTEM_USER);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -515,8 +515,8 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.USERS, users);
 	}
 
-	static void loadSystemUserMap(List<SystemUserServiceImpl> allSystemUsers) {
-		HashMap<String, SystemUserServiceImpl> systemUsers = new HashMap<String, SystemUserServiceImpl>();
+	static void loadSystemUserMap(List<SystemUser> allSystemUsers) {
+		HashMap<String, SystemUser> systemUsers = new HashMap<String, SystemUser>();
 		allSystemUsers.forEach(sUser -> systemUsers.put(sUser.getId(), sUser));
 		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
 	}
