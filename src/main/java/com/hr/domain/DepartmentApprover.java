@@ -25,12 +25,13 @@ public class DepartmentApprover implements Serializable {
 	}
 
 	
-	public DepartmentApprover(String deptID, String deptName, int approvalLevel, String empID) {
+	public DepartmentApprover(String deptID, String deptName, int approvalLevel, String empID, String nameApprover) {
 		super();
 		this.deptID = deptID;
 		this.deptName = deptName;
 		this.approvalLevel = approvalLevel;
 		this.empID = empID;
+		this.nameApprover = nameApprover;
 	}
 
 
@@ -61,6 +62,16 @@ public class DepartmentApprover implements Serializable {
 
 	
 
+	public String getNameApprover() {
+		return nameApprover;
+	}
+
+
+	public void setNameApprover(String nameApprover) {
+		this.nameApprover = nameApprover;
+	}
+
+
 	public String getEmpID() {
 		return empID;
 	}
@@ -77,7 +88,7 @@ public class DepartmentApprover implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "[Dept ID: " + deptID + ", Dept Name: " + deptName.toString() + ", Approval Level: " + approvalLevel + ", empID: " + empID.toString() + "]";
+		return "[Dept ID: " + deptID + ", Dept Name: " + deptName.toString() + ", Approval Level: " + approvalLevel + ", Approver Name: " + nameApprover + ", empID: " + empID.toString() + "]";
 	}
 
 }

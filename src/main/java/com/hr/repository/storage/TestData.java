@@ -18,6 +18,7 @@ import com.hr.domain.Form;
 import com.hr.domain.FormApprover;
 import com.hr.domain.FormStatus;
 import com.hr.domain.OTForm;
+import com.hr.domain.SystemUser;
 import com.hr.domain.User;
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.repository.Auth;
@@ -41,16 +42,16 @@ public class TestData implements Serializable {
 		TestData td = new TestData();
 
 		// td.userData();
-		// td.systemUserData();
+		td.systemUserData();
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
 		// td.leaveFormsData();		 
-		// td.aTFormsData();
+		//td.aTFormsData();
 		//td.oTFormsData();
-		td.departmentApproversData();
+		//td.departmentApproversData();
 		// td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
@@ -59,7 +60,7 @@ public class TestData implements Serializable {
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
 		// System.out.println(da.readUserMap());
-		// System.out.println(da.readSystemUserMap());
+		System.out.println(da.readSystemUserMap());
 		// System.out.println(da.readAttendanceMap());
 		// System.out.println(da.readShiftMap());
 		// System.out.println(da.readOvertimeMap());
@@ -78,7 +79,7 @@ public class TestData implements Serializable {
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
 		// System.out.println(da.readATFormMap());
-		// System.out.println(da.readATForm());
+		//System.out.println(da.readATForm());
 		// System.out.println(da.readOTFormMap());
 		//System.out.println(da.readOTForm());
 		
@@ -122,7 +123,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readEmployeeServiceImplMap());
 		//System.out.println(da.readStepApproverServiceImplMap());
 		//System.out.println(da.readFormApproverMap());
-		System.out.println(da.readDepartmentApproverMap());
+		//System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 	}
 
@@ -145,12 +146,21 @@ public class TestData implements Serializable {
 		DataAccessRepositoryFacade.loadUserMap(allUsers);
 	}
 
-	@SuppressWarnings("serial")
+	/*@SuppressWarnings("serial")
 	List<SystemUserServiceImpl> allSystemUsers = new ArrayList<SystemUserServiceImpl>() {
 
 		{
 			add(new SystemUserServiceImpl("11", "admin", "123", "1"));
 			add(new SystemUserServiceImpl("22", "supervisor", "12345", "2"));
+		}
+	};*/
+	
+	@SuppressWarnings("serial")
+	List<SystemUser> allSystemUsers = new ArrayList<SystemUser>() {
+
+		{
+			add(new SystemUser("1", "admin", "123", "101", true, false));
+			add(new SystemUser("2", "supervisor", "12345", "102", true, false));
 		}
 	};
 
@@ -333,9 +343,9 @@ public class TestData implements Serializable {
 	List<DepartmentApprover> allDepartmentApprovers = new ArrayList<DepartmentApprover>() {
 
 		{			
-			add(new DepartmentApprover("D001", "IT", 1, "101"));
-			add(new DepartmentApprover("D002", "IT", 2, "102"));
-			add(new DepartmentApprover("D003", "IT", 3, "103"));
+			add(new DepartmentApprover("D001", "IT", 1, "101", "Xuan"));
+			add(new DepartmentApprover("D002", "IT", 2, "102", "Thai"));
+			add(new DepartmentApprover("D003", "IT", 3, "103", "Azeez"));
 		}
 	};
 

@@ -1,19 +1,13 @@
 package com.hr.domain.reportIterator;
 
-import com.hr.domain.reportChart.ChartTemplate;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
-public class LeaveReportIterator extends ChartTemplate implements ChartAggregate{
+public class LeaveReportIterator implements ChartAggregate{
 
 		
 	DataAccessRepositoryFacade dataReport = new DataAccessRepositoryFacade();
 	int totalRecord = dataReport.readLeaveForm().values().size();
 	
-	@Override
-	public int getTotalRecord() {
-		return totalRecord;
-	}
-
 	Object [] leaveReports = dataReport.readLeaveForm().entrySet().toArray();
     
 		

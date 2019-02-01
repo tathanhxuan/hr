@@ -6,7 +6,8 @@ public class ATReportIterator implements ChartAggregate {
 
 	DataAccessRepositoryFacade dataReport = new DataAccessRepositoryFacade();
 	int totalRecord = dataReport.readATForm().values().size();
-	Object [] ATReports = dataReport.readATForm().entrySet().toArray();
+	String [] ATReports = {"One", "Two", "Three"};
+	//Object [] ATReports = dataReport.readATForm().entrySet().toArray();
     
 		
 	@Override
@@ -30,12 +31,10 @@ public class ATReportIterator implements ChartAggregate {
 
 		@Override
 		public Object next() {
-			if(this.hasNext()) {
+			if(this.hasNext()==true) {
 				return ATReports[index++];
 			}
 			return null;
-		}
-
 	}
-
+}
 }
