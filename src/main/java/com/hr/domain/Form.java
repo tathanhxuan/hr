@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.hr.domain.HRFormCore.FormValidationStrategy;
+import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public abstract class Form implements Serializable, Cloneable{
 	
@@ -94,7 +95,8 @@ public abstract class Form implements Serializable, Cloneable{
 		 {
 			
 			FormLog log = new FormLog(this.formCode,this.owner.getEmpID(),"Created","");
-			log.SaveLog();
+			DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+			da.saveNewFormLog(log);
 			
 			SubmitNotify(this);
 			return true;

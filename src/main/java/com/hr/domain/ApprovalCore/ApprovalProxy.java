@@ -25,8 +25,8 @@ public class ApprovalProxy implements IApproval {
 	public ArrayList<Form> getWaitedApproveForms() throws Exception {
 		
 		if (emp.getIsApprover()) {
-		// TODO Auto-generated method stub
-		return approveCenter.getWaitedApproveForms();
+			// TODO Auto-generated method stub
+			return approveCenter.getWaitedApproveForms();
 		}
 		else {
 			throw new Exception("rm command is not allowed for non-admin users.");
