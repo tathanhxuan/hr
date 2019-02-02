@@ -129,7 +129,8 @@ public class OTForm extends Form implements Serializable, IFormCode {
 	
 	@Override
 	public String toString() {
-		return "[Form Code: " + this.getFormCode() + ", Time From: " + this.timeFrom.toString()  + " ,Time To: " + this.timeTo.toString()  + "]";
+		
+		return "Form Code: " + this.getFormCode() +"\t"+ "Time From: " + this.timeFrom.toString()+ "\t" + "Time To: " + this.timeTo.toString()+"\n";
 		//return "[Form Code: " + this.getFormCode() +  "]";
 	}
 
