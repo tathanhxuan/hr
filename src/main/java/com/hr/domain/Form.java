@@ -1,6 +1,10 @@
 package com.hr.domain;
 import java.io.Serializable;
+import java.nio.channels.NonWritableChannelException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.hr.domain.HRFormCore.FormValidationStrategy;
@@ -88,6 +92,10 @@ public abstract class Form implements Serializable, Cloneable{
 		
 		if(Submit(approvers.getListApprover()))
 		 {
+			
+			FormLog log = new FormLog(this.formCode,this.owner.getEmpID(),"Created","");
+			log.SaveLog();
+			
 			SubmitNotify(this);
 			return true;
 		 }
