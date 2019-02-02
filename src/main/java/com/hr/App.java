@@ -36,9 +36,16 @@ public class App {
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception {
 
+
+		Login();
+		
+		//*************************************
+		LoadMenuByUserRole();
+
 		//Login();
 		//LoadMenuByUserRole();
-		GetWaitedApproveForms();
+		//GetWaitedApproveForms();
+
 		
 	}
 
@@ -52,11 +59,20 @@ public class App {
 		System.out.println("Passwords : ");
 		String pass = scanner.nextLine();
 
+		
 		// verify user
-
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		SystemUser user = da.getSystemUserByUserName(username);
+		
+		if( user==null  ||! user.getPassword().equals(pass)) {
+			
+			System.out.println("Invalid username or passwords ");
+			 System.exit(0);
+		}
+		
 		// Employee emp = Login();
-		loginUser = new Employee("101", new Department("D01", ""));
-		userRole = "APPROVER";
+		loginUser = new Employee(user.getEmpID(), new Department("D01", ""));
+		userRole = user.getIsApprover() ? "APPROVER" : "STAFF";
 
 		return emp;
 	}
@@ -68,12 +84,17 @@ public class App {
 		System.out.println("******************************************************");
 		System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
 		System.out.println("1.OT FORM");
+		System.out.println("----------------------");
 		System.out.println("2.AT FORM");
+		System.out.println("----------------------");
 		System.out.println("3.LEAVE FORM");
+		System.out.println("----------------------");
 		System.out.println("4.FORM REFUSE");
-		System.out.println("5.FORM SEARCH");
+		System.out.println("----------------------");
+		System.out.println("5.FORM HISTORY");
+		System.out.println("----------------------");
 		System.out.println("6.EXIT");
-		System.out.println("*******************************************************");
+		System.out.println("----------------------");
 		System.out.println("*.SELECT : ");
 
 		String keyID = scanner.nextLine();
@@ -88,14 +109,21 @@ public class App {
 		System.out.println("******************************************************");
 		System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
 		System.out.println("1.OT FORM");
+		System.out.println("----------------------");
 		System.out.println("2.AT FORM");
+		System.out.println("----------------------");
 		System.out.println("3.LEAVE FORM");
+		System.out.println("----------------------");
 		System.out.println("4.FORM REFUSE");
+		System.out.println("----------------------");
 		System.out.println("5.FORM SEARCH");
+		System.out.println("----------------------");
 		System.out.println("6.FORM APPROVAL");
+		System.out.println("----------------------");
 		System.out.println("7.REPORT");
+		System.out.println("----------------------");
 		System.out.println("8.EXIT");
-		System.out.println("*******************************************************");
+		System.out.println("----------------------");
 		System.out.println("*.SELECT : ");
 
 		String keyID = scanner.nextLine();
@@ -112,13 +140,19 @@ public class App {
 		Scanner command = new Scanner(System.in);
 		System.out.println("******REPORT********");
 		System.out.println("1.OT REPORT");
+		System.out.println("----------------------");
 		System.out.println("2.AT REPORT");
+		System.out.println("----------------------");
 		System.out.println("3.LEAVE REPORT");
+		System.out.println("----------------------");
 		System.out.println("4.CHART");
+		System.out.println("----------------------");
 		System.out.println("5.ALL REPORT");
+		System.out.println("----------------------");
 		System.out.println("6. SEARCH");
+		System.out.println("----------------------");
 		System.out.println("7.EXIT");
-		System.out.println("*******************************************************");
+		System.out.println("----------------------");
 		System.out.println("*.SELECT : ");
 
 		while (true) {
@@ -304,6 +338,13 @@ public class App {
 		case "3":
 			CreateLeaveForm();
 			break;
+			
+		case "5":
+			ReportMaker rm = new ReportMaker();
+            GeneralReport.Builder A = new GeneralReport.Builder();
+            A.aTReport().oTReport().leaveReport().build();
+
+			//rm. loginUser.(getEmpID());
 		default:
 			break;
 		}
