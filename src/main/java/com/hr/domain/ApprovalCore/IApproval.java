@@ -12,7 +12,7 @@ public interface IApproval {
 	
 	public Boolean Approve(StepApprover approvalModel) throws Exception;
 	
-	public Boolean ApproveAll(ArrayList<Form> forms, StepApprover approvalModel) throws Exception;
+	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception;
 	
 	public Boolean Refuse(StepApprover approvalModel) throws Exception;
 	

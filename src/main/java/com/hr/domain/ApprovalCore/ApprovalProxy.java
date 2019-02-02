@@ -68,9 +68,10 @@ public class ApprovalProxy implements IApproval {
 					}
 	}
 
-	public Boolean ApproveAll(ArrayList<Form> forms, StepApprover approvalModel) throws Exception {
+	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return approveCenter.ApproveAll(forms);
+		//return null;
 	}
 
 }
