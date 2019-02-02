@@ -36,8 +36,9 @@ public class App {
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception {
 
-		Login();
-		LoadMenuByUserRole();
+		//Login();
+		//LoadMenuByUserRole();
+		GetWaitedApproveForms();
 		
 	}
 
@@ -353,8 +354,14 @@ public class App {
     	System.out.println("Press 'A = Approve All' | 'O = Approve Only One'':");
 		String command = scanner.nextLine();
 
-		if (command.equals("A") || command.equals("s")) {
-			System.out.println("Approve All Successfully!");
+		if (command.equals("A") || command.equals("a")) {
+			//System.out.println("Approve All Successfully!");
+			/*this.aproverID=aproverID;
+			this.approveStep=approveStep;
+			this.approveDate=approveDate;
+			this.comments=comments;*/
+			//StepApprover approvalModel = new StepApprover("101", "1", "2019-02-01", "Test");
+			approvecenter.ApproveAll(listForms);
 		} else {
 			System.out.println("Input Form Code");
 		}
