@@ -119,8 +119,8 @@ public class ATForm extends Form implements IFormCode {
 
 	@Override
 	public String toString() {
-		return "[Form Code: " + this.getFormCode() + ", Time Out: " + this.timeOut.toString() + "\t" + ", Time In: "
-				+ this.timeIn.toString() + "\t" + ", Form Status: " + this.status.getValue() + "]" + "\n";
+		return "[Form Code: " + this.getFormCode() + ",\t" + "Employee ID:" + this.getOwner().getEmpID().toString() + ",\t" + "Time Out: " + this.timeOut.toString() + ",\t" + "Time In: "
+				+ this.timeIn.toString() + ",\t" + "Form Status: " + this.status + "]" + "\n";
 	}
 
 }

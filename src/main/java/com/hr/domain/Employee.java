@@ -84,6 +84,8 @@ public class Employee implements Serializable {
 	@Override
 	public String toString() {
 		return "[empID: " + empID + ", empName: " + empName.toString() + ", Dept: " + dept.getDeptName().toString() + "]";
+		//return "[empID: " + empID + ", empName: " + empName.toString()  + "]";
+		//return "[empID: " + empID + "]";
 	}
 	
 }

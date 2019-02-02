@@ -36,13 +36,16 @@ public class App {
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception {
 
-		//Login();
-		//LoadMenuByUserRole();
-		GetWaitedApproveForms();
-		
+		// *************************************
+		Login();
+
+		// Login();
+		// LoadMenuByUserRole();
+		// GetWaitedApproveForms();
+
 	}
 
-	public static Employee Login() {
+	public static void Login() throws ParseException {
 		Employee emp = null;
 
 		System.out.println("-----------SYSTEM LOGIN-------------:");
@@ -53,12 +56,22 @@ public class App {
 		String pass = scanner.nextLine();
 
 		// verify user
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		SystemUser user = da.getSystemUserByUserName(username);
 
-		// Employee emp = Login();
-		loginUser = new Employee("101", new Department("D01", ""));
-		userRole = "APPROVER";
+		if (user == null || !user.getPassword().equals(pass)) {
 
-		return emp;
+			System.out.println("Invalid username or passwords ");
+			System.exit(0);
+		}
+
+		String empID = user.getEmpID();
+
+		loginUser = da.getEmployeeById(empID);
+		;
+
+		userRole = user.getIsApprover() ? "APPROVER" : "STAFF";
+		LoadMenuByUserRole();
 	}
 
 	public static void LoadStaffMenu() throws ParseException {
@@ -68,12 +81,17 @@ public class App {
 		System.out.println("******************************************************");
 		System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
 		System.out.println("1.OT FORM");
+		System.out.println("----------------------");
 		System.out.println("2.AT FORM");
+		System.out.println("----------------------");
 		System.out.println("3.LEAVE FORM");
+		System.out.println("----------------------");
 		System.out.println("4.FORM REFUSE");
-		System.out.println("5.FORM SEARCH");
+		System.out.println("----------------------");
+		System.out.println("5.FORM HISTORY");
+		System.out.println("----------------------");
 		System.out.println("6.EXIT");
-		System.out.println("*******************************************************");
+		System.out.println("----------------------");
 		System.out.println("*.SELECT : ");
 
 		String keyID = scanner.nextLine();
@@ -88,14 +106,21 @@ public class App {
 		System.out.println("******************************************************");
 		System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
 		System.out.println("1.OT FORM");
+		System.out.println("----------------------");
 		System.out.println("2.AT FORM");
+		System.out.println("----------------------");
 		System.out.println("3.LEAVE FORM");
+		System.out.println("----------------------");
 		System.out.println("4.FORM REFUSE");
+		System.out.println("----------------------");
 		System.out.println("5.FORM SEARCH");
+		System.out.println("----------------------");
 		System.out.println("6.FORM APPROVAL");
+		System.out.println("----------------------");
 		System.out.println("7.REPORT");
+		System.out.println("----------------------");
 		System.out.println("8.EXIT");
-		System.out.println("*******************************************************");
+		System.out.println("----------------------");
 		System.out.println("*.SELECT : ");
 
 		String keyID = scanner.nextLine();
@@ -112,13 +137,19 @@ public class App {
 		Scanner command = new Scanner(System.in);
 		System.out.println("******REPORT********");
 		System.out.println("1.OT REPORT");
+		System.out.println("----------------------");
 		System.out.println("2.AT REPORT");
+		System.out.println("----------------------");
 		System.out.println("3.LEAVE REPORT");
+		System.out.println("----------------------");
 		System.out.println("4.CHART");
+		System.out.println("----------------------");
 		System.out.println("5.ALL REPORT");
+		System.out.println("----------------------");
 		System.out.println("6. SEARCH");
+		System.out.println("----------------------");
 		System.out.println("7.EXIT");
-		System.out.println("*******************************************************");
+		System.out.println("----------------------");
 		System.out.println("*.SELECT : ");
 
 		while (true) {
@@ -304,6 +335,21 @@ public class App {
 		case "3":
 			CreateLeaveForm();
 			break;
+
+		case "5":
+			ReportMaker rm = new ReportMaker();
+			GeneralReport.Builder A = new GeneralReport.Builder();
+			A.aTReport().oTReport().leaveReport().build();
+
+			// rm. loginUser.(getEmpID());
+
+		case "6":
+
+			loginUser = null;
+			Login();
+
+			break;
+
 		default:
 			break;
 		}
@@ -336,39 +382,51 @@ public class App {
 		}
 	}
 
-
-	
-
-	
 	public static void GetWaitedApproveForms() throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("****************GET WAITED APPROVE FORMS***************");
-		loginUser = new Employee("102", new Department("D002", "IT"));
-		loginUser.setIsApprover(true);
-		loginUser.setEmpName("Xuan");
+		// loginUser = new Employee("102", new Department("D002", "IT"));
+		// loginUser.setIsApprover(true);
+		// loginUser.setEmpName("Xuan");
 		ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
-    	ArrayList<Form> listForms = approvecenter.getWaitedApproveForms();
-    	for (Form listForm: listForms) {
-    		System.out.println(listForm);
-    	}
-    	//System.out.println(listForms);
-    	System.out.println("*******************************************************");
-    	System.out.println("Press 'A = Approve All' | 'O = Approve Only One'':");
-		String command = scanner.nextLine();
+		ArrayList<Form> listForms = approvecenter.getWaitedApproveForms();
 
-		if (command.equals("A") || command.equals("a")) {
-			approvecenter.ApproveAll(listForms);
-		} else if (command.equals("O") || command.equals("o")) {
-			System.out.println("Please input form code:");
-			String formCode = scanner.nextLine();
-			approvecenter.Approve(formCode);
-		}
-		else {
-			System.out.println("Input Form Code");
+		if (listForms.isEmpty()) {
+			System.out.println("****************WAITED APPROVE FORMS IS EMPTY**********");
+			LoadMenuByUserRole();
+		} else {
+			for (Form listForm : listForms) {
+				System.out.println(listForm);
+				//System.out.println("Form Code: " + listForm.getFormCode() + "t" + listForm.g);
+			}
+			// System.out.println(listForms);
+			System.out.println("*******************************************************");
+			System.out.println("Press 'A = Approve All'");
+			System.out.println("Press 'O = Approve Only One'");
+			System.out.println("Press 'R = Refuse'");
+			System.out.println("Press other key to return Menu");
+			String command = scanner.nextLine();
+
+			if (command.equals("A") || command.equals("a")) {
+				approvecenter.ApproveAll(listForms);
+				GetWaitedApproveForms();
+			} else if (command.equals("O") || command.equals("o")) {
+				System.out.println("Please input form code:");
+				String formCode = scanner.nextLine();
+				approvecenter.Approve(formCode);
+				GetWaitedApproveForms();
+			} else if (command.equals("R") || command.equals("r")) {
+				System.out.println("Please input form code:");
+				String formCode = scanner.nextLine();
+				approvecenter.Refuse(formCode);
+				GetWaitedApproveForms();
+			} else {
+				LoadMenuByUserRole();
+			}
 		}
 	}
-	
-	//Search Menu
+
+	// Search Menu
 	public static void searchMenu() throws ParseException {
 
 		Scanner scanner = new Scanner(System.in);
@@ -382,23 +440,21 @@ public class App {
 			if (entry.equals("1")) {
 				System.out.println("Enter Employee ID");
 				String empSearchId = scanner.nextLine();
-               rm.searchByEmpId(empSearchId);
+				rm.searchByEmpId(empSearchId);
 			} else if (entry.equals("2")) {
 				System.out.println("Enter Employee Department");
 				String empSearchDepart = scanner.nextLine();
-               rm.leaveReportByDepartment(empSearchDepart);
-               rm.aTReportByDepartment(empSearchDepart);
-               rm.oTReportByDepartment(empSearchDepart);
-			} 
-			
-			else if (entry.equals("3")) {
-				//search by name
+				rm.leaveReportByDepartment(empSearchDepart);
+				rm.aTReportByDepartment(empSearchDepart);
+				rm.oTReportByDepartment(empSearchDepart);
 			}
-			else if (entry.equals("4")) {
+
+			else if (entry.equals("3")) {
+				// search by name
+			} else if (entry.equals("4")) {
 				LoadReportMenu();
 				break;
-			}
-			else {
+			} else {
 				System.out.println("Invalid Entry, Try again !");
 			}
 		}
