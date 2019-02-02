@@ -272,6 +272,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return listSystemUsers;
 	}
 	
+	public FormLog getFormLogByFormCode(String formCode) {
+		HashMap<String, FormLog> formLogMaps = readFormLogMap();
+		FormLog formLog = formLogMaps.get(formCode);
+		return formLog;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, EmployeeServiceImpl> readEmployeeServiceImplMap() {
 		// TODO Auto-generated method stub
