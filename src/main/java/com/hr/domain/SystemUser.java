@@ -13,7 +13,8 @@ public class SystemUser implements Serializable {
 	String empID;
 	Boolean isApprover;
 	Boolean isHR;
-
+   
+	
 	public SystemUser(String id, String user_name, String password, String empID, Boolean isApprover, Boolean isHR) {
 		super();
 		this.id = id;
