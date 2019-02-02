@@ -1,12 +1,12 @@
 package com.hr.domain.report.builder;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.hr.domain.ATForm;
+import com.hr.domain.Employee;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.domain.reportFacade.ATReport;
@@ -15,7 +15,7 @@ import com.hr.domain.reportFacade.OTReport;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class GeneralReport {
-	private HashMap<String, ATForm> aTReport;
+	private ArrayList<ATReport> aTReport;
     private HashMap<String, OTForm> oTReport;
     private HashMap<String, LeaveForm> leaveReport;
     
@@ -43,7 +43,7 @@ public class GeneralReport {
      
 	
 	public static class Builder implements GeneralReportBuilder{
-		private HashMap<String, ATForm> aTReport;
+		private ArrayList<ATReport> aTReport;
 	    private HashMap<String, OTForm> oTReport;
 	    private HashMap<String, LeaveForm> leaveReport;
 	    
@@ -52,7 +52,19 @@ public class GeneralReport {
 	    
 	    
     public Builder aTReport() {
-    	this.aTReport = data.readATForm();
+    	ArrayList<ATForm> allATForm = data.getListATForm();
+    	ArrayList<Employee> allEmployee = data.getListEmployee();
+    	
+    	for(ATForm atForm: allATForm) {
+    		String empId = atForm.getOwner().getEmpID();
+    		for(Employee emp: allEmployee) {
+    			if(empId.equals(emp.getEmpID())) {
+    				this.aTReport.add(new ATReport());			
+    			}
+    		}
+    	}
+    	
+    	
     	return this;
     }
     

@@ -1,16 +1,19 @@
 package com.hr.domain.report.builder;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.hr.domain.Employee;
 import com.hr.domain.reportChart.ChartTemplate;
 import com.hr.domain.reportChart.ReportChart;
 import com.hr.domain.reportFacade.ReportMaker;
+import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class Main {
 
 	public static void main(String[] args) throws ParseException {
-
+		DataAccessRepositoryFacade data = new DataAccessRepositoryFacade();
 //		Scanner command = new Scanner(System.in);
 //		System.out.println("******REPORT********");
 //		System.out.println("1.OT REPORT");
@@ -92,5 +95,15 @@ public class Main {
 //				System.out.println("Invalid Entry, Try again !");
 //			}
 //	}
+	  
+	ArrayList<Employee> em = data.getListEmployee();
+    for(Employee all: em) {
+    	System.out.println(all.getEmpName());
+    }
+	
+	
+	
+	
+	
 	  }
 	}
