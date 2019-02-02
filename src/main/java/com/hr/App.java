@@ -137,15 +137,13 @@ public class App {
 				rm.getLeaveReport();
 			} else if (input.equals("4")) {
 				ch.getReportChart();
-			}
-			else if (input.equals("5")) {
+			} else if (input.equals("5")) {
 				allReport.aTReport().leaveReport().oTReport().build();
-			}
-			else if(input.equals("6")) {
+			} else if (input.equals("6")) {
 				searchMenu();
 				break;
 			}
-			
+
 			else if (input.equals("7")) {
 				LoadMenuByUserRole();
 				break;
@@ -338,13 +336,40 @@ public class App {
 			break;
 		}
 	}
-	
-	//Search Menu
-	public static void searchMenu() {
+
+	// Search Menu
+	public static void searchMenu() throws ParseException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("1.SEARCH BY EMPLOYEE ID");
-		System.out.println("2. SEARCH BY DEPARTMENT");
-		System.out.println("3.EXIT");
+		System.out.println("2.SEARCH BY DEPARTMENT");
+		System.out.println("3.SEARCH BY NAME");
+		System.out.println("4.BACK TO REPORT MENU");
+		String entry = scanner.nextLine();
+		ReportMaker rm = new ReportMaker();
+		while (true) {
+			if (entry.equals("1")) {
+				System.out.println("Enter Employee ID");
+				String empSearchId = scanner.nextLine();
+               rm.searchByEmpId(empSearchId);
+			} else if (entry.equals("2")) {
+				System.out.println("Enter Employee Department");
+				String empSearchDepart = scanner.nextLine();
+               rm.leaveReportByDepartment(empSearchDepart);
+               rm.aTReportByDepartment(empSearchDepart);
+               rm.oTReportByDepartment(empSearchDepart);
+			} 
+			
+			else if (entry.equals("3")) {
+				//search by name
+			}
+			else if (entry.equals("4")) {
+				LoadReportMenu();
+				break;
+			}
+			else {
+				System.out.println("Invalid Entry, Try again !");
+			}
+		}
 	}
 
 }
