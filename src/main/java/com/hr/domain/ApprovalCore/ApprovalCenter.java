@@ -11,6 +11,7 @@ import com.hr.domain.Department;
 import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Employee;
 import com.hr.domain.Form;
+import com.hr.domain.FormStatus;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.domain.StepApprover;
@@ -94,7 +95,21 @@ public class ApprovalCenter implements IApproval {
 	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception {
 		// TODO Auto-generated method stub
 
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 		// implement transaction here for approve all form
+		for (Form form: forms) {
+			int status = form.getStatus().getValue();
+			status++;
+			//FormStatus formStatus = new FormStatus(status);
+			if (form instanceof OTForm) {
+				//type new_name = (type) da;
+				
+				OTForm oTForm = (OTForm) form;
+				//oTForm.setStatus(status);
+				da.updateOTForm(oTForm);
+			}
+			//System.out.println(form.g);
+		}
 		System.out.println("Approve All Sussessfully");
 		
 		return null;

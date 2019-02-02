@@ -278,6 +278,18 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return formLog;
 	}
 	
+	public SystemUser getSystemUserByUserName(String user_name) {
+		ArrayList<SystemUser> listSystemUsers = getListSystemUser();
+		for (SystemUser systemUser: listSystemUsers) {
+			if (systemUser.getUser_name().equals(user_name)) {
+				return systemUser;
+			}
+		}
+		return null;
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, EmployeeServiceImpl> readEmployeeServiceImplMap() {
 		// TODO Auto-generated method stub
@@ -535,17 +547,17 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.FORM_LOG, formLogs);
 	}
 	
-	public void updateOTForm(OTFormServiceImpl oTForm) {
+	public void updateOTForm(OTForm oTForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, OTFormServiceImpl> oTForms = readOTFormServiceImplMap();
+		HashMap<String, OTForm> oTForms = readOTFormMap();
 		String formCode = oTForm.getFormCode();
 		oTForms.replace(formCode, oTForm);
 		saveToStorage(StorageType.OT_FORM, oTForms);
 	}
 		
-	public void updateATForm(ATFormServiceImpl aTForm) {
+	public void updateATForm(ATForm aTForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, ATFormServiceImpl> aTForms = readATFormServiceImplMap();
+		HashMap<String, ATForm> aTForms = readATFormMap();
 		String formCode = aTForm.getFormCode();
 		aTForms.replace(formCode, aTForm);
 		saveToStorage(StorageType.AT_FORM, aTForms);
