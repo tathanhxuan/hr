@@ -53,9 +53,9 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		//td.leaveFormsData();		 
-		//td.aTFormsData();
-		//td.oTFormsData();
+		td.leaveFormsData();		 
+		td.aTFormsData();
+		td.oTFormsData();
 		//td.departmentApproversData();
 		//td.employeesData();
 		// td.stepApproversData();
@@ -88,8 +88,8 @@ public class TestData implements Serializable {
 		System.out.println(da.readATFormMap());
 		//System.out.println(da.readATForm());
 		System.out.println(da.readOTFormMap());
-		//System.out.println(da.readLeaveFormMap());
-		System.out.println(da.readOTForm());
+		System.out.println(da.readLeaveFormMap());
+		//System.out.println(da.readOTForm());
 		
 		//System.out.println(da.readOTFormMap());
 		// System.out.println(da.readOTFormServiceImplMap());
@@ -137,7 +137,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readFormLogMap());
 		//System.out.println(da.readEmployeeMap());
 
-		System.out.println(da.readSystemUserMap());
+		//System.out.println(da.readSystemUserMap());
 
 	}
 
@@ -173,8 +173,8 @@ public class TestData implements Serializable {
 	List<SystemUser> allSystemUsers = new ArrayList<SystemUser>() {
 
 		{
-			add(new SystemUser("1", "admin", "123", "101", true, false));
-			add(new SystemUser("2", "thai", "12345", "102", false, false));
+			add(new SystemUser("1", "admin", "123", "102", true, false));
+			add(new SystemUser("2", "thai", "12345", "101", false, false));
 		}
 	};
 
@@ -429,16 +429,18 @@ public class TestData implements Serializable {
 		{			
 			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
-			Department dept1 = new Department("11", "IT");
+			Department dept1 = new Department("D001", "IT");
 			Employee em1 = new Employee("101", dept1);
 			em1.setEmpName("Emp1");
 			em1.setDateOfBirth(date1);
+			em1.setIsApprover(true);
 			
 			
-			Department dept2 = new Department("22", "HR");
+			Department dept2 = new Department("D002", "HR");
 			Employee em2 = new Employee("102", dept2);
 			em2.setEmpName("Emp2");
 			em2.setDateOfBirth(date2);
+			em2.setIsApprover(true);
 			add(em1);
 			add(em2);
 			//add(new Employee("101", "Azee", date1, "Nigeria", null, null, true));
