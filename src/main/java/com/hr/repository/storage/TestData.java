@@ -86,8 +86,8 @@ public class TestData implements Serializable {
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
 		//System.out.println(da.readATFormMap());
-		//System.out.println(da.readATForm());
-		//System.out.println(da.readOTFormMap());
+		System.out.println(da.readATForm());
+		System.out.println(da.readOTFormMap());
 		System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
@@ -134,7 +134,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
-		System.out.println(da.readFormLogMap());
+		//System.out.println(da.readFormLogMap());
 	}
 
 	@SuppressWarnings("serial")
