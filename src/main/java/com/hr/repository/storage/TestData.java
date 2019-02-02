@@ -1,6 +1,7 @@
 package com.hr.repository.storage;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Employee;
 import com.hr.domain.Form;
 import com.hr.domain.FormApprover;
+import com.hr.domain.FormLog;
 import com.hr.domain.FormStatus;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
@@ -51,7 +53,7 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		td.leaveFormsData();		 
+		//td.leaveFormsData();		 
 		//td.aTFormsData();
 		//td.oTFormsData();
 		//td.departmentApproversData();
@@ -60,6 +62,7 @@ public class TestData implements Serializable {
 		//td.formApproversData();
 		//td.departmentsData();
 		//td.formStatusData();
+		//td.formLogsData();
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
@@ -70,7 +73,7 @@ public class TestData implements Serializable {
 		// System.out.println(da.readOvertimeMap());
 
 		// System.out.println(da.readEmployeeGroupMap());
-		System.out.println(da.readLeaveFormMap());
+		//System.out.println(da.readLeaveFormMap());
 		// System.out.println(da.readLeaveFormServiceImplMap());
 		
 		/*Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
@@ -82,12 +85,13 @@ public class TestData implements Serializable {
 
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
-		// System.out.println(da.readATFormMap());
-		//System.out.println(da.readATForm());
-		//System.out.println(da.readOTFormMap());
+		//System.out.println(da.readATFormMap());
+		System.out.println(da.readATForm());
+		System.out.println(da.readOTFormMap());
+		System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
-		// System.out.println(da.readOTFormMap());
+		//System.out.println(da.readOTFormMap());
 		// System.out.println(da.readOTFormServiceImplMap());
 		
 		/*Department dept1 = new Department("11", "IT");
@@ -130,6 +134,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
+		//System.out.println(da.readFormLogMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -483,6 +488,23 @@ public class TestData implements Serializable {
 	// create Employees
 	public void formStatusData() {
 		DataAccessRepositoryFacade.loadFormStatusMap(allFormStatus);
+	}
+	
+	@SuppressWarnings("serial")
+	List<FormLog> allFormLogs = new ArrayList<FormLog>() {
+
+		{
+			//Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
+			//Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
+			add(new FormLog("AT01", "101", "CREATED", "Created AT form"));
+			add(new FormLog("OT01", "102", "APPROVED_1ST", "Created OT form"));								
+			
+		}
+	};
+
+	// create Employees
+	public void formLogsData() {
+		DataAccessRepositoryFacade.loadFormLogsMap(allFormLogs);
 	}
 
 }

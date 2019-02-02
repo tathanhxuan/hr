@@ -1,12 +1,17 @@
 package com.hr.domain;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class FormLog {
+public class FormLog implements Serializable {
 	
-	 String formCode;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String formCode;
 	 String empID;
 	 String action;
 	 String actionDate;
@@ -54,8 +59,10 @@ public class FormLog {
 			this.remark = remark;
 		}
 		
-		// Implement save to db
-	   public boolean SaveLog() {
-			return true;
-	  }
+		@Override
+		public String toString() {
+			return "[Form Code: " + formCode.toString() + ", Action: " + action.toString() + ", Date: "
+					+ actionDate.toString() + ", Remark: " + remark.toString() + "]";
+		}
+				
 }
