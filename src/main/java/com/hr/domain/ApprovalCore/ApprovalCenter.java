@@ -11,6 +11,8 @@ import com.hr.domain.Department;
 import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Employee;
 import com.hr.domain.Form;
+import com.hr.domain.FormLog;
+import com.hr.domain.FormStatus;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.domain.StepApprover;
@@ -73,11 +75,28 @@ public class ApprovalCenter implements IApproval {
 		return allForms;
 	}
 
-	// approve forms base on employee
-	public Boolean Approve(StepApprover approvalModel) {
+	// approve forms base on form code
+	public Boolean Approve(String formCode) {
 		// TODO Auto-generated method stub
-
-		return null;
+		System.out.println(formCode);
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		//da.get
+		Form form = null;
+		ArrayList<OTForm> oTForms = da.getListOTForm();
+		ArrayList<ATForm> aTForms = da.getListATForm();
+		ArrayList<LeaveForm> leaveForms = da.getListLeaveForm();
+		for (OTForm oTForm : oTForms) {
+			if (oTForm.getFormCode().equals(formCode)) {
+				form = oTForm;
+			}
+		}
+		
+		
+		
+		//DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		//FormLog formLog = da.getFormLogByFormCode(formCode);
+		//da.up
+		return true;
 	}
 
 	// approve forms base on employee
@@ -93,8 +112,30 @@ public class ApprovalCenter implements IApproval {
 
 	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception {
 		// TODO Auto-generated method stub
-
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 		// implement transaction here for approve all form
+		for (Form form : forms) {
+			if (form instanceof OTForm) {
+				OTForm oTForm = (OTForm) form;
+				FormStatus formStatus = oTForm.getStatus();
+				formStatus.setValue(oTForm.getStatus().getValue() + 1);
+				oTForm.setStatus(formStatus);
+				da.updateOTForm(oTForm);
+			} else if (form instanceof ATForm) {
+				ATForm aTForm = (ATForm) form;
+				aTForm.setStatus(aTForm.getStatus());
+				da.updateATForm(aTForm);
+			} else if (form instanceof LeaveForm) {
+				LeaveForm leaveForm = (LeaveForm) form;
+				leaveForm.setStatus(leaveForm.getStatus());
+				da.updateLeaveForm(leaveForm);
+			}
+		}
+		System.out.println(da.readATFormMap());
+		System.out.println(da.readOTFormMap());
+		System.out.println(da.readLeaveFormMap());
+		System.out.println("Approve All Sussessfully");
+
 		return null;
 	}
 

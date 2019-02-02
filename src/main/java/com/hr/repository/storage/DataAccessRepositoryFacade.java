@@ -18,6 +18,7 @@ import com.hr.domain.Employee;
 import com.hr.domain.Form;
 import com.hr.domain.FormApprover;
 import com.hr.domain.FormLog;
+import com.hr.domain.FormStatus;
 import com.hr.domain.History;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
@@ -271,6 +272,59 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		ArrayList<SystemUser> listSystemUsers = new ArrayList<SystemUser>(values);
 		return listSystemUsers;
 	}
+	
+	public ArrayList<FormStatusServiceImpl> getListFormStatus() {
+		HashMap<String, FormStatusServiceImpl> formStatusMap = readFormStatusMap();
+		Collection<FormStatusServiceImpl> values = formStatusMap.values();
+		ArrayList<FormStatusServiceImpl> listFormStatus = new ArrayList<FormStatusServiceImpl>(values);
+		return listFormStatus;
+	}
+	
+	public FormLog getFormLogByFormCode(String formCode) {
+		HashMap<String, FormLog> formLogMaps = readFormLogMap();
+		FormLog formLog = formLogMaps.get(formCode);
+		return formLog;
+	}
+	
+	public OTForm getOTFormByFormCode(String formCode) {
+		HashMap<String, OTForm> oTFormMaps = readOTFormMap();
+		OTForm oTForm = oTFormMaps.get(formCode);
+		return oTForm;
+	}
+	
+	public ATForm getATFormByFormCode(String formCode) {
+		HashMap<String, ATForm> aTFormMaps = readATFormMap();
+		ATForm aTForm = aTFormMaps.get(formCode);
+		return aTForm;
+	}
+	
+	public LeaveForm getLeaveFormByFormCode(String formCode) {
+		HashMap<String, LeaveForm> aTFormMaps = readLeaveFormMap();
+		LeaveForm aTForm = aTFormMaps.get(formCode);
+		return aTForm;
+	}
+	
+	public SystemUser getSystemUserByUserName(String user_name) {
+		ArrayList<SystemUser> listSystemUsers = getListSystemUser();
+		for (SystemUser systemUser: listSystemUsers) {
+			if (systemUser.getUser_name().equals(user_name)) {
+				return systemUser;
+			}
+		}
+		return null;
+	}
+	
+	public FormStatusServiceImpl getFromStatusByValue(String statusId) {
+		ArrayList<FormStatusServiceImpl> listFormStatus = getListFormStatus();
+		for (FormStatusServiceImpl formStatus: listFormStatus) {
+			if (formStatus.getStatusID() == statusId) {
+				return formStatus;
+			}
+		}
+		return null;		
+	}
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, EmployeeServiceImpl> readEmployeeServiceImplMap() {
@@ -529,17 +583,17 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.FORM_LOG, formLogs);
 	}
 	
-	public void updateOTForm(OTFormServiceImpl oTForm) {
+	public void updateOTForm(OTForm oTForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, OTFormServiceImpl> oTForms = readOTFormServiceImplMap();
+		HashMap<String, OTForm> oTForms = readOTFormMap();
 		String formCode = oTForm.getFormCode();
 		oTForms.replace(formCode, oTForm);
 		saveToStorage(StorageType.OT_FORM, oTForms);
 	}
 		
-	public void updateATForm(ATFormServiceImpl aTForm) {
+	public void updateATForm(ATForm aTForm) {
 		// TODO Auto-generated method stub
-		HashMap<String, ATFormServiceImpl> aTForms = readATFormServiceImplMap();
+		HashMap<String, ATForm> aTForms = readATFormMap();
 		String formCode = aTForm.getFormCode();
 		aTForms.replace(formCode, aTForm);
 		saveToStorage(StorageType.AT_FORM, aTForms);
@@ -593,6 +647,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	}
 	
 	public void updateSystemUser(SystemUser systemUser) {
+		// TODO Auto-generated method stub
+		HashMap<String, SystemUser> systemUsers = readSystemUserMap();
+		String id = systemUser.getId();
+		systemUsers.replace(id, systemUser);
+		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
+	}
+	
+	public void updateF(SystemUser systemUser) {
 		// TODO Auto-generated method stub
 		HashMap<String, SystemUser> systemUsers = readSystemUserMap();
 		String id = systemUser.getId();
@@ -684,8 +746,8 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
-	static void loadEmployeesMap(List<EmployeeServiceImpl> allEmployees) {
-		HashMap<String, EmployeeServiceImpl> employees = new HashMap<String, EmployeeServiceImpl>();
+	static void loadEmployeesMap(List<Employee> allEmployees) {
+		HashMap<String, Employee> employees = new HashMap<String, Employee>();
 		allEmployees.forEach(employee -> employees.put(employee.getEmpID(), employee));
 		saveToStorage(StorageType.EMPLOYEE, employees);
 	}
@@ -713,6 +775,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		allFormStatus.forEach(formStatus -> formStatuss.put(formStatus.getStatusID(), formStatus));
 		saveToStorage(StorageType.FORM_STATUS, formStatuss);
 	}
+	
+	/*static void loadFormStatusMap(List<FormStatus> allFormStatus) {
+		HashMap<String, FormStatus> formStatuss = new HashMap<String, FormStatus>();
+		allFormStatus.forEach(formStatus -> formStatuss.put(formStatus.getValue()), formStatus));
+		saveToStorage(StorageType.FORM_STATUS, formStatuss);
+	}*/
 	
 	static void loadFormLogsMap(List<FormLog> allFormLogs) {
 		HashMap<String, FormLog> formLogs = new HashMap<String, FormLog>();

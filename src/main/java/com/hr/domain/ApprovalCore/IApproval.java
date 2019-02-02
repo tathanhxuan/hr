@@ -10,7 +10,7 @@ public interface IApproval {
 	
 	public ArrayList<Form> getWaitedApproveForms() throws Exception;;
 	
-	public Boolean Approve(StepApprover approvalModel) throws Exception;
+	public Boolean Approve(String formCode) throws Exception;
 	
 	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception;
 	

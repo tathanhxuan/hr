@@ -36,10 +36,16 @@ public class App {
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception {
 
+
 		Login();
 		
 		//*************************************
 		LoadMenuByUserRole();
+
+		//Login();
+		//LoadMenuByUserRole();
+		//GetWaitedApproveForms();
+
 		
 	}
 
@@ -382,9 +388,14 @@ public class App {
     	System.out.println("Press 'A = Approve All' | 'O = Approve Only One'':");
 		String command = scanner.nextLine();
 
-		if (command.equals("A") || command.equals("s")) {
-			System.out.println("Approve All Successfully!");
-		} else {
+		if (command.equals("A") || command.equals("a")) {
+			approvecenter.ApproveAll(listForms);
+		} else if (command.equals("O") || command.equals("o")) {
+			System.out.println("Please input form code:");
+			String formCode = scanner.nextLine();
+			approvecenter.Approve(formCode);
+		}
+		else {
 			System.out.println("Input Form Code");
 		}
 	}
