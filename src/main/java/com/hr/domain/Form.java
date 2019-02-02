@@ -110,6 +110,8 @@ public abstract class Form implements Serializable, Cloneable{
 				
 				if(ReSubmit())
 				 {
+					FormLog log = new FormLog(this.formCode,this.owner.getEmpID(),"Revised","");
+					log.SaveLog();
 					SubmitNotify(this);
 					return true;
 				 }
