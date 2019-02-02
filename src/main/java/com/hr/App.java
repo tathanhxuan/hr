@@ -59,11 +59,20 @@ public class App {
 		System.out.println("Passwords : ");
 		String pass = scanner.nextLine();
 
+		
 		// verify user
-
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		SystemUser user = da.getSystemUserByUserName(username);
+		
+		if( user==null  ||! user.getPassword().equals(pass)) {
+			
+			System.out.println("Invalid username or passwords ");
+			 System.exit(0);
+		}
+		
 		// Employee emp = Login();
-		loginUser = new Employee("101", new Department("D01", ""));
-		userRole = "STAFF";
+		loginUser = new Employee(user.getEmpID(), new Department("D01", ""));
+		userRole = user.getIsApprover() ? "APPROVER" : "STAFF";
 
 		return emp;
 	}

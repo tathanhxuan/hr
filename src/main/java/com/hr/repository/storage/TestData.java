@@ -47,7 +47,7 @@ public class TestData implements Serializable {
 		TestData td = new TestData();
 
 		// td.userData();
-		//td.systemUserData();
+		td.systemUserData();
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
@@ -57,7 +57,7 @@ public class TestData implements Serializable {
 		//td.aTFormsData();
 		//td.oTFormsData();
 		//td.departmentApproversData();
-		td.employeesData();
+		//td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
 		//td.departmentsData();
@@ -135,7 +135,8 @@ public class TestData implements Serializable {
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
 		//System.out.println(da.readFormLogMap());
-		System.out.println(da.readEmployeeMap());
+		//System.out.println(da.readEmployeeMap());
+		System.out.println(da.readSystemUserMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -171,7 +172,7 @@ public class TestData implements Serializable {
 
 		{
 			add(new SystemUser("1", "admin", "123", "101", true, false));
-			add(new SystemUser("2", "supervisor", "12345", "102", true, false));
+			add(new SystemUser("2", "thai", "12345", "102", false, false));
 		}
 	};
 
