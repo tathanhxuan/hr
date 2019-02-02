@@ -91,7 +91,7 @@ public class ApprovalCenter implements IApproval {
 		return null;
 	}
 
-	public Boolean ApproveAll(ArrayList<Form> forms, StepApprover approvalModel) throws Exception {
+	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception {
 		// TODO Auto-generated method stub
 
 		// implement transaction here for approve all form

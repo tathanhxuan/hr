@@ -95,8 +95,7 @@ public abstract class Form implements Serializable, Cloneable{
 		 {
 			
 			FormLog log = new FormLog(this.formCode,this.owner.getEmpID(),"Created","");
-			DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
-			da.saveNewFormLog(log);
+			log.SaveLog();
 			
 			SubmitNotify(this);
 			return true;
@@ -105,7 +104,7 @@ public abstract class Form implements Serializable, Cloneable{
 		return false;
 	}
 
-	public final Boolean formReSubmit() {
+	 public final Boolean formReSubmit() {
 		        //validate form
 				if (validationStrategy.Validate(this) !=null )
 					return false;
@@ -129,7 +128,6 @@ public abstract class Form implements Serializable, Cloneable{
 	 
 	 abstract ArrayList<Form> getEmployeeForms(FormStatus status);
 
-	 
 	 abstract int getCurrentStatus();
 
 	 	 	 	

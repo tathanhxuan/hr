@@ -5,6 +5,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.hr.repository.storage.DataAccessRepositoryFacade;
+
 public class FormLog implements Serializable {
 	
 	 /**
@@ -58,6 +60,12 @@ public class FormLog implements Serializable {
 		public void setRemark(String remark) {
 			this.remark = remark;
 		}
+		
+	 public boolean SaveLog() {
+			DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+			da.saveNewFormLog(this);
+			return true;
+	 }
 		
 		@Override
 		public String toString() {
