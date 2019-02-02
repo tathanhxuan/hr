@@ -455,6 +455,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
 	}
 	
+	public void saveNewFormLog(FormLog formLog) {
+		// TODO Auto-generated method stub
+		HashMap<String, FormLog> formLogs = readFormLogMap();
+		String formCode = formLog.getFormCode();
+		formLogs.put(formCode, formLog);
+		saveToStorage(StorageType.FORM_LOG, formLogs);
+	}
+	
 	public void removeOTForm(String formCode) {
 		HashMap<String, OTFormServiceImpl> oTForms = readOTFormServiceImplMap();
 		oTForms.remove(formCode);		
@@ -511,6 +519,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		HashMap<String, SystemUser> systemUsers = readSystemUserMap();
 		systemUsers.remove(id);
 		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
+	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	public void removeFormLog(FormLog formCode) {
+		// TODO Auto-generated method stub
+		HashMap<String, FormLog> formLogs = readFormLogMap();
+		formLogs.remove(formCode);
+		saveToStorage(StorageType.FORM_LOG, formLogs);
 	}
 	
 	public void updateOTForm(OTFormServiceImpl oTForm) {
@@ -700,7 +716,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	
 	static void loadFormLogsMap(List<FormLog> allFormLogs) {
 		HashMap<String, FormLog> formLogs = new HashMap<String, FormLog>();
-		allFormLogs.forEach(formLog -> formLogs.put(formLog.getId(), formLog));
+		allFormLogs.forEach(formLog -> formLogs.put(formLog.getFormCode(), formLog));
 		saveToStorage(StorageType.FORM_LOG, formLogs);
 	}
 
