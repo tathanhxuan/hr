@@ -20,7 +20,7 @@ public class ATForm extends Form implements IFormCode {
 	Date ATDate;
 	String timeOut;
 	String timeIn;
-	
+
 	public Date getATDate() {
 		return ATDate;
 	}
@@ -37,7 +37,6 @@ public class ATForm extends Form implements IFormCode {
 		this.timeOut = timeOut;
 	}
 
-	
 	public String getTimeIn() {
 		return timeIn;
 	}
@@ -45,8 +44,8 @@ public class ATForm extends Form implements IFormCode {
 	public void setTimeIn(String timeIn) {
 		this.timeIn = timeIn;
 	}
-	
-	public ATForm( Employee emp ) {
+
+	public ATForm(Employee emp) {
 		super(emp);
 		// TODO Auto-generated constructor stub
 		this.formCode = CodeInterpreter();
@@ -67,22 +66,21 @@ public class ATForm extends Form implements IFormCode {
 		return null;
 	}
 
-
 	@Override
 	Boolean Submit(ArrayList<DepartmentApprover> approvers) {
 		// TODO Auto-generated method stub
-		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();			
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 		da.saveNewATForm(this);
-		
-		for (DepartmentApprover approver: approvers) {
+
+		for (DepartmentApprover approver : approvers) {
 
 			// Save into Form Approver
 			FormApprover formApprover = new FormApprover(formCode, approver.getApprovalLevel(), approver.getEmpID());
 			da.saveNewFormApprover(formApprover);
 		}
-		//System.out.println(da.readATForm());
-		//System.out.println(da.getListATForm());
-		//System.out.println(da.readFormApproverMap());		
+		// System.out.println(da.readATForm());
+		// System.out.println(da.getListATForm());
+		// System.out.println(da.readFormApproverMap());
 		return true;
 	}
 
@@ -94,7 +92,7 @@ public class ATForm extends Form implements IFormCode {
 
 	@Override
 	Boolean SubmitNotify(Form f) {
-		//send alert to approver
+		// send alert to approver
 		NotifyService notifyService = new NotifyService();
 		Observer email = new EmailAlert();
 		Observer sms = new SMSAlert();
@@ -102,27 +100,27 @@ public class ATForm extends Form implements IFormCode {
 		notifyService.register(sms);
 		email.setSubject(notifyService);
 		sms.setSubject(notifyService);
-		
+
 		notifyService.postMessage("Please approve this Form : " + f.getFormCode());
-		
+
 		return true;
 	}
 
 	public String CodeInterpreter() {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-		return "AT" + this.getOwner().getEmpID() + this.getOwner().getDepartment().getDeptID() + "_"+ timeStamp ;
+		return "AT" + this.getOwner().getEmpID() + this.getOwner().getDepartment().getDeptID() + "_" + timeStamp;
 	}
-
 
 	@Override
 	int getCurrentStatus() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "[Form Code: " + this.getFormCode() + ", Time Out: " + this.timeOut.toString()  + " ,Time In: " + this.timeIn.toString()  + "]";
+		return "[Form Code: " + this.getFormCode() + ", Time Out: " + this.timeOut.toString() + "\t" + ", Time In: "
+				+ this.timeIn.toString() + "\t" + ", Form Status: " + this.status.getValue() + "]" + "\n";
 	}
 
 }

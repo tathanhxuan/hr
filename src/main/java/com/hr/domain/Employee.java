@@ -25,6 +25,18 @@ public class Employee implements Serializable {
 	public Boolean getIsApprover() {
 		return isApprover;
 	}
+		
+	public Department getDept() {
+		return dept;
+	}
+
+	public void setDept(Department dept) {
+		this.dept = dept;
+	}
+
+	public void setIsApprover(Boolean isApprover) {
+		this.isApprover = isApprover;
+	}
 
 	public Employee(String empID,Department dept) {
 		this.empID = empID;
@@ -71,7 +83,7 @@ public class Employee implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "[empID: " + empID + ", empName: " + empName + ", Dept: " + dept + "]";
+		return "[empID: " + empID + ", empName: " + empName.toString() + ", Dept: " + dept.getDeptName().toString() + "]";
 	}
 	
 }

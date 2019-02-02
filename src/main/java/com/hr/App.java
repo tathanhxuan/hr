@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -37,16 +38,7 @@ public class App {
 
 		Login();
 		LoadMenuByUserRole();
-
-//    	ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
-//    	 approvecenter.getWaitedApproveForms();
-//    	 
-//    	 
-//    	 StepApprover s = new StepApprover(;
-//    	 s.setForm(form);
-//    	 
-//    	 
-//    	 approvecenter.ap
+		
 	}
 
 	public static Employee Login() {
@@ -106,7 +98,12 @@ public class App {
 		System.out.println("*.SELECT : ");
 
 		String keyID = scanner.nextLine();
-		ApproverMenuAction(keyID);
+		try {
+			ApproverMenuAction(keyID);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void LoadReportMenu() throws ParseException {
@@ -313,7 +310,7 @@ public class App {
 		}
 	}
 
-	public static void ApproverMenuAction(String functionID) throws ParseException {
+	public static void ApproverMenuAction(String functionID) throws Exception {
 
 		switch (functionID) {
 		case "1":
@@ -333,9 +330,33 @@ public class App {
 		case "5":
 
 		case "6":
-
+			GetWaitedApproveForms();
+			break;
 		default:
 			break;
+		}
+	}
+	
+	public static void GetWaitedApproveForms() throws Exception {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("****************GET WAITED APPROVE FORMS***************");
+		loginUser = new Employee("102", new Department("D002", "IT"));
+		loginUser.setIsApprover(true);
+		loginUser.setEmpName("Xuan");
+		ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
+    	ArrayList<Form> listForms = approvecenter.getWaitedApproveForms();
+    	for (Form listForm: listForms) {
+    		System.out.println(listForm);
+    	}
+    	//System.out.println(listForms);
+    	System.out.println("*******************************************************");
+    	System.out.println("Press 'A = Approve All' | 'O = Approve Only One'':");
+		String command = scanner.nextLine();
+
+		if (command.equals("A") || command.equals("s")) {
+			System.out.println("Approve All Successfully!");
+		} else {
+			System.out.println("Input Form Code");
 		}
 	}
 	
