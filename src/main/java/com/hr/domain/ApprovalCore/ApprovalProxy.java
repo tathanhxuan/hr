@@ -59,7 +59,7 @@ public class ApprovalProxy implements IApproval {
 
 	public Boolean SetDepartmentApprover(ArrayList<DepartmentApprover> approvers)throws Exception {
 		// TODO Auto-generated method stub
-				if (isHR) {
+				if (emp.getIsHR()) {
 					// TODO Auto-generated method stub
 					return approveCenter.SetDepartmentApprover(approvers);
 					}
