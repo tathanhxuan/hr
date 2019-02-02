@@ -34,11 +34,11 @@ public class ApprovalProxy implements IApproval {
 		
 	}
 
-	public Boolean Approve(StepApprover approvalModel)  throws Exception {
+	public Boolean Approve(String formCode)  throws Exception {
 		// TODO Auto-generated method stub
 		if (emp.getIsApprover()) {
 			// TODO Auto-generated method stub
-			return approveCenter.Approve(approvalModel);
+			return approveCenter.Approve(formCode);
 			}
 			else {
 				throw new Exception("rm command is not allowed for non-admin users.");

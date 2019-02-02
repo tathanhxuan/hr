@@ -18,6 +18,7 @@ import com.hr.domain.Employee;
 import com.hr.domain.Form;
 import com.hr.domain.FormApprover;
 import com.hr.domain.FormLog;
+import com.hr.domain.FormStatus;
 import com.hr.domain.History;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
@@ -272,6 +273,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return listSystemUsers;
 	}
 	
+	public ArrayList<FormStatusServiceImpl> getListFormStatus() {
+		HashMap<String, FormStatusServiceImpl> formStatusMap = readFormStatusMap();
+		Collection<FormStatusServiceImpl> values = formStatusMap.values();
+		ArrayList<FormStatusServiceImpl> listFormStatus = new ArrayList<FormStatusServiceImpl>(values);
+		return listFormStatus;
+	}
+	
 	public FormLog getFormLogByFormCode(String formCode) {
 		HashMap<String, FormLog> formLogMaps = readFormLogMap();
 		FormLog formLog = formLogMaps.get(formCode);
@@ -286,6 +294,16 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 			}
 		}
 		return null;
+	}
+	
+	public FormStatusServiceImpl getFromStatusByValue(String statusId) {
+		ArrayList<FormStatusServiceImpl> listFormStatus = getListFormStatus();
+		for (FormStatusServiceImpl formStatus: listFormStatus) {
+			if (formStatus.getStatusID() == statusId) {
+				return formStatus;
+			}
+		}
+		return null;		
 	}
 	
 	
@@ -731,6 +749,12 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		allFormStatus.forEach(formStatus -> formStatuss.put(formStatus.getStatusID(), formStatus));
 		saveToStorage(StorageType.FORM_STATUS, formStatuss);
 	}
+	
+	/*static void loadFormStatusMap(List<FormStatus> allFormStatus) {
+		HashMap<String, FormStatus> formStatuss = new HashMap<String, FormStatus>();
+		allFormStatus.forEach(formStatus -> formStatuss.put(formStatus.getValue()), formStatus));
+		saveToStorage(StorageType.FORM_STATUS, formStatuss);
+	}*/
 	
 	static void loadFormLogsMap(List<FormLog> allFormLogs) {
 		HashMap<String, FormLog> formLogs = new HashMap<String, FormLog>();

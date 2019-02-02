@@ -357,14 +357,13 @@ public class App {
 		String command = scanner.nextLine();
 
 		if (command.equals("A") || command.equals("a")) {
-			//System.out.println("Approve All Successfully!");
-			/*this.aproverID=aproverID;
-			this.approveStep=approveStep;
-			this.approveDate=approveDate;
-			this.comments=comments;*/
-			//StepApprover approvalModel = new StepApprover("101", "1", "2019-02-01", "Test");
 			approvecenter.ApproveAll(listForms);
-		} else {
+		} else if (command.equals("O") || command.equals("o")) {
+			System.out.println("Please input form code:");
+			String formCode = scanner.nextLine();
+			approvecenter.Approve(formCode);
+		}
+		else {
 			System.out.println("Input Form Code");
 		}
 	}

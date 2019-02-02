@@ -53,9 +53,9 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		//td.leaveFormsData();		 
-		//td.aTFormsData();
-		//td.oTFormsData();
+		td.leaveFormsData();		 
+		td.aTFormsData();
+		td.oTFormsData();
 		//td.departmentApproversData();
 		// td.employeesData();
 		// td.stepApproversData();
@@ -88,7 +88,7 @@ public class TestData implements Serializable {
 		System.out.println(da.readATFormMap());
 		//System.out.println(da.readATForm());
 		System.out.println(da.readOTFormMap());
-		//System.out.println(da.readLeaveFormMap());
+		System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
 		//System.out.println(da.readOTFormMap());
@@ -134,7 +134,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
-		System.out.println(da.readFormLogMap());
+		//System.out.println(da.readFormLogMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -259,10 +259,12 @@ public class TestData implements Serializable {
 			LeaveForm leaveForm1 = new LeaveForm(em1);
 			leaveForm1.setLeaveDateFrom(date1);
 			leaveForm1.setLeaveDateTo(date2);
+			leaveForm1.setOwner(em1);
 			
 			LeaveForm leaveForm2 = new LeaveForm(em2);
 			leaveForm2.setLeaveDateFrom(date3);
 			leaveForm2.setLeaveDateTo(date4);
+			leaveForm2.setOwner(em2);
 			add(leaveForm1);
 			add(leaveForm2);
 			//add(new LeaveForm("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
@@ -310,11 +312,13 @@ public class TestData implements Serializable {
 			aTForm1.setOTDate(date1);
 			aTForm1.setTimeFrom("20:20");
 			aTForm1.setTimeTo("21:10");
+			aTForm1.setOwner(em1);
 			
 			OTForm aTForm2 = new OTForm(em2);
 			aTForm2.setOTDate(date2);
 			aTForm2.setTimeFrom("19:20");
 			aTForm2.setTimeTo("21:10");
+			aTForm2.setOwner(em2);
 
 			//add(new OTForm(em1, date1,  "19:00", "21:00"));
 			//add(new OTForm(em2, date2,  "20:00", "22:00"));
@@ -364,11 +368,14 @@ public class TestData implements Serializable {
 			aTForm1.setATDate(date1);
 			aTForm1.setTimeIn("20:20");
 			aTForm1.setTimeOut("21:10");
+			aTForm1.setOwner(em1);
 			
 			ATForm aTForm2 = new ATForm(em2);
 			aTForm2.setATDate(date1);
 			aTForm2.setTimeIn("19:20");
 			aTForm2.setTimeOut("21:10");
+			aTForm2.setOwner(em2);
+			
 			add(aTForm1);
 			add(aTForm2);
 			//add(new ATForm("AT003", em1, FormStatus.APPROVED_1ST, fvs1));

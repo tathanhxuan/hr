@@ -74,10 +74,10 @@ public class ApprovalCenter implements IApproval {
 		return allForms;
 	}
 
-	// approve forms base on employee
-	public Boolean Approve(StepApprover approvalModel) {
+	// approve forms base on form code
+	public Boolean Approve(String formCode) {
 		// TODO Auto-generated method stub
-
+		System.out.println(formCode);
 		return null;
 	}
 
@@ -94,24 +94,30 @@ public class ApprovalCenter implements IApproval {
 
 	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception {
 		// TODO Auto-generated method stub
-
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 		// implement transaction here for approve all form
-		for (Form form: forms) {
-			int status = form.getStatus().getValue();
-			status++;
-			//FormStatus formStatus = new FormStatus(status);
+		for (Form form : forms) {
 			if (form instanceof OTForm) {
-				//type new_name = (type) da;
-				
 				OTForm oTForm = (OTForm) form;
-				//oTForm.setStatus(status);
+				FormStatus formStatus = oTForm.getStatus();
+				formStatus.setValue(oTForm.getStatus().getValue() + 1);
+				oTForm.setStatus(formStatus);
 				da.updateOTForm(oTForm);
+			} else if (form instanceof ATForm) {
+				ATForm aTForm = (ATForm) form;
+				aTForm.setStatus(aTForm.getStatus());
+				da.updateATForm(aTForm);
+			} else if (form instanceof LeaveForm) {
+				LeaveForm leaveForm = (LeaveForm) form;
+				leaveForm.setStatus(leaveForm.getStatus());
+				da.updateLeaveForm(leaveForm);
 			}
-			//System.out.println(form.g);
 		}
+		System.out.println(da.readATFormMap());
+		System.out.println(da.readOTFormMap());
+		System.out.println(da.readLeaveFormMap());
 		System.out.println("Approve All Sussessfully");
-		
+
 		return null;
 	}
 
