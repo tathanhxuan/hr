@@ -286,6 +286,24 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return formLog;
 	}
 	
+	public OTForm getOTFormByFormCode(String formCode) {
+		HashMap<String, OTForm> oTFormMaps = readOTFormMap();
+		OTForm oTForm = oTFormMaps.get(formCode);
+		return oTForm;
+	}
+	
+	public ATForm getATFormByFormCode(String formCode) {
+		HashMap<String, ATForm> aTFormMaps = readATFormMap();
+		ATForm aTForm = aTFormMaps.get(formCode);
+		return aTForm;
+	}
+	
+	public LeaveForm getLeaveFormByFormCode(String formCode) {
+		HashMap<String, LeaveForm> aTFormMaps = readLeaveFormMap();
+		LeaveForm aTForm = aTFormMaps.get(formCode);
+		return aTForm;
+	}
+	
 	public SystemUser getSystemUserByUserName(String user_name) {
 		ArrayList<SystemUser> listSystemUsers = getListSystemUser();
 		for (SystemUser systemUser: listSystemUsers) {
@@ -635,6 +653,14 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		systemUsers.replace(id, systemUser);
 		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
 	}
+	
+	public void updateF(SystemUser systemUser) {
+		// TODO Auto-generated method stub
+		HashMap<String, SystemUser> systemUsers = readSystemUserMap();
+		String id = systemUser.getId();
+		systemUsers.replace(id, systemUser);
+		saveToStorage(StorageType.SYSTEM_USER, systemUsers);
+	}
 		
 	static void loadUserMap(List<UserServiceImpl> allUsers) {
 		HashMap<String, UserServiceImpl> users = new HashMap<String, UserServiceImpl>();
@@ -720,8 +746,8 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
-	static void loadEmployeesMap(List<EmployeeServiceImpl> allEmployees) {
-		HashMap<String, EmployeeServiceImpl> employees = new HashMap<String, EmployeeServiceImpl>();
+	static void loadEmployeesMap(List<Employee> allEmployees) {
+		HashMap<String, Employee> employees = new HashMap<String, Employee>();
 		allEmployees.forEach(employee -> employees.put(employee.getEmpID(), employee));
 		saveToStorage(StorageType.EMPLOYEE, employees);
 	}

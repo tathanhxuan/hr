@@ -10,8 +10,86 @@ import com.hr.domain.Employee;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class LeaveReport implements HRReport{
+
+private String empId;
+private String empName;
+private String approveStatus;
+private	Date leaveDateFrom;
+private	Date leaveDateTo;
+private	String description;
+
+DataAccessRepositoryFacade data = new DataAccessRepositoryFacade();
+
+		
+	public LeaveReport(String empId, String empName,  Date leaveDateFrom, Date leaveDateTo, String approveStatus,
+		String description) {
+	this.empId = empId;
+	this.empName = empName;
+	this.approveStatus = approveStatus;
+	this.leaveDateFrom = leaveDateFrom;
+	this.leaveDateTo = leaveDateTo;
+	this.description = description;
+}
 	
-	DataAccessRepositoryFacade data = new DataAccessRepositoryFacade();
+	@Override
+	public String toString() {
+		return  getEmpId()+"\t"+ getEmpName() + "\t" +getLeaveDateFrom() +"\t"+ getLeaveDateTo()+"\t"+ getApproveStatus()+"\t"+getDescription()+"\n";
+	}
+
+
+
+
+
+
+
+
+	public String getEmpId() {
+		return empId;
+	}
+
+
+
+
+
+	public String getEmpName() {
+		return empName;
+	}
+
+
+
+
+
+	public String getApproveStatus() {
+		return approveStatus;
+	}
+
+
+
+
+
+	public Date getLeaveDateFrom() {
+		return leaveDateFrom;
+	}
+
+
+
+
+
+	public Date getLeaveDateTo() {
+		return leaveDateTo;
+	}
+
+
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+
 
 	@Override
 	public void reportByDepartment(String department) {

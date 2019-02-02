@@ -3,6 +3,7 @@ package com.hr.domain.reportFacade;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import com.hr.domain.Department;
@@ -10,7 +11,7 @@ import com.hr.domain.Employee;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class ATReport implements HRReport {
-	private String date;
+	private Date date;
 	private String empId;
 	private String empName;
 	private String timeIn;
@@ -19,13 +20,12 @@ public class ATReport implements HRReport {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     DataAccessRepositoryFacade data = new DataAccessRepositoryFacade();
     //getters
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 	public String getEmpId() {
 		return empId;
 	}
-
 
 	public String getEmpName() {
 		return empName;
@@ -41,8 +41,8 @@ public class ATReport implements HRReport {
 		return timeOut;
 	}
 
-   public ATReport(String date, String empId, String empName, String timeIn, String timeOut) {
-		super();
+   public ATReport(Date date, String empId, String empName, String timeIn, String timeOut) {
+		
 		this.date = date;
 		this.empId = empId;
 		this.empName = empName;
@@ -54,8 +54,7 @@ public class ATReport implements HRReport {
 	@Override
 	public String toString() {
 		
-		System.out.println("Attendance Report till "+ formatter.format(today) +"\n");
-		System.out.println("Date\tEmployee ID\tEmployee Name\tTime In\tTime Out\n");
+
 		return getDate()+"\t"+getEmpId()+"\t"+getEmpName()+"\t"+getTimeIn()+"\t"+getTimeOut()+"\n";
 	}
 

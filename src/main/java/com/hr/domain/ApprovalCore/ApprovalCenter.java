@@ -11,6 +11,7 @@ import com.hr.domain.Department;
 import com.hr.domain.DepartmentApprover;
 import com.hr.domain.Employee;
 import com.hr.domain.Form;
+import com.hr.domain.FormLog;
 import com.hr.domain.FormStatus;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
@@ -78,7 +79,24 @@ public class ApprovalCenter implements IApproval {
 	public Boolean Approve(String formCode) {
 		// TODO Auto-generated method stub
 		System.out.println(formCode);
-		return null;
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		//da.get
+		Form form = null;
+		ArrayList<OTForm> oTForms = da.getListOTForm();
+		ArrayList<ATForm> aTForms = da.getListATForm();
+		ArrayList<LeaveForm> leaveForms = da.getListLeaveForm();
+		for (OTForm oTForm : oTForms) {
+			if (oTForm.getFormCode().equals(formCode)) {
+				form = oTForm;
+			}
+		}
+		
+		
+		
+		//DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		//FormLog formLog = da.getFormLogByFormCode(formCode);
+		//da.up
+		return true;
 	}
 
 	// approve forms base on employee

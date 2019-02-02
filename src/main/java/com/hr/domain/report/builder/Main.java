@@ -32,7 +32,7 @@ public class Main {
 //			String input = command.nextLine();
 //			ReportMaker rm = new ReportMaker();
 //			ChartTemplate ch = new ReportChart();
-//			GeneralReport.Builder allReport = new GeneralReport.Builder();
+			GeneralReport.Builder allReport = new GeneralReport.Builder();
 //			if (input.equals("1")) {
 //				rm.getOvertimeReport();
 //			} else if (input.equals("2")) {
@@ -96,13 +96,13 @@ public class Main {
 //			}
 //	}
 	  
-	ArrayList<Employee> em = data.getListEmployee();
-    for(Employee all: em) {
-    	System.out.println(all.getEmpName());
-    }
+//	ArrayList<Employee> em = data.getListEmployee();
+//    for(Employee all: em) {
+//    	System.out.println(all.getAddress());
+//    }
 	
 	
-	
+   allReport.leaveReport().build();	
 	
 	
 	  }

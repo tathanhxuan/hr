@@ -53,10 +53,13 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		//td.leaveFormsData();		 
+		td.leaveFormsData();		 
+
+		//td.aTFormsData();
+
 		//td.oTFormsData();
 		//td.departmentApproversData();
-		td.employeesData();
+		//td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
 		//td.departmentsData();
@@ -87,7 +90,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readATFormMap());
 		//System.out.println(da.readATForm());
 		//System.out.println(da.readOTFormMap());
-		//System.out.println(da.readLeaveFormMap());
+		System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
 		//System.out.println(da.readOTFormMap());
@@ -134,6 +137,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
 		//System.out.println(da.readFormLogMap());
+		//System.out.println(da.readEmployeeMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -259,6 +263,8 @@ public class TestData implements Serializable {
 			leaveForm1.setLeaveDateFrom(date1);
 			leaveForm1.setLeaveDateTo(date2);
 			leaveForm1.setOwner(em1);
+			leaveForm1.setDescription("Request Approved");
+			
 			
 			LeaveForm leaveForm2 = new LeaveForm(em2);
 			leaveForm2.setLeaveDateFrom(date3);
@@ -266,6 +272,7 @@ public class TestData implements Serializable {
 			leaveForm2.setOwner(em2);
 			add(leaveForm1);
 			add(leaveForm2);
+			leaveForm1.setDescription("Request Approved1");
 			//add(new LeaveForm("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
 			//add(new LeaveForm("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
 
@@ -368,12 +375,14 @@ public class TestData implements Serializable {
 			aTForm1.setTimeIn("20:20");
 			aTForm1.setTimeOut("21:10");
 			aTForm1.setOwner(em1);
+			aTForm1.setATDate(date1);
 			
 			ATForm aTForm2 = new ATForm(em2);
 			aTForm2.setATDate(date1);
 			aTForm2.setTimeIn("19:20");
 			aTForm2.setTimeOut("21:10");
 			aTForm2.setOwner(em2);
+			aTForm2.setATDate(date1);
 			
 			add(aTForm1);
 			add(aTForm2);
@@ -419,13 +428,27 @@ public class TestData implements Serializable {
 	}
 	
 	@SuppressWarnings("serial")
-	List<EmployeeServiceImpl> allEmployees = new ArrayList<EmployeeServiceImpl>() {
+	List<Employee> allEmployees = new ArrayList<Employee>() {
 
 		{			
 			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
-			add(new EmployeeServiceImpl("101", "Azee", date1, "Nigeria", null, null, true));
-			add(new EmployeeServiceImpl("102", "Thai", date2, "Ha Noi", null, null, true));
+			Department dept1 = new Department("11", "IT");
+			Employee em1 = new Employee("101", dept1);
+			em1.setEmpName("Emp1");
+			em1.setAddress("100 Noth Street");
+			em1.setDateOfBirth(date1);
+			
+			
+			Department dept2 = new Department("22", "HR");
+			Employee em2 = new Employee("102", dept2);
+			em2.setEmpName("Emp2");
+			em2.setDateOfBirth(date2);
+			add(em1);
+			add(em2);
+			//add(new Employee("101", "Azee", date1, "Nigeria", null, null, true));
+			
+			//add(new Employee("102", "Thai", date2, "Ha Noi", null, null, true));
 		}
 	};
 
