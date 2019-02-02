@@ -20,18 +20,14 @@ public class Main {
 		System.out.println("6.EXIT");
 		System.out.println("*******************************************************");
 		System.out.println("*.SELECT : ");
-		while (true) {
+ while (true) {
 			String input = command.nextLine();
-			// report maker Facade
 			ReportMaker rm = new ReportMaker();
-			// Template Method
 			ChartTemplate ch = new ReportChart();
-			// Builder
 			GeneralReport.Builder allReport = new GeneralReport.Builder();
-
 			if (input.equals("1")) {
 				rm.getOvertimeReport();
-				// rm.searchByEmpId("101");
+				 rm.searchByEmpId("101");
 			} else if (input.equals("2")) {
 				rm.getAttendanceReport();
 
@@ -51,5 +47,4 @@ public class Main {
 			}
 		}
 	}
-
 }

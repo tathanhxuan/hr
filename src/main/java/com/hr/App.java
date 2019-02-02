@@ -15,14 +15,11 @@ import com.hr.domain.ApprovalCore.ApprovalProxy;
 import com.hr.domain.HRFormCore.FormFactory;
 import com.hr.domain.HRFormCore.FormValidationStrategy;
 import com.hr.domain.formValidation.LeaveFormValidation;
-import com.hr.domain.report.ATReport;
-import com.hr.domain.report.ReportMaker;
 import com.hr.domain.report.builder.GeneralReport;
 import com.hr.domain.report.builder.GeneralReport.Builder;
 import com.hr.domain.reportChart.ChartTemplate;
-import com.hr.domain.reportIterator.ATReportIterator;
-import com.hr.domain.reportIterator.LeaveReportIterator;
-import com.hr.domain.reportIterator.OTReportIterator;
+import com.hr.domain.reportChart.ReportChart;
+import com.hr.domain.reportFacade.ReportMaker;
 import com.hr.repository.DataAccessRepository;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 /**
@@ -116,18 +113,47 @@ public class App
    
     public static void LoadReportMenu() {
    	
-   	System.out.println("******REPORT********");
-    System.out.println("1.OT REPORT");
-   	System.out.println("2.AT REPORT");
-   	System.out.println("3.LEAVE REPORT");
-   	System.out.println("4.CHART");
-   	System.out.println("5.EXIT");
-   	System.out.println("*******************************************************");
-   	System.out.println("*.SELECT : ");
-   	
-   	//code here
-   }
-   
+		Scanner command = new Scanner(System.in);
+		System.out.println("******REPORT********");
+		System.out.println("1.OT REPORT");
+		System.out.println("2.AT REPORT");
+		System.out.println("3.LEAVE REPORT");
+		System.out.println("4.CHART");
+		System.out.println("5.ALL REPORT");
+		System.out.println("6.EXIT");
+		System.out.println("*******************************************************");
+		System.out.println("*.SELECT : ");
+	    
+		while (true) {
+			String input = command.nextLine();
+			ReportMaker rm = new ReportMaker();
+			ChartTemplate ch = new ReportChart();
+			GeneralReport.Builder allReport = new GeneralReport.Builder();
+			if (input.equals("1")) {
+				rm.getOvertimeReport();
+				 rm.searchByEmpId("101");
+			} else if (input.equals("2")) {
+				rm.getAttendanceReport();
+
+			} else if (input.equals("3")) {
+				rm.getLeaveReport();
+			} else if (input.equals("4")) {
+				ch.getReportChart();
+			}
+
+			else if (input.equals("5")) {
+				allReport.aTReport().leaveReport().oTReport().build();
+			} else if (input.equals("6")) {
+				System.out.println("Load main");
+				break;
+			} else {
+				System.out.println("Invalid Enttry, Try again");
+			}
+		}
+		
+    }
+    
+    
     // CREATE LEAVE FORM
     public static void CreateLeaveForm() throws ParseException {
     	
