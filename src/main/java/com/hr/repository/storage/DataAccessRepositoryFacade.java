@@ -314,6 +314,17 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return null;
 	}
 	
+	public Employee getEmployeeById(String empID) {
+		ArrayList<Employee> listEmployees = getListEmployee();
+		for (Employee employee: listEmployees) {
+			if (employee.getEmpID().equals(empID)) {
+				return employee;
+			}
+		}
+		return null;
+		
+	}
+	
 	public FormStatusServiceImpl getFromStatusByValue(String statusId) {
 		ArrayList<FormStatusServiceImpl> listFormStatus = getListFormStatus();
 		for (FormStatusServiceImpl formStatus: listFormStatus) {

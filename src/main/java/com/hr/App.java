@@ -353,7 +353,7 @@ public class App {
     	}
     	//System.out.println(listForms);
     	System.out.println("*******************************************************");
-    	System.out.println("Press 'A = Approve All' | 'O = Approve Only One'':");
+    	System.out.println("Press 'A = Approve All' | 'O = Approve Only One' | 'R = Refuse'':");
 		String command = scanner.nextLine();
 
 		if (command.equals("A") || command.equals("a")) {
@@ -362,9 +362,13 @@ public class App {
 			System.out.println("Please input form code:");
 			String formCode = scanner.nextLine();
 			approvecenter.Approve(formCode);
+		} else if (command.equals("R") || command.equals("r")) {
+			System.out.println("Please input form code:");
+			String formCode = scanner.nextLine();
+			approvecenter.Refuse(formCode);
 		}
 		else {
-			System.out.println("Input Form Code");
+			System.out.println("Exit System");
 		}
 	}
 	
