@@ -53,11 +53,11 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		td.leaveFormsData();		 
-		td.aTFormsData();
-		td.oTFormsData();
+		//td.leaveFormsData();		 
+		//td.aTFormsData();
+		//td.oTFormsData();
 		//td.departmentApproversData();
-		// td.employeesData();
+		td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
 		//td.departmentsData();
@@ -85,10 +85,10 @@ public class TestData implements Serializable {
 
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
-		System.out.println(da.readATFormMap());
+		//System.out.println(da.readATFormMap());
 		//System.out.println(da.readATForm());
-		System.out.println(da.readOTFormMap());
-		System.out.println(da.readLeaveFormMap());
+		//System.out.println(da.readOTFormMap());
+		//System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
 		//System.out.println(da.readOTFormMap());
@@ -135,6 +135,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
 		//System.out.println(da.readFormLogMap());
+		System.out.println(da.readEmployeeMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -420,13 +421,26 @@ public class TestData implements Serializable {
 	}
 	
 	@SuppressWarnings("serial")
-	List<EmployeeServiceImpl> allEmployees = new ArrayList<EmployeeServiceImpl>() {
+	List<Employee> allEmployees = new ArrayList<Employee>() {
 
 		{			
 			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
-			add(new EmployeeServiceImpl("101", "Azee", date1, "Nigeria", null, null, true));
-			add(new EmployeeServiceImpl("102", "Thai", date2, "Ha Noi", null, null, true));
+			Department dept1 = new Department("11", "IT");
+			Employee em1 = new Employee("101", dept1);
+			em1.setEmpName("Emp1");
+			em1.setDateOfBirth(date1);
+			
+			
+			Department dept2 = new Department("22", "HR");
+			Employee em2 = new Employee("102", dept2);
+			em2.setEmpName("Emp2");
+			em2.setDateOfBirth(date2);
+			add(em1);
+			add(em2);
+			//add(new Employee("101", "Azee", date1, "Nigeria", null, null, true));
+			
+			//add(new Employee("102", "Thai", date2, "Ha Noi", null, null, true));
 		}
 	};
 
