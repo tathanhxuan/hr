@@ -1,6 +1,7 @@
 package com.hr.repository.storage;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,7 +62,7 @@ public class TestData implements Serializable {
 		//td.formApproversData();
 		//td.departmentsData();
 		//td.formStatusData();
-		//td.formLogsData();
+		td.formLogsData();
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
@@ -84,12 +85,12 @@ public class TestData implements Serializable {
 
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
-		System.out.println(da.readATFormMap());
+		//System.out.println(da.readATFormMap());
 		//System.out.println(da.readATForm());
 		//System.out.println(da.readOTFormMap());
 		//System.out.println(da.readOTForm());
 		
-		System.out.println(da.readOTFormMap());
+		//System.out.println(da.readOTFormMap());
 		// System.out.println(da.readOTFormServiceImplMap());
 		
 		/*Department dept1 = new Department("11", "IT");
@@ -132,7 +133,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
-		//System.out.println(da.readFormLogMap());
+		System.out.println(da.readFormLogMap());
 	}
 
 	@SuppressWarnings("serial")
@@ -492,10 +493,10 @@ public class TestData implements Serializable {
 	List<FormLog> allFormLogs = new ArrayList<FormLog>() {
 
 		{
-			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
-			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
-			add(new FormLog("1", "AT01", "101", "CREATED", date1, "Created AT form"));
-			add(new FormLog("2", "OT01", "101", "APPROVED_1ST", date2, "Created OT form"));									
+			//Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
+			//Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
+			add(new FormLog("AT01", "101", "CREATED", "Created AT form"));
+			add(new FormLog("OT01", "102", "APPROVED_1ST", "Created OT form"));								
 			
 		}
 	};
