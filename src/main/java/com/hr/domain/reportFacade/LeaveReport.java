@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.hr.domain.ATForm;
 import com.hr.domain.Department;
 import com.hr.domain.Employee;
 import com.hr.domain.LeaveForm;
@@ -96,15 +97,37 @@ public class LeaveReport implements HRReport {
 		}
 	}
 
+	
+	
 	@Override
 	public void serchReportById(String empId) {
-		HashMap<String, Employee> ATr = new HashMap<String, Employee>();
-		ATr.putAll(data.readEmployeeMap());
-		if (ATr.containsKey(empId)) {
-			System.out.println(ATr.get(empId));
-		} else {
-			System.out.println("Employee ID " + empId + " Not Found");
+		List<Employee> myNewList = new ArrayList<Employee>();	
+		List<LeaveForm> allLeaveForm = data.getListLeaveForm();
+		List<Employee> allEmployee = data.getListEmployee();
+					
+			for(LeaveForm allLv: allLeaveForm) {
+				String thisId = allLv.getOwner().getEmpID();
+				
+				if(thisId.contains(empId) && empId !=null && empId!="") {
+				    
+				    for(Employee allEmployees: allEmployee) {
+					  if(allEmployees.getDept().getDeptName().equals(thisId)){
+						 myNewList.add(allEmployees);
+						  // System.out.println(allEmployees);
+					  }
+				  }
+				}
+			}
+
+	if(!myNewList.isEmpty()) {
+		StringBuilder sb = new StringBuilder();
+		System.out.println("\n**************ATTENDANCE REPORT*********************");
+		for(Employee e: myNewList) {
+			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 		}
+	   }
+	
+	
 	}
 
 	@Override

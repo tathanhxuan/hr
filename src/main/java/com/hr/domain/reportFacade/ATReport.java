@@ -21,9 +21,8 @@ public class ATReport implements HRReport {
 	LocalDate today = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     DataAccessRepositoryFacade data = new DataAccessRepositoryFacade();
-    List<Employee> myNewList = new ArrayList<Employee>();
     
-    
+       
     //getters
 	public Date getDate() {
 		return date;
@@ -73,15 +72,16 @@ public class ATReport implements HRReport {
 	
 	
 	//search by department
-	public boolean found() {
-	if(!myNewList.isEmpty())
-	return true;
-		return false;
-	}
+//	public boolean found() {
+//	if(!myNewList.isEmpty())
+//	return true;
+//		return false;
+//	}
 	
 	
 	@Override
 	public void reportByDepartment(String department) {
+		List<Employee> myNewList = new ArrayList<Employee>();
 		List<ATForm> allATForm = data.getListATForm();
 		List<Employee> allEmployee = data.getListEmployee();
 				
@@ -108,17 +108,35 @@ if(!myNewList.isEmpty()) {
    }
 }
 		
-
+//search by id
 	@Override
 	public void serchReportById(String empId) {
-		HashMap<String, Employee> ATr = new HashMap<String, Employee>();
-		ATr.putAll(data.readEmployeeMap());
-		if (ATr.containsKey(empId)) {
-			System.out.println(ATr.get(empId));
-		} else {
-			System.out.println("Employee ID " + empId + " Not Found");
+	List<Employee> myNewList = new ArrayList<Employee>();
+	List<ATForm> allATForm = data.getListATForm();
+	List<Employee> allEmployee = data.getListEmployee();
+				
+		for(ATForm allAt: allATForm) {
+			String thisId = allAt.getOwner().getEmpID();
+			
+			if(thisId.contains(empId) && empId !=null && empId!="") {
+			    
+			    for(Employee allEmployees: allEmployee) {
+				  if(allEmployees.getDept().getDeptName().equals(thisId)){
+					 myNewList.add(allEmployees);
+					  // System.out.println(allEmployees);
+				  }
+			  }
+			}
 		}
+
+if(!myNewList.isEmpty()) {
+	StringBuilder sb = new StringBuilder();
+	System.out.println("\n**************ATTENDANCE REPORT*********************");
+	for(Employee e: myNewList) {
+		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 	}
+   }	
+}
 
 	@Override
 	public void getReport() {

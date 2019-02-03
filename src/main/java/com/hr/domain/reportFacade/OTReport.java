@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.hr.domain.Department;
 import com.hr.domain.Employee;
+import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
@@ -70,8 +71,6 @@ public class OTReport implements HRReport{
 	public void reportByDepartment(String department) {
 	List<Employee> allEmployee = data.getListEmployee();
 	List<OTForm> allOT = data.getListOTForm();
-	
-	
 	List<Employee> myNewList = new ArrayList<Employee>();
 		
 		for(OTForm otForms: allOT) {
@@ -90,7 +89,7 @@ public class OTReport implements HRReport{
 
 if(!myNewList.isEmpty()) {
 	StringBuilder sb = new StringBuilder();
-	System.out.println("\n*****************OVERTIME REPORT*******************");
+	System.out.println("\n*****************OVERTIME REPORT IN "+ department.toUpperCase()+ " DEPARTMENT"+"*******************");
 	for(Employee e: myNewList) {
 		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 	}
@@ -101,18 +100,58 @@ if(!myNewList.isEmpty()) {
 
 	@Override
 	public void serchReportById(String empId) {
-		HashMap<String, Employee> oTr = new HashMap<String, Employee>();
-		oTr.putAll(data.readEmployeeMap());
-		if (oTr.containsKey(empId)) {
-			System.out.println(oTr.get(empId));
-		} else {
-			System.out.println("Employee ID " + empId + " Not Found");
+		List<Employee> myNewList = new ArrayList<Employee>();	
+		List<OTForm> allOTForm = data.getListOTForm();
+		List<Employee> allEmployee = data.getListEmployee();
+					
+			for(OTForm allOT: allOTForm) {
+				String thisId = allOT.getOwner().getEmpID();
+				
+				if(thisId.contains(empId) && empId !=null && empId!="") {
+				    
+				    for(Employee allEmployees: allEmployee) {
+					  if(allEmployees.getEmpID().equals(thisId)){
+						 myNewList.add(allEmployees);
+						  // System.out.println(allEmployees);
+					  }
+				  }
+				}
+			}
+
+	if(!myNewList.isEmpty()) {
+		StringBuilder sb = new StringBuilder();
+		System.out.println("\n**************OVERTIME REPORT BY ID " + empId +"*********************");
+		for(Employee e: myNewList) {
+			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 		}
+	   }
 	}
 
 	@Override
 	public void getReport() {
-		System.out.println("Overtime Report: \n" + data.readOTForm());
+		List<Employee> myNewList = new ArrayList<Employee>();	
+		List<OTForm> oTForm = data.getListOTForm();
+		List<Employee> allEmployee = data.getListEmployee();
+					
+			for(OTForm allot: oTForm) {
+				String thisId = allot.getOwner().getEmpID();
+				  
+				 for(Employee allEmployees: allEmployee) {
+					   
+					   if(allEmployees.getEmpID().contains(thisId)){
+						 myNewList.add(allEmployees);
+				  }
+				}
+			}
+
+	if(!myNewList.isEmpty()) {
+		StringBuilder sb = new StringBuilder();
+		System.out.println("\n**************ALL OVERTIME REPORT*********************");
+		for(Employee e: myNewList) {
+			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+		}
+	   }
+
 	}
 
 }
