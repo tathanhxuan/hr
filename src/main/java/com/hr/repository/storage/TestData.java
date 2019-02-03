@@ -53,18 +53,18 @@ public class TestData implements Serializable {
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		//td.leaveFormsData();		 
+		td.leaveFormsData();		 
 
 
-		//td.aTFormsData();
+		td.aTFormsData();
 
 		td.oTFormsData();
 
 		//td.aTFormsData();
 		//td.oTFormsData();
 
-		//td.departmentApproversData();
-		//td.employeesData();
+		td.departmentApproversData();
+		td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
 		//td.departmentsData();
@@ -188,7 +188,12 @@ public class TestData implements Serializable {
 
 		{
 			add(new SystemUser("1", "admin", "123", "102", true, true));
+			add(new SystemUser("5", "manager1", "123", "105", true, true));
+			add(new SystemUser("6", "manager2", "123", "106", true, true));
+			add(new SystemUser("7", "manager3", "123", "107", true, true));
+			
 			add(new SystemUser("2", "thai", "12345", "101", false, false));
+			
 			add(new SystemUser("3", "azee", "456", "103", true, false));
 			add(new SystemUser("4", "bee", "4567", "104", false, true));
 		}
@@ -440,8 +445,12 @@ public class TestData implements Serializable {
 	List<DepartmentApprover> allDepartmentApprovers = new ArrayList<DepartmentApprover>() {
 
 		{			
-			add(new DepartmentApprover("D001", "IT", 1, "101", "Xuan"));
-			add(new DepartmentApprover("D002", "HR", 2, "102", "Thai"));
+			
+			//add(new DepartmentApprover("D002", "HR", 2, "102", "Thai"));
+			
+			add(new DepartmentApprover("D001", "IT", 1, "105", "Manager1"));
+			add(new DepartmentApprover("D001", "IT", 2, "106", "Manager2"));
+			add(new DepartmentApprover("D001", "IT", 3, "107", "Manager3"));
 			add(new DepartmentApprover("D003", "Admin", 3, "103", "Azeez"));
 			add(new DepartmentApprover("D004", "Sale", 4, "104", "Bee"));
 		}
@@ -460,11 +469,35 @@ public class TestData implements Serializable {
 			
 			Department dept1 = new Department("D001", "IT");
 			Employee em1 = new Employee("101", dept1);
-			em1.setEmpName("Emp1");
+			em1.setEmpName("Ho Huu Thai");
 			em1.setAddress("100 Noth Street");
 			em1.setDateOfBirth(date1);
 			em1.setIsApprover(true);
 			add(em1);
+			
+			Department dept5 = new Department("D001", "IT");
+			Employee em5 = new Employee("105", dept5);
+			em5.setEmpName("Manager1");
+			em5.setAddress("100 Noth Street");
+			em5.setDateOfBirth(date1);
+			em5.setIsApprover(true);
+			add(em5);
+			
+			Department dept6 = new Department("D001", "IT");
+			Employee em6 = new Employee("106", dept6);
+			em6.setEmpName("Manager2");
+			em6.setAddress("100 Noth Street");
+			em6.setDateOfBirth(date1);
+			em6.setIsApprover(true);
+			add(em6);
+			
+			Department dept7 = new Department("D001", "IT");
+			Employee em7 = new Employee("107", dept7);
+			em7.setEmpName("Manager3");
+			em7.setAddress("100 Noth Street");
+			em7.setDateOfBirth(date1);
+			em7.setIsApprover(true);
+			add(em7);
 			
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 12).getTime();
 			Department dept2 = new Department("D002", "HR");

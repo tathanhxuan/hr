@@ -74,6 +74,8 @@ public class App {
 
 		System.out.println("******************************************************");
 		System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
+		System.out.println("HELLO : " + loginUser.getEmpName() + "(ID: + "+loginUser.getEmpID()+")");
+		System.out.println("----------------------");
 		System.out.println("1.OT FORM");
 		System.out.println("----------------------");
 		System.out.println("2.AT FORM");
@@ -99,6 +101,8 @@ public class App {
 
 		System.out.println("******************************************************");
 		System.out.println("******WELCOME TO HR WORKTIME MANAGEMENT SYSTEM********");
+		System.out.println("HELLO : " + loginUser.getEmpName() + "(ID: + "+loginUser.getEmpID()+")");
+		System.out.println("----------------------");
 		System.out.println("1.OT FORM");
 		System.out.println("----------------------");
 		System.out.println("2.AT FORM");
@@ -464,7 +468,13 @@ public class App {
 		System.out.println("Input FORM CODE : ");
 		String Code = scanner.nextLine();
 		
+		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		ArrayList<FormLog> lst = da.getListFormLogByFormCode(Code);
 		
+		for(FormLog item : lst) {
+			System.out.println("---------------------------------------------");
+			item.toString();
+		}
 		
 		LoadMenuByUserRole();
 	}
