@@ -90,6 +90,7 @@ public class OTReport implements HRReport{
 if(!myNewList.isEmpty()) {
 	StringBuilder sb = new StringBuilder();
 	System.out.println("\n*****************OVERTIME REPORT IN "+ department.toUpperCase()+ " DEPARTMENT"+"*******************");
+	System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
 	for(Employee e: myNewList) {
 		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 	}
@@ -121,6 +122,7 @@ if(!myNewList.isEmpty()) {
 	if(!myNewList.isEmpty()) {
 		StringBuilder sb = new StringBuilder();
 		System.out.println("\n**************OVERTIME REPORT BY ID " + empId +"*********************");
+		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
 		for(Employee e: myNewList) {
 			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 		}
@@ -147,6 +149,7 @@ if(!myNewList.isEmpty()) {
 	if(!myNewList.isEmpty()) {
 		StringBuilder sb = new StringBuilder();
 		System.out.println("\n**************ALL OVERTIME REPORT*********************");
+		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
 		for(Employee e: myNewList) {
 			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 		}

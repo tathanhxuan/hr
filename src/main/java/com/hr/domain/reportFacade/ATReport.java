@@ -10,6 +10,7 @@ import java.util.List;
 import com.hr.domain.ATForm;
 import com.hr.domain.Department;
 import com.hr.domain.Employee;
+import com.hr.domain.LeaveForm;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class ATReport implements HRReport {
@@ -102,6 +103,7 @@ public class ATReport implements HRReport {
 if(!myNewList.isEmpty()) {
 	StringBuilder sb = new StringBuilder();
 	System.out.println("\n**************ATTENDANCE REPORT*********************");
+	System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
 	for(Employee e: myNewList) {
 		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 	}
@@ -121,7 +123,7 @@ if(!myNewList.isEmpty()) {
 			if(thisId.contains(empId) && empId !=null && empId!="") {
 			    
 			    for(Employee allEmployees: allEmployee) {
-				  if(allEmployees.getDept().getDeptName().equals(thisId)){
+				  if(allEmployees.getEmpID().equals(thisId)){
 					 myNewList.add(allEmployees);
 					  // System.out.println(allEmployees);
 				  }
@@ -132,6 +134,7 @@ if(!myNewList.isEmpty()) {
 if(!myNewList.isEmpty()) {
 	StringBuilder sb = new StringBuilder();
 	System.out.println("\n**************ATTENDANCE REPORT*********************");
+	System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
 	for(Employee e: myNewList) {
 		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 	}
@@ -140,7 +143,29 @@ if(!myNewList.isEmpty()) {
 
 	@Override
 	public void getReport() {
-		System.out.println("Attendance Report: \n" + data.readATForm());
-	}
+		List<Employee> myNewList = new ArrayList<Employee>();	
+		List<ATForm> allATForm = data.getListATForm();
+		List<Employee> allEmployee = data.getListEmployee();
+					
+			for(ATForm allaT: allATForm) {
+				String thisId = allaT.getOwner().getEmpID();
+				  
+				 for(Employee allEmployees: allEmployee) {
+					   
+					   if(allEmployees.getEmpID().contains(thisId)){
+						 myNewList.add(allEmployees);
+				  }
+				}
+			}
 
+	if(!myNewList.isEmpty()) {
+		StringBuilder sb = new StringBuilder();
+		System.out.println("\n**************ALL ATTENDANCE REPORT*********************");
+		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
+		for(Employee e: myNewList) {
+			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+		}
+	   }
+
+	}
 }

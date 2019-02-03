@@ -381,7 +381,7 @@ public class App {
 			break;
 		}
 	}
-
+	
 	public static void GetWaitedApproveForms() throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("****************GET WAITED APPROVE FORMS***************");
@@ -444,9 +444,7 @@ public class App {
 			} else if (entry.equals("2")) {
 				System.out.println("Enter Employee Department");
 				String empSearchDepart = scanner.nextLine();
-				rm.leaveReportByDepartment(empSearchDepart);
-				rm.aTReportByDepartment(empSearchDepart);
-				rm.oTReportByDepartment(empSearchDepart);
+				rm.searchByDepartment(empSearchDepart);
 			}
 
 			else if (entry.equals("3")) {

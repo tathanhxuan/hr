@@ -104,7 +104,8 @@ public class Main {
 	
    //allReport.leaveReport().aTReport().oTReport().build();	
    //rm.searchByDepartment("HR");
-			rm.searchByEmpId("101");
+	//		rm.searchByEmpId("101");
+			rm.getAllReport();
 	
   //   System.out.println(data.getListDepartment());   	
 	  }

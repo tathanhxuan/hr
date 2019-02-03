@@ -88,7 +88,8 @@ public class LeaveReport implements HRReport {
 
 	if(!myNewList.isEmpty()) {
 		StringBuilder sb = new StringBuilder();
-		System.out.println("\n****************LEAVE REPORT****************");
+		System.out.println("\n****************LEAVE REPORT FOR "+department.toUpperCase()+" ****************");
+		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
 		for(Employee e: myNewList) {
 			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 		}
@@ -111,7 +112,7 @@ public class LeaveReport implements HRReport {
 				if(thisId.contains(empId) && empId !=null && empId!="") {
 				    
 				    for(Employee allEmployees: allEmployee) {
-					  if(allEmployees.getDept().getDeptName().equals(thisId)){
+					  if(allEmployees.getEmpID().equals(thisId)){
 						 myNewList.add(allEmployees);
 						  // System.out.println(allEmployees);
 					  }
@@ -121,7 +122,8 @@ public class LeaveReport implements HRReport {
 
 	if(!myNewList.isEmpty()) {
 		StringBuilder sb = new StringBuilder();
-		System.out.println("\n**************ATTENDANCE REPORT*********************");
+		System.out.println("\n**************LEAVE REPORT FOR EMPLOYEE ID "+ empId.toUpperCase()+ "*********************");
+		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
 		for(Employee e: myNewList) {
 			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 		}
@@ -132,6 +134,30 @@ public class LeaveReport implements HRReport {
 
 	@Override
 	public void getReport() {
-		System.out.println("Leave Report: \n" + data.readLeaveForm());
+		List<Employee> myNewList = new ArrayList<Employee>();	
+		List<LeaveForm> allLvForm = data.getListLeaveForm();
+		List<Employee> allEmployee = data.getListEmployee();
+					
+			for(LeaveForm allLv: allLvForm) {
+				String thisId = allLv.getOwner().getEmpID();
+				  
+				 for(Employee allEmployees: allEmployee) {
+					   
+					   if(allEmployees.getEmpID().contains(thisId)){
+						 myNewList.add(allEmployees);
+				  }
+				}
+			}
+
+	if(!myNewList.isEmpty()) {
+		StringBuilder sb = new StringBuilder();
+		System.out.println("\n**************ALL LEAVE REPORT*********************");
+		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
+		for(Employee e: myNewList) {
+			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+		}
+	   }
+
 	}
+	
 }
