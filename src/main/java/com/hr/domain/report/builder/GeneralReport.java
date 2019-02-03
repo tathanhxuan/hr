@@ -120,25 +120,13 @@ public class GeneralReport {
     		for(Employee emp: allEmployee) {
     			if(empId.equals(emp.getEmpID())) {
     				String empid = emp.getEmpID();
-    				//if(empId==null)
-    				//	empid="null";
     				String empname = emp.getEmpName();
-    				//if(empname == null)
-    			//		empname = "null";
     				Date dateFrom = lvForm.getDateFrom();
-    			//	if(dateFrom == null)
-    					dateFrom = date1;
+    				dateFrom = date1;
     				Date dateTo = lvForm.getLeaveDateTo();
-    		//		if(dateTo == null)
-    			//		dateTo = date1;
-    				
-    				String formCode = lvForm.getFormCode();
-    			//	for(DepartmentApprover fm: data.getListDepartmentApprover()) {   				
-    				     //lvForm.getFormCode()   //to navigate
-    					LeaveReport a = new LeaveReport(lvForm.getLeaveDateTo(), empid, empname, dateFrom, dateTo, lvForm.getStatus().toString() , lvForm.getDescription());
+    				LeaveReport a = new LeaveReport(lvForm.getLeaveDateTo(), empid, empname, dateFrom, dateTo, lvForm.getStatus().toString() , lvForm.getDescription());
     				  						
     			     this.leaveReport.add(a);
-    			//	}
     			}
     		}
     	}
