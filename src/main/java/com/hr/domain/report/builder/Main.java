@@ -103,7 +103,7 @@ public class Main {
 	
 	
    //allReport.leaveReport().aTReport().oTReport().build();	
-   rm.searchByDepartment("IT");
+   rm.searchByDepartment("HR");
 	
   //   System.out.println(data.getListDepartment());   	
 	  }

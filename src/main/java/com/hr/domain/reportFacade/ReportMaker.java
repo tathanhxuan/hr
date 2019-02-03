@@ -25,7 +25,7 @@ public ReportMaker() {
 		
 		oTReport.reportByDepartment(department);
 		aTReport.reportByDepartment(department);
-		//leaveReport.reportByDepartment(department);
+		leaveReport.reportByDepartment(department);
 	   		
 	}
 	

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import com.hr.domain.ATForm;
 import com.hr.domain.Department;
 import com.hr.domain.Employee;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
@@ -78,15 +80,13 @@ public class ATReport implements HRReport {
 	}
 	
 	
-	
-	
 	@Override
 	public void reportByDepartment(String department) {
-		List<Department> departmentList = data.getListDepartment();
+		List<ATForm> allATForm = data.getListATForm();
 		List<Employee> allEmployee = data.getListEmployee();
 				
-		for(Department departments: departmentList) {
-			String thisDepartment = departments.getDeptName();
+		for(ATForm departments: allATForm) {
+			String thisDepartment = departments.getOwner().getDepartment().getDeptName();
 			
 			if(thisDepartment.contains(department) && department !=null && department!="") {
 			    
@@ -101,7 +101,7 @@ public class ATReport implements HRReport {
 
 if(!myNewList.isEmpty()) {
 	StringBuilder sb = new StringBuilder();
-	System.out.println("Attendance Report");
+	System.out.println("\n**************ATTENDANCE REPORT*********************");
 	for(Employee e: myNewList) {
 		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 	}

@@ -90,6 +90,7 @@ public class OTReport implements HRReport{
 
 if(!myNewList.isEmpty()) {
 	StringBuilder sb = new StringBuilder();
+	System.out.println("\n*****************OVERTIME REPORT*******************");
 	for(Employee e: myNewList) {
 		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 	}
