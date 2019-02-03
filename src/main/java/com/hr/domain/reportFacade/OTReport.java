@@ -141,27 +141,23 @@ if(!myNewList.isEmpty()) {
 
 	@Override
 	public void getReport() {
-		List<Employee> myNewList = new ArrayList<Employee>();	
+		List<OTForm> myNewList = new ArrayList<OTForm>();	
 		List<OTForm> oTForm = data.getListOTForm();
-		List<Employee> allEmployee = data.getListEmployee();
+		//List<Employee> allEmployee = data.getListEmployee();
 					
 			for(OTForm allot: oTForm) {
-				String thisId = allot.getOwner().getEmpID();
-				  
-				 for(Employee allEmployees: allEmployee) {
-					   
-					   if(allEmployees.getEmpID().contains(thisId)){
-						 myNewList.add(allEmployees);
-				  }
-				}
-			}
-
+						 myNewList.add(allot);
+		  }
+	
+		
 	if(!myNewList.isEmpty()) {
+		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
 		StringBuilder sb = new StringBuilder();
-		System.out.println("\n**************ALL OVERTIME REPORT*********************");
-		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
-		for(Employee e: myNewList) {
-			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+		System.out.println("\n**********************ALL OVERTIME REPORT****************************");
+		System.out.println("FORM CODE\t\t\tOVERTIME DATE\t\tSTART TIME\tEND TIME\tOVERTIME STATUS\n----------------------------------------------------------------------------------------------------------------\n");
+		for(OTForm e: myNewList) {
+			System.out.println(sb.append(e.getFormCode()+"\t"+ sd.format(e.getOTDate())+"\t\t"+ e.getDateFrom()+"\t\t"+ e.getTimeTo()+"\t\t"+ e.getStatus()).toString().replace("[", " ").replace("]", " "));
+			sb.append("\n");
 		}
 	   }
 

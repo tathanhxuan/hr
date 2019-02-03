@@ -69,10 +69,6 @@ public class ATReport implements HRReport {
 	}
 	
 	
-	
-	
-	
-
 //interface methods	
 	
 	
@@ -152,27 +148,29 @@ if(!myNewList.isEmpty()) {
 
 	@Override
 	public void getReport() {
-		List<Employee> myNewList = new ArrayList<Employee>();	
+		List<ATForm> myNewList = new ArrayList<ATForm>();	
+		
 		List<ATForm> allATForm = data.getListATForm();
-		List<Employee> allEmployee = data.getListEmployee();
-					
-			for(ATForm allaT: allATForm) {
-				String thisId = allaT.getOwner().getEmpID();
-				  
-				 for(Employee allEmployees: allEmployee) {
-					   
-					   if(allEmployees.getEmpID().contains(thisId)){
-						 myNewList.add(allEmployees);
-				  }
-				}
+	//	List<Employee> allEmployee = data.getListEmployee();
+		
+		for(ATForm allaT: allATForm) {
+		  //  String empId = allaT.getOwner().getEmpID(); 
+			//for(Employee allEmployees: allEmployee) {
+		//			   if(allEmployees.getEmpID().contains(empId)){
+						 myNewList.add(allaT);
+						// break;
+			//	  }
+			//	}
 			}
 
 	if(!myNewList.isEmpty()) {
+		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
+	
 		StringBuilder sb = new StringBuilder();
 		System.out.println("\n**************ALL ATTENDANCE REPORT*********************");
-		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
-		for(Employee e: myNewList) {
-			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+		System.out.println("FORM CODE\t\t\tATTENDANCE DATE\t\tTIME IN\t\tTIME OUT\tSTATUS\n-----------------------------------------------------------------------------------------------");
+		for(ATForm e: myNewList) {
+			System.out.println(sb.append(e.getFormCode()+"\t"+ sd.format(e.getATDate())+"\t\t"+ e.getTimeIn()+"\t\t"+ e.getTimeOut()+"\t\t"+ e.getStatus()+"\n").toString().replace("[", " ").replace("]", " "));
 		}
 	   }
 
