@@ -477,8 +477,8 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public void saveNewDepartmentApprover(DepartmentApprover departmentApprover) {
 		// TODO Auto-generated method stub
 		HashMap<String, DepartmentApprover> departmentApprovers = readDepartmentApproverMap();
-		String deptID = departmentApprover.getDeptID();
-		departmentApprovers.put(deptID, departmentApprover);
+		String id = departmentApprover.getId();
+		departmentApprovers.put(id, departmentApprover);
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
@@ -565,9 +565,9 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		saveToStorage(StorageType.LEAVE_FORM, leaveForms);
 	}
 	
-	public void removeDepartmentApprover(String deptID) {
+	public void removeDepartmentApprover(String id) {
 		HashMap<String, DepartmentApprover> departmentApprovers = readDepartmentApproverMap();
-		departmentApprovers.remove(deptID);		
+		departmentApprovers.remove(id);		
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
@@ -640,8 +640,8 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	public void updateDepartmentApprover(DepartmentApprover departmentApprover) {
 		// TODO Auto-generated method stub
 		HashMap<String, DepartmentApprover> departmentApprovers = readDepartmentApproverMap();
-		String deptID = departmentApprover.getDeptID();
-		departmentApprovers.replace(deptID, departmentApprover);
+		String id = departmentApprover.getId();
+		departmentApprovers.replace(id, departmentApprover);
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
@@ -772,7 +772,7 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 	
 	static void loadDepartmentApproversMap(List<DepartmentApprover> allDepartmentApprovers) {
 		HashMap<String, DepartmentApprover> departmentApprovers = new HashMap<String, DepartmentApprover>();
-		allDepartmentApprovers.forEach(departmentApprover -> departmentApprovers.put(departmentApprover.getDeptID(), departmentApprover));
+		allDepartmentApprovers.forEach(departmentApprover -> departmentApprovers.put(departmentApprover.getId(), departmentApprover));
 		saveToStorage(StorageType.DEPARTMENT_APPROVER, departmentApprovers);
 	}
 	
