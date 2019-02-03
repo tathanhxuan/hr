@@ -45,7 +45,7 @@ public class App {
 
 	}
 
-	public static void Login() throws ParseException {
+	public static void Login() throws Exception {
 		Employee emp = null;
 
 		System.out.println("-----------SYSTEM LOGIN-------------:");
@@ -62,7 +62,7 @@ public class App {
 		if (user == null || !user.getPassword().equals(pass)) {
 
 			System.out.println("Invalid username or passwords ");
-			System.exit(0);
+			Login();
 		}
 
 		String empID = user.getEmpID();
@@ -74,7 +74,7 @@ public class App {
 		LoadMenuByUserRole();
 	}
 
-	public static void LoadStaffMenu() throws ParseException {
+	public static void LoadStaffMenu() throws Exception {
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -132,7 +132,7 @@ public class App {
 		}
 	}
 
-	public static void LoadReportMenu() throws ParseException {
+	public static void LoadReportMenu() throws Exception {
 
 		Scanner command = new Scanner(System.in);
 		System.out.println("******REPORT********");
@@ -184,7 +184,7 @@ public class App {
 	}
 
 	// CREATE LEAVE FORM
-	public static void CreateLeaveForm() throws ParseException {
+	public static void CreateLeaveForm() throws Exception {
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -224,7 +224,7 @@ public class App {
 	}
 
 	// CREATE OT FORM
-	public static void CreateOTForm() throws ParseException {
+	public static void CreateOTForm() throws Exception {
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -266,7 +266,7 @@ public class App {
 
 	}
 
-	public static void CreateATForm() throws ParseException {
+	public static void CreateATForm() throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("******AT REGISTRAR********");
 		System.out.println("Attendance Date (mm/dd/yyyy):");
@@ -305,7 +305,7 @@ public class App {
 
 	}
 
-	public static void LoadMenuByUserRole() throws ParseException {
+	public static void LoadMenuByUserRole() throws Exception {
 		switch (userRole) {
 		case "STAFF":
 			LoadStaffMenu();
@@ -321,7 +321,7 @@ public class App {
 		}
 	}
 
-	public static void StaffMenuAction(String functionID) throws ParseException {
+	public static void StaffMenuAction(String functionID) throws Exception {
 
 		switch (functionID) {
 		case "1":
@@ -336,6 +336,9 @@ public class App {
 			CreateLeaveForm();
 			break;
 
+		case "4":
+			GetRefusedForms();
+			break;
 		case "5":
 			ReportMaker rm = new ReportMaker();
 			GeneralReport.Builder A = new GeneralReport.Builder();
@@ -426,7 +429,7 @@ public class App {
 	}	
 
 	// Search Menu
-	public static void searchMenu() throws ParseException {
+	public static void searchMenu() throws Exception {
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("1.SEARCH BY EMPLOYEE ID");

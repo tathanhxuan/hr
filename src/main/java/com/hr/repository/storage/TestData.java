@@ -47,18 +47,18 @@ public class TestData implements Serializable {
 		TestData td = new TestData();
 
 		// td.userData();
-		//td.systemUserData();
+		td.systemUserData();
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		td.leaveFormsData();		 
+		//td.leaveFormsData();		 
 
 
-		td.aTFormsData();
+		//td.aTFormsData();
 
-		td.oTFormsData();
+		//td.oTFormsData();
 
 		//td.aTFormsData();
 		//td.oTFormsData();
@@ -92,14 +92,14 @@ public class TestData implements Serializable {
 
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
-		System.out.println(da.readATFormMap());
+		//System.out.println(da.readATFormMap());
 		//System.out.println(da.readATForm());
-
-		System.out.println(da.readOTFormMap());
 
 		//System.out.println(da.readOTFormMap());
 
-		System.out.println(da.readLeaveFormMap());
+		//System.out.println(da.readOTFormMap());
+
+		//System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
 		//System.out.println(da.readOTFormMap());
@@ -150,7 +150,7 @@ public class TestData implements Serializable {
 
 
 
-		//System.out.println(da.readSystemUserMap());
+		System.out.println(da.readSystemUserMap());
 
 
 	}
@@ -187,8 +187,10 @@ public class TestData implements Serializable {
 	List<SystemUser> allSystemUsers = new ArrayList<SystemUser>() {
 
 		{
-			add(new SystemUser("1", "admin", "123", "102", true, false));
-			add(new SystemUser("2", "thai", "12345", "101", false, false));
+			add(new SystemUser("1", "admin", "123", "102", true, true));
+			add(new SystemUser("2", "thai", "12345", "101", true, false));
+			add(new SystemUser("3", "azee", "456", "103", false, true));
+			add(new SystemUser("4", "bee", "4567", "104", false, false));
 		}
 	};
 
@@ -262,12 +264,12 @@ public class TestData implements Serializable {
 
 		{
 
-			Department dept1 = new Department("11", "IT");
+			Department dept1 = new Department("D001", "IT");
 			Employee em1 = new Employee("101", dept1);
 			Date date1 = new GregorianCalendar(2018, Calendar.FEBRUARY, 11).getTime();
 			Date date2 = new GregorianCalendar(2018, Calendar.FEBRUARY, 12).getTime();
 			
-			Department dept2 = new Department("22", "HR");
+			Department dept2 = new Department("D002", "HR");
 			Employee em2 = new Employee("102", dept2);
 			Date date3 = new GregorianCalendar(2018, Calendar.FEBRUARY, 16).getTime();
 			Date date4 = new GregorianCalendar(2018, Calendar.FEBRUARY, 17).getTime();
@@ -304,7 +306,7 @@ public class TestData implements Serializable {
 
 		{
 
-			Department dept1 = new Department("11", "IT");
+			Department dept1 = new Department("D001", "IT");
 			Employee em1 = new Employee("101", dept1);
 			FormValidationStrategy fvs1 = new FormValidationStrategy() {
 
@@ -315,7 +317,7 @@ public class TestData implements Serializable {
 				}
 			};
 			
-			Department dept2 = new Department("22", "HR");
+			Department dept2 = new Department("D002", "HR");
 			Employee em2 = new Employee("102", dept2);
 			FormValidationStrategy fvs2 = new FormValidationStrategy() {
 
@@ -360,7 +362,7 @@ public class TestData implements Serializable {
 
 		{
 
-			Department dept1 = new Department("11", "IT");
+			Department dept1 = new Department("D001", "IT");
 			Employee em1 = new Employee("101", dept1);
 			FormValidationStrategy fvs1 = new FormValidationStrategy() {
 
@@ -371,7 +373,7 @@ public class TestData implements Serializable {
 				}
 			};
 			
-			Department dept2 = new Department("22", "HR");
+			Department dept2 = new Department("D002", "HR");
 			Employee em2 = new Employee("102", dept2);
 			FormValidationStrategy fvs2 = new FormValidationStrategy() {
 
@@ -432,8 +434,9 @@ public class TestData implements Serializable {
 
 		{			
 			add(new DepartmentApprover("D001", "IT", 1, "101", "Xuan"));
-			add(new DepartmentApprover("D002", "IT", 2, "102", "Thai"));
-			add(new DepartmentApprover("D003", "IT", 3, "103", "Azeez"));
+			add(new DepartmentApprover("D002", "HR", 2, "102", "Thai"));
+			add(new DepartmentApprover("D003", "Admin", 3, "103", "Azeez"));
+			add(new DepartmentApprover("D004", "Sale", 3, "104", "Azeez"));
 		}
 	};
 
@@ -447,22 +450,43 @@ public class TestData implements Serializable {
 
 		{			
 			Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
-			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
+			
 			Department dept1 = new Department("D001", "IT");
 			Employee em1 = new Employee("101", dept1);
 			em1.setEmpName("Emp1");
 			em1.setAddress("100 Noth Street");
 			em1.setDateOfBirth(date1);
 			em1.setIsApprover(true);
+			add(em1);
 			
-			
+			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 12).getTime();
 			Department dept2 = new Department("D002", "HR");
 			Employee em2 = new Employee("102", dept2);
 			em2.setEmpName("Emp2");
+			em2.setAddress("200 Noth Street");
 			em2.setDateOfBirth(date2);
 			em2.setIsApprover(true);
-			add(em1);
 			add(em2);
+			
+			Date date3 = new GregorianCalendar(1985, Calendar.MARCH, 13).getTime();
+			Department dept3 = new Department("D003", "Admin");
+			Employee em3 = new Employee("103", dept3);
+			em3.setEmpName("Emp3");
+			em3.setAddress("300 Noth Street");
+			em3.setDateOfBirth(date3);
+			em3.setIsApprover(false);
+			add(em3);
+			
+			Date date4 = new GregorianCalendar(1989, Calendar.APRIL, 14).getTime();
+			Department dept4 = new Department("D004", "Sale");
+			Employee em4 = new Employee("104", dept4);
+			em4.setEmpName("Emp4");
+			em4.setAddress("400 Noth Street");
+			em4.setDateOfBirth(date4);
+			em4.setIsApprover(true);
+			add(em4);
+			
+			
 			//add(new Employee("101", "Azee", date1, "Nigeria", null, null, true));
 			
 			//add(new Employee("102", "Thai", date2, "Ha Noi", null, null, true));
@@ -493,8 +517,8 @@ public class TestData implements Serializable {
 	List<FormApprover> allFormApprovers = new ArrayList<FormApprover>() {
 
 		{
-			add(new FormApprover("OT01", 1, "Xuan"));
-			add(new FormApprover("OT02", 3, "Thai"));
+			add(new FormApprover("OT10222_20190202_213925", 1, "Xuan"));
+			add(new FormApprover("AT10222_20190202_162536", 3, "Thai"));
 			//add(new FormApprover("102", "Approve Step2", "Approve Date2", "comments2", null));
 		}
 	};
@@ -508,8 +532,10 @@ public class TestData implements Serializable {
 	List<Department> allDepartments = new ArrayList<Department>() {
 
 		{
-			add(new Department("D01", "IT"));
-			add(new Department("D02", "HR"));
+			add(new Department("D001", "IT"));
+			add(new Department("D002", "HR"));
+			add(new Department("D003", "Admin"));
+			add(new Department("D004", "Sale"));
 		}
 	};
 
