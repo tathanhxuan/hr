@@ -16,6 +16,8 @@ import com.hr.domain.FormStatus;
 import com.hr.domain.LeaveForm;
 import com.hr.domain.OTForm;
 import com.hr.domain.StepApprover;
+import com.hr.logging.ILogger.LogLevel;
+import com.hr.logging.LoggerImpl;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 //Implement detail proxy pattern by client
@@ -79,6 +81,7 @@ public class ApprovalCenter implements IApproval {
 	public Boolean Approve(String formCode) {
 		// TODO Auto-generated method stub
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		LoggerImpl logger = new LoggerImpl();
 		ArrayList<OTForm> oTForms = da.getListOTForm();
 		ArrayList<ATForm> aTForms = da.getListATForm();
 		ArrayList<LeaveForm> leaveForms = da.getListLeaveForm();
@@ -97,6 +100,8 @@ public class ApprovalCenter implements IApproval {
 				FormLog log = new FormLog(oTForm.getFormCode(),oTForm.getOwner().getEmpID(),oTForm.getStatus().toString(),"OT Form");
 				log.SaveLog();
 				// System.out.println(da.readOTFormMap());
+				// Write to console log:				
+				logger.message(oTForm.getFormCode().toString() + " " + oTForm.getStatus().toString(), LogLevel.INFO);
 			}
 		}
 
@@ -115,6 +120,8 @@ public class ApprovalCenter implements IApproval {
 				FormLog log = new FormLog(aTForm.getFormCode(),aTForm.getOwner().getEmpID(),aTForm.getStatus().toString(),"AT Form");
 				log.SaveLog();
 				// System.out.println(da.readATFormMap());
+				// Write to console log:				
+				logger.message(aTForm.getFormCode().toString() + " " + aTForm.getStatus().toString(), LogLevel.INFO);
 			}
 		}
 
@@ -134,6 +141,8 @@ public class ApprovalCenter implements IApproval {
 				FormLog log = new FormLog(leaveForm.getFormCode(),leaveForm.getOwner().getEmpID(),leaveForm.getStatus().toString(),"Leave Form");
 				log.SaveLog();
 				// System.out.println(da.readLeaveFormMap());
+				// Write to console log:				
+				logger.message(leaveForm.getFormCode().toString() + " " + leaveForm.getStatus().toString(), LogLevel.INFO);
 			}
 		}
 
@@ -145,6 +154,7 @@ public class ApprovalCenter implements IApproval {
 		// TODO Auto-generated method stub
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		LoggerImpl logger = new LoggerImpl();
 		ArrayList<OTForm> oTForms = da.getListOTForm();
 		ArrayList<ATForm> aTForms = da.getListATForm();
 		ArrayList<LeaveForm> leaveForms = da.getListLeaveForm();
@@ -155,6 +165,8 @@ public class ApprovalCenter implements IApproval {
 				FormLog log = new FormLog(oTForm.getFormCode(),oTForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),"OT Form");
 				log.SaveLog();
 				//System.out.println(da.readOTFormMap());
+				// Write to console log:				
+				logger.message(oTForm.getFormCode().toString() + " " + oTForm.getStatus().toString(), LogLevel.INFO);
 			}
 		}
 
@@ -165,6 +177,8 @@ public class ApprovalCenter implements IApproval {
 				FormLog log = new FormLog(aTForm.getFormCode(),aTForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),"AT Form");
 				log.SaveLog();
 				//System.out.println(da.readATFormMap());
+				// Write to console log:				
+				logger.message(aTForm.getFormCode().toString() + " " + aTForm.getStatus().toString(), LogLevel.INFO);
 			}
 		}
 
@@ -175,6 +189,8 @@ public class ApprovalCenter implements IApproval {
 				FormLog log = new FormLog(leaveForm.getFormCode(),leaveForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),"Leave Form");
 				log.SaveLog();
 				//System.out.println(da.readLeaveFormMap());
+				// Write to console log:				
+				logger.message(leaveForm.getFormCode().toString() + " " + leaveForm.getStatus().toString(), LogLevel.INFO);
 			}
 		}
 
@@ -189,6 +205,7 @@ public class ApprovalCenter implements IApproval {
 	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception {
 		// TODO Auto-generated method stub
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		LoggerImpl logger = new LoggerImpl();
 		// implement transaction here for approve all form
 		for (Form form : forms) {
 			if (form instanceof OTForm) {
@@ -204,8 +221,13 @@ public class ApprovalCenter implements IApproval {
 					oTForm.setStatus(FormStatus.HRACCEPTED);
 				}
 				da.updateOTForm(oTForm);
+				
+				// Write to FORM_LOG table
 				FormLog log = new FormLog(oTForm.getFormCode(),oTForm.getOwner().getEmpID(),oTForm.getStatus().toString(),"OT Form");
 				log.SaveLog();
+				
+				// Write to console log:				
+				logger.message(oTForm.getFormCode().toString() + " " + oTForm.getStatus().toString(), LogLevel.INFO);
 				
 			} else if (form instanceof ATForm) {
 				ATForm aTForm = (ATForm) form;
@@ -216,10 +238,12 @@ public class ApprovalCenter implements IApproval {
 				} else if (aTForm.getStatus().getValue() == 3) {
 					aTForm.setStatus(FormStatus.HRACCEPTED);
 				}
-				//aTForm.setStatus(aTForm.getStatus());
 				da.updateATForm(aTForm);
+				// Write to FORM_LOG table
 				FormLog log = new FormLog(aTForm.getFormCode(),aTForm.getOwner().getEmpID(),aTForm.getStatus().toString(),"AT Form");
 				log.SaveLog();
+				// Write to console log:				
+				logger.message(aTForm.getFormCode().toString() + " " + aTForm.getStatus().toString(), LogLevel.INFO);
 			} else if (form instanceof LeaveForm) {
 				LeaveForm leaveForm = (LeaveForm) form;
 				if (leaveForm.getStatus().getValue() == 1) {
@@ -229,10 +253,14 @@ public class ApprovalCenter implements IApproval {
 				} else if (leaveForm.getStatus().getValue() == 3) {
 					leaveForm.setStatus(FormStatus.HRACCEPTED);
 				}
-				//leaveForm.setStatus(leaveForm.getStatus());
+				
 				da.updateLeaveForm(leaveForm);
+				// Write to FORM_LOG table
 				FormLog log = new FormLog(leaveForm.getFormCode(),leaveForm.getOwner().getEmpID(),leaveForm.getStatus().toString(),"Leave Form");
 				log.SaveLog();
+				
+				// Write to console log:				
+				logger.message(leaveForm.getFormCode().toString() + " " + leaveForm.getStatus().toString(), LogLevel.INFO);
 			}
 		}
 		/*System.out.println(da.readATFormMap());
