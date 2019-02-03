@@ -74,4 +74,11 @@ public class ApprovalProxy implements IApproval {
 		//return null;
 	}
 
+	@Override
+	public ArrayList<Form> getRefusedForms() throws Exception {
+		// TODO Auto-generated method stub
+		return approveCenter.getRefusedForms();
+		//return null;
+	}
+
 }

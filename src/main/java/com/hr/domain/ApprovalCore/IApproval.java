@@ -8,7 +8,9 @@ import com.hr.domain.StepApprover;
 
 public interface IApproval {
 	
-	public ArrayList<Form> getWaitedApproveForms() throws Exception;;
+	public ArrayList<Form> getWaitedApproveForms() throws Exception;
+	
+	public ArrayList<Form> getRefusedForms() throws Exception;
 	
 	public Boolean Approve(String formCode) throws Exception;
 	

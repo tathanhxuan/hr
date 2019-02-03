@@ -76,7 +76,7 @@ public class FormLog implements Serializable {
 		da.saveNewFormLog(this);
 		return true;
 	}
-	
+
 	public FormLog getFormLogByFormCode(String formCode) {
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 		return da.getFormLogByFormCode(formCode);
@@ -84,8 +84,8 @@ public class FormLog implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[Form Code: " + formCode.toString() + ", Action: " + action.toString() + ", Date: "
-				+ actionDate.toString() + ", Remark: " + remark.toString() + "]";
+		return "[Form Code: " + formCode.toString() + ",\t" + "Action: " + action.toString() + ",\t" + "Date: "
+				+ actionDate.toString() + ",\t" + "Remark: " + remark.toString() + "]" + "\n";
 	}
 
 }

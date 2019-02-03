@@ -371,7 +371,8 @@ public class App {
 			break;
 
 		case "4":
-
+			GetRefusedForms();
+			break;
 		case "5":
 
 		case "6":
@@ -385,9 +386,7 @@ public class App {
 	public static void GetWaitedApproveForms() throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("****************GET WAITED APPROVE FORMS***************");
-		// loginUser = new Employee("102", new Department("D002", "IT"));
-		// loginUser.setIsApprover(true);
-		// loginUser.setEmpName("Xuan");
+	
 		ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
 		ArrayList<Form> listForms = approvecenter.getWaitedApproveForms();
 
@@ -424,7 +423,7 @@ public class App {
 				LoadMenuByUserRole();
 			}
 		}
-	}
+	}	
 
 	// Search Menu
 	public static void searchMenu() throws ParseException {
@@ -458,6 +457,19 @@ public class App {
 				System.out.println("Invalid Entry, Try again !");
 			}
 		}
+	}
+	
+	public static void GetRefusedForms() throws Exception {
+		System.out.println("****************GET REFUSED FORMS**********************");
+		ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
+		ArrayList<Form> listRefusedForms = approvecenter.getRefusedForms();
+		if (listRefusedForms.isEmpty()) {
+			System.out.println("****************REFUSED FORMS IS EMPTY*****************");
+		} else {
+			System.out.println(listRefusedForms);
+		}
+		LoadMenuByUserRole();
+		//Scanner scanner = new Scanner(System.in);
 	}
 
 }
