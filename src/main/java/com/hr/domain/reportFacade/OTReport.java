@@ -7,11 +7,17 @@ import java.util.List;
 
 import com.hr.domain.Department;
 import com.hr.domain.Employee;
+import com.hr.domain.OTForm;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class OTReport implements HRReport{
 
 	private String empName;
+	
+	public OTReport() {
+		
+	}
+	
 	public OTReport(String empID, String empName, String end_time, String start_time, Date date) {
 	
 		this.empName = empName;
@@ -62,15 +68,34 @@ public class OTReport implements HRReport{
 
 	@Override
 	public void reportByDepartment(String department) {
-		List<Department> departmentList = new ArrayList<Department>();
-		departmentList.addAll(data.getListDepartment());
-
-		for (Department dept : departmentList) {
-			if (department.equals(dept.getDeptName())) {
-				System.out.println(departmentList);
+	List<Employee> allEmployee = data.getListEmployee();
+	List<OTForm> allOT = data.getListOTForm();
+	
+	
+	List<Employee> myNewList = new ArrayList<Employee>();
+		
+		for(OTForm otForms: allOT) {
+			String thisDepartment = otForms.getOwner().getDepartment().getDeptName();
+			
+			if(thisDepartment.contains(department) && department !=null && department!="") {
+			    
+			    for(Employee allEmployees: allEmployee) {
+				  if(allEmployees.getDept().getDeptName().equals(thisDepartment)){
+					 myNewList.add(allEmployees);
+					  // System.out.println(allEmployees);
+				  }
+			  }
 			}
 		}
 
+if(!myNewList.isEmpty()) {
+	StringBuilder sb = new StringBuilder();
+	for(Employee e: myNewList) {
+		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+	}
+}else {
+		System.out.println(department +" department does not exist");
+	}
 	}
 
 	@Override

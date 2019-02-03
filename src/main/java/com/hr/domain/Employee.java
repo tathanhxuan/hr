@@ -80,10 +80,12 @@ public class Employee implements Serializable {
 	public void setDepartment(Department dept) {
 		this.dept = dept;
 	}
-	
-	@Override
+		
 	public String toString() {
-		return "[empID: " + empID + ", empName: " + empName.toString() + ", Dept: " + dept.getDeptName().toString() + "]";
+		//StringBuilder myBuilder = new StringBuilder();
+		//myBuilder.append(empID).append(address).append(empID).append(dept);
+		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
+		return  empID +"\t"+ empName+ "\t" + dept.getDeptName().toString();
 		//return "[empID: " + empID + ", empName: " + empName.toString()  + "]";
 		//return "[empID: " + empID + "]";
 	}

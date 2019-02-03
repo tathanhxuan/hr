@@ -21,26 +21,26 @@ public ReportMaker() {
 	
 	
 	//by department
-	public void oTReportByDepartment(String department) {
+	public void searchByDepartment(String department) {
+		
 		oTReport.reportByDepartment(department);
-	}
-	
-	public void aTReportByDepartment(String department) {
 		aTReport.reportByDepartment(department);
-	}
-	
-	public void leaveReportByDepartment(String department) {
-		leaveReport.reportByDepartment(department);
+		//leaveReport.reportByDepartment(department);
+	   		
 	}
 	
 	//by employeeid
 	
-	
 	public void searchByEmpId(String empId) {
+		
 		aTReport.serchReportById(empId);
+		
+		oTReport.serchReportById(empId);
+		
+		leaveReport.serchReportById(empId);
 	}
 	
-	//get report
+	//get each report
 	
 	public void getAttendanceReport() {
 		aTReport.getReport();
@@ -51,6 +51,12 @@ public ReportMaker() {
 	}
 	
 	public void getLeaveReport() {
+		leaveReport.getReport();
+	}
+	//get all report
+	public void getAllReport() {
+		aTReport.getReport();
+		oTReport.getReport();
 		leaveReport.getReport();
 	}
 }

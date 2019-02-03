@@ -17,10 +17,10 @@ private String approveStatus;
 private	Date leaveDateFrom;
 private	Date leaveDateTo;
 private	String description;
-
 DataAccessRepositoryFacade data = new DataAccessRepositoryFacade();
 
-		
+public LeaveReport() {}
+
 	public LeaveReport(String empId, String empName,  Date leaveDateFrom, Date leaveDateTo, String approveStatus,
 		String description) {
 	this.empId = empId;
