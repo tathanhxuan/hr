@@ -102,10 +102,10 @@ public class Main {
 //    }
 	
 	
-   //allReport.leaveReport().aTReport().oTReport().build();	
+   allReport.aTReport().build();	
    //rm.searchByDepartment("HR");
 	//		rm.searchByEmpId("101");
-			rm.getAllReport();
+		//	rm.getAllReport();
 	
   //   System.out.println(data.getListDepartment());   	
 	  }

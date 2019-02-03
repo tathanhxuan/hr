@@ -1,16 +1,15 @@
 package com.hr.domain.reportFacade;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import com.hr.domain.ATForm;
-import com.hr.domain.Department;
 import com.hr.domain.Employee;
-import com.hr.domain.LeaveForm;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class ATReport implements HRReport {
@@ -64,9 +63,13 @@ public class ATReport implements HRReport {
 	
 	@Override
 	public String toString() {
+		Date d = getDate();
 		
-
-		return getDate()+"\t"+getEmpId()+"\t"+getEmpName()+"\t"+getTimeIn()+"\t"+getTimeOut()+"\n";
+		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
+		//sd.format(d);
+		
+		//formatter.format((TemporalAccessor) d);
+		return (sd.format(d)+"\t"+getEmpId()+"\t\t"+getEmpName()+"\t\t"+getTimeIn()+"\t\t"+getTimeOut()+"\n");
 	}
 
 //interface methods	
