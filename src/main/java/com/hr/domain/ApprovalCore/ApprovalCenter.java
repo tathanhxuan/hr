@@ -39,16 +39,20 @@ public class ApprovalCenter implements IApproval {
 
 		int approvalLevel = 0;
 		ArrayList<DepartmentApprover> departmentApprovers = da.getListDepartmentApprover();
+		//System.out.println("1: " + emp.getEmpID());
+		//System.out.println(departmentApprovers);
 		for (DepartmentApprover departmentApprover : departmentApprovers) {
 			if (emp.getEmpID().equals(departmentApprover.getEmpID())) {
 				//System.out.println("1: " + emp.getEmpID());
-				//System.out.println("2:" + emp.getDept().getDeptID());
+				//System.out.println("1:" + departmentApprover.getEmpID());
+				//System.out.println("2: " + emp.getDept().getDeptID());
+				//System.out.println("2:" + departmentApprover.getDeptID());
 				if (emp.getDept().getDeptID().equals(departmentApprover.getDeptID())) {
 					approvalLevel = departmentApprover.getApprovalLevel();
 				}
 			}
 		}
-
+		System.out.println(approvalLevel);
 		// get data from FORM (OT,AT,LEAVE) table WHERE DEPTID AND step = STEP X-1
 
 		ArrayList<OTForm> oTForms = da.getListOTForm();
