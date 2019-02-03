@@ -491,8 +491,7 @@ public class App {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("1.SEARCH BY EMPLOYEE ID");
 		System.out.println("2.SEARCH BY DEPARTMENT");
-		System.out.println("3.SEARCH BY NAME");
-		System.out.println("4.BACK TO REPORT MENU");
+		System.out.println("3.BACK TO REPORT MENU");
 		String entry = scanner.nextLine();
 		ReportMaker rm = new ReportMaker();
 		while (true) {
@@ -505,10 +504,7 @@ public class App {
 				String empSearchDepart = scanner.nextLine();
 				rm.searchByDepartment(empSearchDepart);
 			}
-
 			else if (entry.equals("3")) {
-				// search by name
-			} else if (entry.equals("4")) {
 				LoadReportMenu();
 				break;
 			} else {
