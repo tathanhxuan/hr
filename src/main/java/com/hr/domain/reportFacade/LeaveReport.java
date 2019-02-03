@@ -163,7 +163,8 @@ public class LeaveReport implements HRReport {
 		System.out.println("FORM CODE\t\t\tREQUEST DATE\tSTART DATE\tEND DATE\tLEAVE STATUS\n--------------------------------------------------------------------------------------------\n");
 		for(LeaveForm e: myNewList) {
 			//no data in   sd.format(e.getDateFrom())
-			System.out.println(sb.append(e.getFormCode()+"\t"+  null  +"\t\t"+   sd.format(e.getLeaveDateFrom())   +"\t"+  sd.format(e.getLeaveDateTo())  +"\t" + e.getStatus()).toString().replace("[", " ").replace("]", " "));
+			System.out.println(sd.format(e.getDateFrom()));
+			System.out.println(sb.append(e.getFormCode()+"\t"+  sd.format(e.getDateFrom())  +"\t\t"+   sd.format(e.getLeaveDateFrom())   +"\t"+  sd.format(e.getLeaveDateTo())  +"\t" + e.getStatus()).toString().replace("[", " ").replace("]", " "));
 		    sb.append("\n");
 		}
 	   }
