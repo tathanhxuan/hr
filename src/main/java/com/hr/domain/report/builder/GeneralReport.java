@@ -3,8 +3,9 @@ package com.hr.domain.report.builder;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import com.hr.domain.ATForm;
 import com.hr.domain.Employee;
 import com.hr.domain.LeaveForm;
@@ -31,15 +32,31 @@ public class GeneralReport {
     	
     	if(this.aTReport!=null && !this.aTReport.isEmpty()) {
     		System.out.println("Attendance Report till "+ formatter.format(date) +"\n");
-    		System.out.println("Date\tEmployee ID\tEmployee Name\tTime In\tTime Out\n"+this.aTReport);	
+    		System.out.println("Date\tEmployee ID\tEmployee Name\tTime In\tTime Out\n---------------------------------------------------------------");
+    		
+    		StringBuilder sb = new StringBuilder();
+    		for(ATReport e: this.aTReport) {
+    			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+    		}
+    
     	}
     	if(this.oTReport!=null && !this.oTReport.isEmpty()) {
     		System.out.println("Overtime Report till "+ formatter.format(date) +"\n");
-    		System.out.println("Date\tEmployee ID\tEmployee Name\tStart Time\tEnd Time\n"+this.oTReport);	
+    		System.out.println("Date\tEmployee ID\tEmployee Name\tStart Time\tEnd Time\n-----------------------------------------------------");
+    		
+    		StringBuilder sb = new StringBuilder();
+    		for(OTReport e: this.oTReport) {
+    			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+    		}
     	}
     	if(this.leaveReport!=null && !this.leaveReport.isEmpty()) {
     		System.out.println("Leave Report till "+ formatter.format(date) +"\n");
-    		System.out.println("Date\tEmployee ID\tEmployee Name\tLeave Start\tLeave End\tApprove Status\tDescription\n"+this.leaveReport);	
+    		System.out.println("Date\tEmployee ID\tEmployee Name\tLeave Start\tLeave End\tApprove Status\tDescription\n------------------------------------------------------------------");	
+    		
+    		StringBuilder sb = new StringBuilder();
+    		for(LeaveReport e: this.leaveReport) {
+    			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+    		}
     	}
     	
     }
@@ -93,6 +110,7 @@ public class GeneralReport {
     }
     
     public Builder leaveReport() {
+    	Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
     	ArrayList<LeaveForm> allLeaveForm = data.getListLeaveForm();
     	ArrayList<Employee> allEmployee = data.getListEmployee();
     	
@@ -100,10 +118,26 @@ public class GeneralReport {
     		String empId = lvForm.getOwner().getEmpID();
     		for(Employee emp: allEmployee) {
     			if(empId.equals(emp.getEmpID())) {
-    				   				
-    				LeaveReport a = new LeaveReport(emp.getEmpID(), emp.getEmpName(), lvForm.getDateFrom(), lvForm.getLeaveDateTo(), emp.getIsApprover().toString(), lvForm.getDescription());
+    				String empid = emp.getEmpID();
+    				if(empId==null)
+    					empid="null";
+    				String empname = emp.getEmpName();
+    				if(empname == null)
+    					empname = "null";
+    				Date dateFrom = lvForm.getDateFrom();
+    				if(dateFrom == null)
+    					dateFrom = date1;
+    				Date dateTo = lvForm.getLeaveDateTo();
+    				if(dateTo == null)
+    					dateTo = date1;
+    				
+    				String formCode = lvForm.getFormCode();
+    			//	for(DepartmentApprover fm: data.getListDepartmentApprover()) {   				
+    				     //lvForm.getFormCode()   //to navigate
+    					LeaveReport a = new LeaveReport(empid, empname, dateFrom, dateTo, null , lvForm.getDescription());
     				  						
-    			     this.leaveReport.add(a);			
+    			     this.leaveReport.add(a);
+    			//	}
     			}
     		}
     	}
