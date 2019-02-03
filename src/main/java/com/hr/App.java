@@ -341,6 +341,7 @@ public class App {
 			rm.searchByEmpId(loginUser.getEmpID());
 			FormHistoryQuery();
 			break;
+			
 		case "6":
 
 			loginUser = null;
@@ -381,6 +382,11 @@ public class App {
 			break;
 		case "7":
 			LoadReportMenu();
+			break;
+			
+		case "8":
+			loginUser = null;
+			Login();
 			break;
 		default:
 			break;
