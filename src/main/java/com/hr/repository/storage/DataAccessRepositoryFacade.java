@@ -273,6 +273,13 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		return listSystemUsers;
 	}
 	
+	public ArrayList<FormLog> getListFormLog() {
+		HashMap<String, FormLog> formLogMaps = readFormLogMap();
+		Collection<FormLog> values = formLogMaps.values();
+		ArrayList<FormLog> listFormLogs = new ArrayList<FormLog>(values);
+		return listFormLogs;
+	}
+	
 	public ArrayList<FormStatusServiceImpl> getListFormStatus() {
 		HashMap<String, FormStatusServiceImpl> formStatusMap = readFormStatusMap();
 		Collection<FormStatusServiceImpl> values = formStatusMap.values();
@@ -302,6 +309,18 @@ public class DataAccessRepositoryFacade implements DataAccessRepository {
 		HashMap<String, LeaveForm> aTFormMaps = readLeaveFormMap();
 		LeaveForm aTForm = aTFormMaps.get(formCode);
 		return aTForm;
+	}
+	
+	public ArrayList<FormLog> getListFormLogByFormCode(String formCode) {
+		ArrayList<FormLog> listFormLogs = getListFormLog();
+		ArrayList<FormLog> listForms = new ArrayList<FormLog>();
+		for (FormLog formLog: listFormLogs) {
+			if (formLog.getFormCode().equals(formCode)) {
+				listForms.add(formLog);
+			}
+		}
+		
+		return listForms;
 	}
 	
 	public SystemUser getSystemUserByUserName(String user_name) {
