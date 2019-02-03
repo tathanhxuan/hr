@@ -31,31 +31,32 @@ public class GeneralReport {
     	this.leaveReport = builder.leaveReport;
     	
     	if(this.aTReport!=null && !this.aTReport.isEmpty()) {
-    		System.out.println("ATTENDANCE REPORT TILL "+ formatter.format(date)+"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    		System.out.println("ATTENDANCE REPORT TILL "+ formatter.format(date)+"\t");
     		System.out.println("Date\t\tEmployee ID\t\tEmployee Name\t\tTime In\t\tTime Out\n-----------------------------------------------------------------------------------------");
     		
     		StringBuilder sb = new StringBuilder();
     		for(ATReport e: this.aTReport) {
-    			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+    			System.out.println(sb.append(e.AtToString()).toString().replace("[", " ").replace("]", " "));
     		}
     
     	}
     	if(this.oTReport!=null && !this.oTReport.isEmpty()) {
-    		System.out.println("Overtime Report till "+ formatter.format(date) +"\n");
-    		System.out.println("Date\tEmployee ID\tEmployee Name\tStart Time\tEnd Time\n-----------------------------------------------------");
+    		System.out.println("OVERTIME REPORT TILL "+ formatter.format(date) +"\n");
+    		System.out.println("Date\t\tEmployee ID\tEmployee Name\t\t\tStart Time\tEnd Time\n------------------------------------------------------------------------------------------");
     		
     		StringBuilder sb = new StringBuilder();
     		for(OTReport e: this.oTReport) {
-    			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+    			System.out.println(sb.append(e.OtToString()).toString().replace("[", " ").replace("]", " "));
     		}
     	}
     	if(this.leaveReport!=null && !this.leaveReport.isEmpty()) {
-    		System.out.println("Leave Report till "+ formatter.format(date) +"\n");
-    		System.out.println("Date\tEmployee ID\tEmployee Name\tLeave Start\tLeave End\tApprove Status\tDescription\n------------------------------------------------------------------");	
+    		System.out.println("\nLEAVE REPORT TILL "+ formatter.format(date) +"\n");
+    		System.out.println("Date\t\tEmployee ID\tEmployee Name\t\tLeave Start\tLeave End\tApprove Status\tDescription\n----------------"
+    				+ "---------------------------------------------------------------------------------------------------");	
     		
     		StringBuilder sb = new StringBuilder();
     		for(LeaveReport e: this.leaveReport) {
-    			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+    			System.out.println(sb.append(e.leaveToString()).toString().replace("[", " ").replace("]", " "));
     		}
     	}
     	
@@ -119,22 +120,22 @@ public class GeneralReport {
     		for(Employee emp: allEmployee) {
     			if(empId.equals(emp.getEmpID())) {
     				String empid = emp.getEmpID();
-    				if(empId==null)
-    					empid="null";
+    				//if(empId==null)
+    				//	empid="null";
     				String empname = emp.getEmpName();
-    				if(empname == null)
-    					empname = "null";
+    				//if(empname == null)
+    			//		empname = "null";
     				Date dateFrom = lvForm.getDateFrom();
-    				if(dateFrom == null)
+    			//	if(dateFrom == null)
     					dateFrom = date1;
     				Date dateTo = lvForm.getLeaveDateTo();
-    				if(dateTo == null)
-    					dateTo = date1;
+    		//		if(dateTo == null)
+    			//		dateTo = date1;
     				
     				String formCode = lvForm.getFormCode();
     			//	for(DepartmentApprover fm: data.getListDepartmentApprover()) {   				
     				     //lvForm.getFormCode()   //to navigate
-    					LeaveReport a = new LeaveReport(empid, empname, dateFrom, dateTo, null , lvForm.getDescription());
+    					LeaveReport a = new LeaveReport(lvForm.getLeaveDateTo(), empid, empname, dateFrom, dateTo, lvForm.getStatus().toString() , lvForm.getDescription());
     				  						
     			     this.leaveReport.add(a);
     			//	}

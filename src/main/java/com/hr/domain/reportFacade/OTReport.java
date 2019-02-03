@@ -1,5 +1,6 @@
 package com.hr.domain.reportFacade;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,13 +34,22 @@ public class OTReport implements HRReport{
 	private String start_time;
 	private Date date;
 	
+//OT formatter
+	public String OtToString() {
+		
+		Date d = getDate();
+		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
+		
+		return sd.format(d)+"\t"+getEmpID()+"\t\t"+ getEmpName()+"\t\t\t\t"+ getStart_time()+"\t\t"+ getEnd_time()+"\n";
+	}
 	
 	
 	
-	
+
 	@Override
 	public String toString() {
-		return getDate()+"\t"+getEmpID()+"\t"+ getEmpName()+"\t"+ getStart_time()+"\t"+getEnd_time();
+		return "OTReport [empName=" + empName + ", end_time=" + end_time + ", start_time=" + start_time + ", date="
+				+ date + ", empID=" + empID + "]";
 	}
 
 

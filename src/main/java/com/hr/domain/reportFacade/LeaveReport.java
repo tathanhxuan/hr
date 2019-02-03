@@ -1,5 +1,6 @@
 package com.hr.domain.reportFacade;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,13 +21,15 @@ public class LeaveReport implements HRReport {
 	private Date leaveDateFrom;
 	private Date leaveDateTo;
 	private String description;
+	private Date thisDate;
 	DataAccessRepositoryFacade data = new DataAccessRepositoryFacade();
 
 	public LeaveReport() {
 	}
 
-	public LeaveReport(String empId, String empName, Date leaveDateFrom, Date leaveDateTo, String approveStatus,
+	public LeaveReport(Date thisDate, String empId, String empName, Date leaveDateFrom, Date leaveDateTo, String approveStatus,
 			String description) {
+		this.thisDate =thisDate;
 		this.empId = empId;
 		this.empName = empName;
 		this.approveStatus = approveStatus;
@@ -35,10 +38,22 @@ public class LeaveReport implements HRReport {
 		this.description = description;
 	}
 
+	//Leave report formatter
+	public String leaveToString(){
+		Date d = thisDate;
+		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
+		
+		return sd.format(thisDate)+"\t" + getEmpId() + "\t\t" + getEmpName() + "\t\t\t" + sd.format(getLeaveDateFrom()) + "\t" + sd.format(getLeaveDateTo()) + "\t"
+				+ getApproveStatus() + "\t\t" + getDescription().toUpperCase() + "\n";
+	}
+	
+	
+	
 	@Override
 	public String toString() {
-		return getEmpId() + "\t" + getEmpName() + "\t" + getLeaveDateFrom() + "\t" + getLeaveDateTo() + "\t"
-				+ getApproveStatus() + "\t" + getDescription() + "\n";
+		return "LeaveReport [empId=" + empId + ", empName=" + empName + ", approveStatus=" + approveStatus
+				+ ", leaveDateFrom=" + leaveDateFrom + ", leaveDateTo=" + leaveDateTo + ", description=" + description
+				+ "]";
 	}
 
 	public String getEmpId() {

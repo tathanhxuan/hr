@@ -60,17 +60,18 @@ public class ATReport implements HRReport {
 		this.timeOut = timeOut;
 	}
 
-	
-	@Override
-	public String toString() {
-		Date d = getDate();
+	//Data Formatter
+	public String AtToString() {
 		
+        Date d = getDate();
 		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
-		//sd.format(d);
-		
-		//formatter.format((TemporalAccessor) d);
-		return (sd.format(d)+"\t"+getEmpId()+"\t\t"+getEmpName()+"\t\t"+getTimeIn()+"\t\t"+getTimeOut()+"\n");
+		return (sd.format(d)+"\t"+getEmpId()+"\t\t\t"+getEmpName()+"\t\t\t"+getTimeIn()+"\t\t"+getTimeOut()+"\n");
 	}
+	
+	
+	
+	
+	
 
 //interface methods	
 	
@@ -83,6 +84,11 @@ public class ATReport implements HRReport {
 //	}
 	
 	
+	@Override
+	public String toString() {
+		return "ATReport [date=" + date + ", empId=" + empId + ", empName=" + empName + ", timeIn=" + timeIn
+				+ ", timeOut=" + timeOut + "]";
+	}
 	@Override
 	public void reportByDepartment(String department) {
 		List<Employee> myNewList = new ArrayList<Employee>();
