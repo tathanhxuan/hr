@@ -16,7 +16,7 @@ public interface IApproval {
 	
 	public Boolean ApproveAll(ArrayList<Form> forms) throws Exception;
 	
-	public Boolean Refuse(String formCode) throws Exception;
+	public Boolean Refuse(String formCode, String remark) throws Exception;
 	
 	public Boolean SetDepartmentApprover(ArrayList<DepartmentApprover> approvers) throws Exception;
 	

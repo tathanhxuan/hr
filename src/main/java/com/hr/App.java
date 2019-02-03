@@ -447,7 +447,9 @@ public class App {
 			} else if (command.equals("R") || command.equals("r")) {
 				System.out.println("Please input form code:");
 				String formCode = scanner.nextLine();
-				approvecenter.Refuse(formCode);
+				System.out.println("Please input remark:");
+				String remark = scanner.nextLine();
+				approvecenter.Refuse(formCode, remark);
 				GetWaitedApproveForms();
 			} else {
 				LoadMenuByUserRole();
