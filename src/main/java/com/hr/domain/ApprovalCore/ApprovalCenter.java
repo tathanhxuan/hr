@@ -52,7 +52,7 @@ public class ApprovalCenter implements IApproval {
 				}
 			}
 		}
-		System.out.println(approvalLevel);
+		//System.out.println(approvalLevel);
 		// get data from FORM (OT,AT,LEAVE) table WHERE DEPTID AND step = STEP X-1
 
 		ArrayList<OTForm> oTForms = da.getListOTForm();
