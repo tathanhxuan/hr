@@ -385,11 +385,11 @@ public class App {
 			break;
 		}
 	}
-	
+
 	public static void GetWaitedApproveForms() throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("****************GET WAITED APPROVE FORMS***************");
-	
+
 		ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
 		ArrayList<Form> listForms = approvecenter.getWaitedApproveForms();
 
@@ -398,8 +398,38 @@ public class App {
 			LoadMenuByUserRole();
 		} else {
 			for (Form listForm : listForms) {
-				System.out.println(listForm);
-				//System.out.println("Form Code: " + listForm.getFormCode() + ",\t" + listForm.getOwner().getEmpName().toString() + ",\t" + listForm.);
+				//System.out.println(listForm);
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        //System.out.println(dt1.format(date));
+				if (listForm instanceof OTForm) {
+					OTForm oTForm = (OTForm) listForm;
+					System.out.println(
+							"Form Code: " + oTForm.getFormCode() + ",\t" + 
+							"Emp Name: " +	oTForm.getOwner().getEmpName().toString() + ",\t" + 
+							"OT Date: " + dateFormat.format(oTForm.getOTDate()) + ",\t" +
+							"Time From: " + oTForm.getTimeFrom().toString() + ",\t" +
+							"Time To: "	+ oTForm.getTimeTo().toString() + ",\t" +
+							"Status: " + oTForm.getStatus().toString());
+				} else if (listForm instanceof ATForm) {
+					ATForm aTForm = (ATForm) listForm;
+					System.out.println(
+							"Form Code: " + aTForm.getFormCode() + ",\t" + 
+							"Emp Name: " + aTForm.getOwner().getEmpName().toString() +  ",\t" +
+							"AT Date: "	+ dateFormat.format(aTForm.getATDate()) + ",\t" + 
+							"Time In: "	+aTForm.getTimeIn().toString() + ",\t" + 
+							"Time Out: "	+ aTForm.getTimeOut().toString() + ",\t" + 
+							"Status: "+ aTForm.getStatus().toString());
+				} else if (listForm instanceof LeaveForm) {
+					LeaveForm leaveForm = (LeaveForm) listForm;
+					System.out.println(
+							"Form Code: " + leaveForm.getFormCode() + ",\t" + 
+							"Emp Name: " + leaveForm.getOwner().getEmpName().toString() + ",\t" + 
+							"Leave Date From: " + dateFormat.format(leaveForm.getLeaveDateFrom()) + ",\t" + 
+							"Leave Date To: "+ dateFormat.format(leaveForm.getLeaveDateTo()) + ",\t" + 
+							"Status: " + leaveForm.getStatus().toString());
+				}
+
+				
 			}
 			// System.out.println(listForms);
 			System.out.println("*******************************************************");
@@ -426,7 +456,7 @@ public class App {
 				LoadMenuByUserRole();
 			}
 		}
-	}	
+	}
 
 	// Search Menu
 	public static void searchMenu() throws Exception {
@@ -459,7 +489,7 @@ public class App {
 			}
 		}
 	}
-	
+
 	public static void GetRefusedForms() throws Exception {
 		System.out.println("****************GET REFUSED FORMS**********************");
 		ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
@@ -467,10 +497,41 @@ public class App {
 		if (listRefusedForms.isEmpty()) {
 			System.out.println("****************REFUSED FORMS IS EMPTY*****************");
 		} else {
-			System.out.println(listRefusedForms);
+			for (Form listRefusedForm : listRefusedForms) {
+				//System.out.println(listRefusedForms);
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        //System.out.println(dt1.format(date));
+				if (listRefusedForm instanceof OTForm) {
+					OTForm oTForm = (OTForm) listRefusedForm;
+					System.out.println(
+							"Form Code: " + oTForm.getFormCode() + ",\t" + 
+							"Emp Name: " +	oTForm.getOwner().getEmpName().toString() + ",\t" + 
+							"OT Date: " + dateFormat.format(oTForm.getOTDate()) + ",\t" +
+							"Time From: " + oTForm.getTimeFrom().toString() + ",\t" +
+							"Time To: "	+ oTForm.getTimeTo().toString() + ",\t" +
+							"Status: " + oTForm.getStatus().toString());
+				} else if (listRefusedForm instanceof ATForm) {
+					ATForm aTForm = (ATForm) listRefusedForm;
+					System.out.println(
+							"Form Code: " + aTForm.getFormCode() + ",\t" + 
+							"Emp Name: " + aTForm.getOwner().getEmpName().toString() +  ",\t" +
+							"AT Date: "	+ dateFormat.format(aTForm.getATDate()) + ",\t" + 
+							"Time In: "	+aTForm.getTimeIn().toString() + ",\t" + 
+							"Time Out: "	+ aTForm.getTimeOut().toString() + ",\t" + 
+							"Status: "+ aTForm.getStatus().toString());
+				} else if (listRefusedForm instanceof LeaveForm) {
+					LeaveForm leaveForm = (LeaveForm) listRefusedForm;
+					System.out.println(
+							"Form Code: " + leaveForm.getFormCode() + ",\t" + 
+							"Emp Name: " + leaveForm.getOwner().getEmpName().toString() + ",\t" + 
+							"Leave Date From: " + dateFormat.format(leaveForm.getLeaveDateFrom()) + ",\t" + 
+							"Leave Date To: "+ dateFormat.format(leaveForm.getLeaveDateTo()) + ",\t" + 
+							"Status: " + leaveForm.getStatus().toString());
+				}
+			}
 		}
 		LoadMenuByUserRole();
-		//Scanner scanner = new Scanner(System.in);
+		// Scanner scanner = new Scanner(System.in);
 	}
 
 }
