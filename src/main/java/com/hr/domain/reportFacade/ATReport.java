@@ -87,63 +87,61 @@ public class ATReport implements HRReport {
 	}
 	@Override
 	public void reportByDepartment(String department) {
-		List<Employee> myNewList = new ArrayList<Employee>();
+		List<ATForm> myNewList = new ArrayList<ATForm>();
 		List<ATForm> allATForm = data.getListATForm();
-		List<Employee> allEmployee = data.getListEmployee();
+		//List<Employee> allEmployee = data.getListEmployee();
 				
 		for(ATForm departments: allATForm) {
 			String thisDepartment = departments.getOwner().getDepartment().getDeptName();
 			
 			if(thisDepartment.contains(department) && department !=null && department!="") {
-			    
-			    for(Employee allEmployees: allEmployee) {
-				  if(allEmployees.getDept().getDeptName().equals(thisDepartment)){
-					 myNewList.add(allEmployees);
-					  // System.out.println(allEmployees);
-				  }
-			  }
-			}
+				myNewList.add(departments);
+           }
 		}
+
 
 if(!myNewList.isEmpty()) {
 	StringBuilder sb = new StringBuilder();
-	System.out.println("\n**************ATTENDANCE REPORT*********************");
-	System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
-	for(Employee e: myNewList) {
-		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
-	}
-   }
+	SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
+	System.out.println("\n**************ATTENDANCE REPORT BY DEPARTMENT*********************");
+	System.out.println("FORM CODE\t\t\tATTENDANCE DATE\t\tTIME IN\t\tTIME OUT\tSTATUS\n-----------------------------------------------------------------------------------------------");
+		for(ATForm e: myNewList) {
+			System.out.println(sb.append(e.getFormCode()+"\t"+ sd.format(e.getATDate())+"\t\t"+ e.getTimeIn()+"\t\t"+ e.getTimeOut()+"\t\t"+ e.getStatus()+"\n").toString().replace("[", " ").replace("]", " "));
+	
+		}
+      }
+else {
+	System.out.println(department + " no found in Attendance Report");
 }
-		
+}
 //search by id
 	@Override
 	public void serchReportById(String empId) {
-	List<Employee> myNewList = new ArrayList<Employee>();
+	List<ATForm> myNewList = new ArrayList<ATForm>();
 	List<ATForm> allATForm = data.getListATForm();
-	List<Employee> allEmployee = data.getListEmployee();
-				
-		for(ATForm allAt: allATForm) {
+	
+	for(ATForm allAt: allATForm) {
 			String thisId = allAt.getOwner().getEmpID();
 			
 			if(thisId.contains(empId) && empId !=null && empId!="") {
-			    
-			    for(Employee allEmployees: allEmployee) {
-				  if(allEmployees.getEmpID().equals(thisId)){
-					 myNewList.add(allEmployees);
-					  // System.out.println(allEmployees);
-				  }
-			  }
+		    	 myNewList.add(allAt);
+				
 			}
 		}
-
-if(!myNewList.isEmpty()) {
-	StringBuilder sb = new StringBuilder();
-	System.out.println("\n**************ATTENDANCE REPORT*********************");
-	System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
-	for(Employee e: myNewList) {
-		System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+	if(!myNewList.isEmpty()) {
+		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
+		StringBuilder sb = new StringBuilder();
+		
+		System.out.println("\n**************ATTENDANCE REPORT BY EMPLOYEE ID " +empId  +" *********************");
+		System.out.println("FORM CODE\t\t\tATTENDANCE DATE\t\tTIME IN\t\tTIME OUT\tSTATUS\n-----------------------------------------------------------------------------------------------");
+			for(ATForm e: myNewList) {
+				System.out.println(sb.append(e.getFormCode()+"\t"+ sd.format(e.getATDate())+"\t\t"+ e.getTimeIn()+"\t\t"+ e.getTimeOut()+"\t\t"+ e.getStatus()+"\n").toString().replace("[", " ").replace("]", " "));
+		
+			}
 	}
-   }	
+	else {
+		System.out.println("Employee Id: "+empId + " has no Attendance Report");
+	}	
 }
 
 	@Override

@@ -150,7 +150,7 @@ public class ApprovalCenter implements IApproval {
 	}
 
 	// approve forms base on employee
-	public Boolean Refuse(String formCode) {
+	public Boolean Refuse(String formCode, String remark) {
 		// TODO Auto-generated method stub
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
@@ -162,7 +162,7 @@ public class ApprovalCenter implements IApproval {
 			if (oTForm.getFormCode().equals(formCode)) {
 				oTForm.setStatus(FormStatus.REFUSED);
 				da.updateOTForm(oTForm);
-				FormLog log = new FormLog(oTForm.getFormCode(),oTForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),"OT Form");
+				FormLog log = new FormLog(oTForm.getFormCode(),oTForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),remark);
 				log.SaveLog();
 				//System.out.println(da.readOTFormMap());
 				// Write to console log:				
@@ -174,7 +174,7 @@ public class ApprovalCenter implements IApproval {
 			if (aTForm.getFormCode().equals(formCode)) {
 				aTForm.setStatus(FormStatus.REFUSED);
 				da.updateATForm(aTForm);
-				FormLog log = new FormLog(aTForm.getFormCode(),aTForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),"AT Form");
+				FormLog log = new FormLog(aTForm.getFormCode(),aTForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),remark);
 				log.SaveLog();
 				//System.out.println(da.readATFormMap());
 				// Write to console log:				
@@ -186,7 +186,7 @@ public class ApprovalCenter implements IApproval {
 			if (leaveForm.getFormCode().equals(formCode)) {
 				leaveForm.setStatus(FormStatus.REFUSED);
 				da.updateLeaveForm(leaveForm);
-				FormLog log = new FormLog(leaveForm.getFormCode(),leaveForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),"Leave Form");
+				FormLog log = new FormLog(leaveForm.getFormCode(),leaveForm.getOwner().getEmpID(),FormStatus.REFUSED.toString(),remark);
 				log.SaveLog();
 				//System.out.println(da.readLeaveFormMap());
 				// Write to console log:				

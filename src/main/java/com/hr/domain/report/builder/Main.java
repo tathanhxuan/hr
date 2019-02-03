@@ -73,13 +73,14 @@ public class Main {
 //			if (entry.equals("1")) {
 //				 System.out.println("Enter Employee ID");
 //				 String empSearchId = scanner.nextLine();
-//               rm.searchByEmpId(empSearchId);
+             //  rm.searchByEmpId(empSearchId);
 //               break;
 //               
 //               } else if (entry.equals("2")) {
 //				System.out.println("Enter Employee Department");
 //				String empSearchDepart = scanner.nextLine();
-//               rm.leaveReportByDepartment(empSearchDepart);
+             
+               rm.searchByDepartment("IT");
 //               rm.aTReportByDepartment(empSearchDepart);
 //               rm.oTReportByDepartment(empSearchDepart);
 //			} 
@@ -106,7 +107,7 @@ public class Main {
    //allReport.leaveReport().aTReport().oTReport().build();
    //rm.searchByDepartment("HR");
 	//		rm.searchByEmpId("101");
-			rm.getAllReport();
+	//		rm.getAllReport();
 	
     // System.out.println(data.getListATForm());   	
 	  }

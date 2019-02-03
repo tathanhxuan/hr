@@ -35,9 +35,9 @@ public ReportMaker() {
 		
 		aTReport.serchReportById(empId);
 		
-		oTReport.serchReportById(empId);
+	//	oTReport.serchReportById(empId);
 		
-		leaveReport.serchReportById(empId);
+	//	leaveReport.serchReportById(empId);
 	}
 	
 	//get each report
