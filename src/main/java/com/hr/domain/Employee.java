@@ -81,13 +81,7 @@ public class Employee implements Serializable {
 		this.dept = dept;
 	}
 		
-	//print employee
-	public String printEmployee() {
-		
-		return empID +"\t"+ empName+ "\t" + dept.getDeptName().toString();
-	}
-	
-	
+
 	public String toString() {
 		//StringBuilder myBuilder = new StringBuilder();
 		//myBuilder.append(empID).append(address).append(empID).append(dept);

@@ -381,6 +381,9 @@ public class App {
 		case "6":
 			GetWaitedApproveForms();
 			break;
+		case "7":
+			LoadReportMenu();
+			break;
 		default:
 			break;
 		}
