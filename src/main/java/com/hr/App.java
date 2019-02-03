@@ -395,7 +395,7 @@ public class App {
 
 		ApprovalProxy approvecenter = new ApprovalProxy(loginUser);
 		ArrayList<Form> listForms = approvecenter.getWaitedApproveForms();
-
+ 
 		if (listForms.isEmpty()) {
 			System.out.println("****************WAITED APPROVE FORMS IS EMPTY**********");
 			LoadMenuByUserRole();

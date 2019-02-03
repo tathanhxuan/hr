@@ -47,20 +47,20 @@ public class TestData implements Serializable {
 		TestData td = new TestData();
 
 		// td.userData();
-		//td.systemUserData();
+		td.systemUserData();
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		td.leaveFormsData();		 
+		//td.leaveFormsData();		 
 
 
 		//td.aTFormsData();
 
-		td.oTFormsData();
+		//td.oTFormsData();
 
-		td.aTFormsData();
+		//td.aTFormsData();
 		//td.oTFormsData();
 
 		//td.departmentApproversData();
@@ -92,14 +92,14 @@ public class TestData implements Serializable {
 
 		System.out.println(da.readLeaveFormServiceImplMap());*/
 		
-		System.out.println(da.readATFormMap());
+		//System.out.println(da.readATFormMap());
 		//System.out.println(da.readATForm());
-
-		System.out.println(da.readOTFormMap());
 
 		//System.out.println(da.readOTFormMap());
 
-		System.out.println(da.readLeaveFormMap());
+		//System.out.println(da.readOTFormMap());
+
+		//System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
 		//System.out.println(da.readOTFormMap());
@@ -150,7 +150,7 @@ public class TestData implements Serializable {
 
 
 
-		//System.out.println(da.readSystemUserMap());
+		System.out.println(da.readSystemUserMap());
 
 
 	}
@@ -188,9 +188,9 @@ public class TestData implements Serializable {
 
 		{
 			add(new SystemUser("1", "admin", "123", "102", true, true));
-			add(new SystemUser("2", "thai", "12345", "101", true, false));
-			add(new SystemUser("3", "azee", "456", "103", false, true));
-			add(new SystemUser("4", "bee", "4567", "104", false, false));
+			add(new SystemUser("2", "thai", "12345", "101", false, false));
+			add(new SystemUser("3", "azee", "456", "103", true, false));
+			add(new SystemUser("4", "bee", "4567", "104", false, true));
 		}
 	};
 
@@ -443,7 +443,7 @@ public class TestData implements Serializable {
 			add(new DepartmentApprover("D001", "IT", 1, "101", "Xuan"));
 			add(new DepartmentApprover("D002", "HR", 2, "102", "Thai"));
 			add(new DepartmentApprover("D003", "Admin", 3, "103", "Azeez"));
-			add(new DepartmentApprover("D004", "Sale", 3, "104", "Azeez"));
+			add(new DepartmentApprover("D004", "Sale", 4, "104", "Bee"));
 		}
 	};
 
