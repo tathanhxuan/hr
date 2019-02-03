@@ -80,7 +80,7 @@ public class Main {
 //				System.out.println("Enter Employee Department");
 //				String empSearchDepart = scanner.nextLine();
              
-               rm.searchByDepartment("IT");
+               rm.searchByDepartment("iuij");
 //               rm.aTReportByDepartment(empSearchDepart);
 //               rm.oTReportByDepartment(empSearchDepart);
 //			} 

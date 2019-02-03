@@ -97,7 +97,7 @@ public class OTReport implements HRReport {
 					"FORM CODE\t\t\tOVERTIME DATE\t\tSTART TIME\tEND TIME\tOVERTIME STATUS\n----------------------------------------------------------------------------------------------------------------\n");
 			for (OTForm e : myNewList) {
 				System.out.println(sb
-						.append(e.getFormCode() + "\t" + sd.format(e.getOTDate()) + "\t\t" + e.getDateFrom() + "\t\t"
+						.append(e.getFormCode() + "\t" + sd.format(e.getOTDate()) + "\t\t" + e.getTimeFrom() + "\t\t"
 								+ e.getTimeTo() + "\t\t" + e.getStatus())
 						.toString().replace("[", " ").replace("]", " "));
 				sb.append("\n");
@@ -131,7 +131,7 @@ public class OTReport implements HRReport {
 					"FORM CODE\t\t\tOVERTIME DATE\t\tSTART TIME\tEND TIME\tOVERTIME STATUS\n----------------------------------------------------------------------------------------------------------------\n");
 			for (OTForm e : myNewList) {
 				System.out.println(sb
-						.append(e.getFormCode() + "\t" + sd.format(e.getOTDate()) + "\t\t" + e.getDateFrom() + "\t\t"
+						.append(e.getFormCode() + "\t" + sd.format(e.getOTDate()) + "\t\t" + e.getTimeFrom() + "\t\t"
 								+ e.getTimeTo() + "\t\t" + e.getStatus())
 						.toString().replace("[", " ").replace("]", " "));
 				sb.append("\n");
@@ -159,7 +159,7 @@ public class OTReport implements HRReport {
 					"FORM CODE\t\t\tOVERTIME DATE\t\tSTART TIME\tEND TIME\tOVERTIME STATUS\n----------------------------------------------------------------------------------------------------------------\n");
 			for (OTForm e : myNewList) {
 				System.out.println(sb
-						.append(e.getFormCode() + "\t" + sd.format(e.getOTDate()) + "\t\t" + e.getDateFrom() + "\t\t"
+						.append(e.getFormCode() + "\t" + sd.format(e.getOTDate()) + "\t\t" + e.getTimeFrom() + "\t\t"
 								+ e.getTimeTo() + "\t\t" + e.getStatus())
 						.toString().replace("[", " ").replace("]", " "));
 				sb.append("\n");
