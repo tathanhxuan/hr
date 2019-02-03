@@ -142,36 +142,35 @@ public class LeaveReport implements HRReport {
 		for(Employee e: myNewList) {
 			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
 		}
+		
 	   }
 	
-	
-	}
+}
 
 	@Override
 	public void getReport() {
-		List<Employee> myNewList = new ArrayList<Employee>();	
+		List<LeaveForm> myNewList = new ArrayList<LeaveForm>();	
 		List<LeaveForm> allLvForm = data.getListLeaveForm();
-		List<Employee> allEmployee = data.getListEmployee();
-					
-			for(LeaveForm allLv: allLvForm) {
-				String thisId = allLv.getOwner().getEmpID();
-				  
-				 for(Employee allEmployees: allEmployee) {
-					   
-					   if(allEmployees.getEmpID().contains(thisId)){
-						 myNewList.add(allEmployees);
-				  }
-				}
-			}
-
+		//List<Employee> allEmployee = data.getListEmployee();
+		 for(LeaveForm allLv: allLvForm) {
+				 myNewList.add(allLv);
+		}
+			
 	if(!myNewList.isEmpty()) {
+		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yy");
 		StringBuilder sb = new StringBuilder();
 		System.out.println("\n**************ALL LEAVE REPORT*********************");
-		System.out.println("Employee ID\tEmployee Name\tDepartment\n----------------------------------------------");
-		for(Employee e: myNewList) {
-			System.out.println(sb.append(e).toString().replace("[", " ").replace("]", " "));
+		System.out.println("FORM CODE\t\t\tREQUEST DATE\tSTART DATE\tEND DATE\tLEAVE STATUS\n--------------------------------------------------------------------------------------------\n");
+		for(LeaveForm e: myNewList) {
+			//no data in   sd.format(e.getDateFrom())
+			System.out.println(sb.append(e.getFormCode()+"\t"+  null  +"\t\t"+   sd.format(e.getLeaveDateFrom())   +"\t"+  sd.format(e.getLeaveDateTo())  +"\t" + e.getStatus()).toString().replace("[", " ").replace("]", " "));
+		    sb.append("\n");
 		}
 	   }
+	else
+	{
+		System.out.println("No Leave reord found");
+	}
 
 	}
 	
