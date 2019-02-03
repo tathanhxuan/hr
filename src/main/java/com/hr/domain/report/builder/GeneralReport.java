@@ -31,8 +31,8 @@ public class GeneralReport {
     	this.leaveReport = builder.leaveReport;
     	
     	if(this.aTReport!=null && !this.aTReport.isEmpty()) {
-    		System.out.println("Attendance Report till "+ formatter.format(date) +"\n");
-    		System.out.println("Date\tEmployee ID\tEmployee Name\tTime In\tTime Out\n---------------------------------------------------------------");
+    		System.out.println("ATTENDANCE REPORT TILL "+ formatter.format(date)+"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    		System.out.println("Date\t\tEmployee ID\t\tEmployee Name\t\tTime In\t\tTime Out\n-----------------------------------------------------------------------------------------");
     		
     		StringBuilder sb = new StringBuilder();
     		for(ATReport e: this.aTReport) {
