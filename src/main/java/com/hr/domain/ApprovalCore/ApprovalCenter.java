@@ -40,9 +40,12 @@ public class ApprovalCenter implements IApproval {
 		int approvalLevel = 0;
 		ArrayList<DepartmentApprover> departmentApprovers = da.getListDepartmentApprover();
 		for (DepartmentApprover departmentApprover : departmentApprovers) {
-			if (emp.getEmpID().equals(departmentApprover.getEmpID())
-					&& emp.getDept().getDeptID().equals(departmentApprover.getDeptID())) {
-				approvalLevel = departmentApprover.getApprovalLevel();
+			if (emp.getEmpID().equals(departmentApprover.getEmpID())) {
+				//System.out.println("1: " + emp.getEmpID());
+				//System.out.println("2:" + emp.getDept().getDeptID());
+				if (emp.getDept().getDeptID().equals(departmentApprover.getDeptID())) {
+					approvalLevel = departmentApprover.getApprovalLevel();
+				}
 			}
 		}
 
@@ -54,21 +57,24 @@ public class ApprovalCenter implements IApproval {
 
 		ArrayList<Form> allForms = new ArrayList<Form>();
 		for (OTForm oTForm : oTForms) {
-			if (emp.getEmpID().equals(oTForm.getOwner().getEmpID())
+			//System.out.println(oTForm.getOwner().getEmpID());
+			if (emp.getDepartment().getDeptID().equals(oTForm.getOwner().getDepartment().getDeptID())
 					&& oTForm.getStatus().getValue() == (approvalLevel - 1)) {
 				allForms.add(oTForm);
 			}
 		}
 
 		for (ATForm aTForm : aTForms) {
-			if (emp.getEmpID().equals(aTForm.getOwner().getEmpID())
+			//System.out.println(aTForm.getOwner().getEmpID());
+			if (emp.getDepartment().getDeptID().equals(aTForm.getOwner().getDepartment().getDeptID())
 					&& aTForm.getStatus().getValue() == (approvalLevel - 1)) {
 				allForms.add(aTForm);
 			}
 		}
 
 		for (LeaveForm leaveForm : leaveForms) {
-			if (emp.getEmpID().equals(leaveForm.getOwner().getEmpID())
+			//System.out.println(leaveForm.getOwner().getEmpID());
+			if (emp.getDepartment().getDeptID().equals(leaveForm.getOwner().getDepartment().getDeptID())
 					&& leaveForm.getStatus().getValue() == (approvalLevel - 1)) {
 				allForms.add(leaveForm);
 			}
@@ -281,21 +287,21 @@ public class ApprovalCenter implements IApproval {
 
 		ArrayList<Form> allForms = new ArrayList<Form>();
 		for (OTForm oTForm : oTForms) {
-			if (emp.getEmpID().equals(oTForm.getOwner().getEmpID())
+				if (emp.getDepartment().getDeptID().equals(oTForm.getOwner().getDepartment().getDeptID())
 					&& oTForm.getStatus().equals(FormStatus.REFUSED)) {
 				allForms.add(oTForm);
 			}
 		}
 
 		for (ATForm aTForm : aTForms) {
-			if (emp.getEmpID().equals(aTForm.getOwner().getEmpID())
+			if (emp.getDepartment().getDeptID().equals(aTForm.getOwner().getDepartment().getDeptID())
 					&& aTForm.getStatus().equals(FormStatus.REFUSED)) {
 				allForms.add(aTForm);
 			}
 		}
 
 		for (LeaveForm leaveForm : leaveForms) {
-			if (emp.getEmpID().equals(leaveForm.getOwner().getEmpID())
+			if (emp.getDepartment().getDeptID().equals(leaveForm.getOwner().getDepartment().getDeptID())
 					&& leaveForm.getStatus().equals(FormStatus.REFUSED)) {
 				allForms.add(leaveForm);
 			}

@@ -47,7 +47,7 @@ public class TestData implements Serializable {
 		TestData td = new TestData();
 
 		// td.userData();
-		td.systemUserData();
+		//td.systemUserData();
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
@@ -64,7 +64,7 @@ public class TestData implements Serializable {
 		//td.oTFormsData();
 
 		td.departmentApproversData();
-		td.employeesData();
+		//td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
 		//td.departmentsData();
@@ -142,7 +142,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readEmployeeServiceImplMap());
 		//System.out.println(da.readStepApproverServiceImplMap());
 		//System.out.println(da.readFormApproverMap());
-		//System.out.println(da.readDepartmentApproverMap());
+		System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
 		//System.out.println(da.readFormLogMap());
@@ -150,7 +150,7 @@ public class TestData implements Serializable {
 
 
 
-		System.out.println(da.readSystemUserMap());
+		//System.out.println(da.readSystemUserMap());
 
 
 	}
@@ -448,9 +448,9 @@ public class TestData implements Serializable {
 			
 			//add(new DepartmentApprover("D002", "HR", 2, "102", "Thai"));
 			
-			add(new DepartmentApprover("D001", "IT", 1, "105", "Manager1"));
-			add(new DepartmentApprover("D001", "IT", 2, "106", "Manager2"));
-			add(new DepartmentApprover("D001", "IT", 3, "107", "Manager3"));
+			add(new DepartmentApprover("D001", "IT", 2, "105", "Manager1"));
+			add(new DepartmentApprover("D001", "IT", 3, "106", "Manager2"));
+			add(new DepartmentApprover("D001", "IT", 4, "107", "Manager3"));
 			add(new DepartmentApprover("D003", "Admin", 3, "103", "Azeez"));
 			add(new DepartmentApprover("D004", "Sale", 4, "104", "Bee"));
 		}
@@ -475,29 +475,7 @@ public class TestData implements Serializable {
 			em1.setIsApprover(true);
 			add(em1);
 			
-			Department dept5 = new Department("D001", "IT");
-			Employee em5 = new Employee("105", dept5);
-			em5.setEmpName("Manager1");
-			em5.setAddress("100 Noth Street");
-			em5.setDateOfBirth(date1);
-			em5.setIsApprover(true);
-			add(em5);
 			
-			Department dept6 = new Department("D001", "IT");
-			Employee em6 = new Employee("106", dept6);
-			em6.setEmpName("Manager2");
-			em6.setAddress("100 Noth Street");
-			em6.setDateOfBirth(date1);
-			em6.setIsApprover(true);
-			add(em6);
-			
-			Department dept7 = new Department("D001", "IT");
-			Employee em7 = new Employee("107", dept7);
-			em7.setEmpName("Manager3");
-			em7.setAddress("100 Noth Street");
-			em7.setDateOfBirth(date1);
-			em7.setIsApprover(true);
-			add(em7);
 			
 			Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 12).getTime();
 			Department dept2 = new Department("D002", "HR");
@@ -525,6 +503,30 @@ public class TestData implements Serializable {
 			em4.setDateOfBirth(date4);
 			em4.setIsApprover(true);
 			add(em4);
+			
+			Department dept5 = new Department("D001", "IT");
+			Employee em5 = new Employee("105", dept5);
+			em5.setEmpName("Manager1");
+			em5.setAddress("100 Noth Street");
+			em5.setDateOfBirth(date1);
+			em5.setIsApprover(true);
+			add(em5);
+			
+			Department dept6 = new Department("D001", "IT");
+			Employee em6 = new Employee("106", dept6);
+			em6.setEmpName("Manager2");
+			em6.setAddress("100 Noth Street");
+			em6.setDateOfBirth(date1);
+			em6.setIsApprover(true);
+			add(em6);
+			
+			Department dept7 = new Department("D001", "IT");
+			Employee em7 = new Employee("107", dept7);
+			em7.setEmpName("Manager3");
+			em7.setAddress("100 Noth Street");
+			em7.setDateOfBirth(date1);
+			em7.setIsApprover(true);
+			add(em7);
 			
 			
 			//add(new Employee("101", "Azee", date1, "Nigeria", null, null, true));
