@@ -63,7 +63,7 @@ public class TestData implements Serializable {
 		td.aTFormsData();
 		//td.oTFormsData();
 
-		//td.departmentApproversData();
+		td.departmentApproversData();
 		//td.employeesData();
 		// td.stepApproversData();
 		//td.formApproversData();
@@ -142,7 +142,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readEmployeeServiceImplMap());
 		//System.out.println(da.readStepApproverServiceImplMap());
 		//System.out.println(da.readFormApproverMap());
-		//System.out.println(da.readDepartmentApproverMap());
+		System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
 		//System.out.println(da.readFormLogMap());
@@ -443,7 +443,7 @@ public class TestData implements Serializable {
 			add(new DepartmentApprover("D001", "IT", 1, "101", "Xuan"));
 			add(new DepartmentApprover("D002", "HR", 2, "102", "Thai"));
 			add(new DepartmentApprover("D003", "Admin", 3, "103", "Azeez"));
-			add(new DepartmentApprover("D004", "Sale", 3, "104", "Azeez"));
+			add(new DepartmentApprover("D004", "Sale", 4, "104", "Bee"));
 		}
 	};
 
