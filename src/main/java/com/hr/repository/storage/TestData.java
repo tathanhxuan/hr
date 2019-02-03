@@ -47,13 +47,13 @@ public class TestData implements Serializable {
 		TestData td = new TestData();
 
 		// td.userData();
-		td.systemUserData();
+		//td.systemUserData();
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		//td.leaveFormsData();		 
+		td.leaveFormsData();		 
 
 
 		//td.aTFormsData();
@@ -99,7 +99,7 @@ public class TestData implements Serializable {
 
 		//System.out.println(da.readOTFormMap());
 
-		//System.out.println(da.readLeaveFormMap());
+		System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
 		//System.out.println(da.readOTFormMap());
@@ -150,7 +150,7 @@ public class TestData implements Serializable {
 
 
 
-		System.out.println(da.readSystemUserMap());
+		//System.out.println(da.readSystemUserMap());
 
 
 	}
@@ -281,15 +281,16 @@ public class TestData implements Serializable {
 			leaveForm1.setLeaveDateTo(date2);
 			leaveForm1.setOwner(em1);
 			leaveForm1.setDescription("Request Approved");
-			
+			leaveForm1.setStatus(FormStatus.CREATED);
+			add(leaveForm1);
 			
 			LeaveForm leaveForm2 = new LeaveForm(em2);
 			leaveForm2.setLeaveDateFrom(date3);
 			leaveForm2.setLeaveDateTo(date4);
 			leaveForm2.setOwner(em2);
-			add(leaveForm1);
+			leaveForm2.setDescription("Request Approved");
+			leaveForm2.setStatus(FormStatus.CREATED);
 			add(leaveForm2);
-			leaveForm1.setDescription("Request Approved1");
 			//add(new LeaveForm("F001", 1, "101", FormStatus.APPROVED_1ST, date1, date1, "Des 1"));
 			//add(new LeaveForm("F002", 1, "102", FormStatus.APPROVED_2ND, date2, date2, "Des 2"));
 

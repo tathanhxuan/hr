@@ -399,7 +399,7 @@ public class App {
 		} else {
 			for (Form listForm : listForms) {
 				System.out.println(listForm);
-				//System.out.println("Form Code: " + listForm.getFormCode() + "t" + listForm.g);
+				//System.out.println("Form Code: " + listForm.getFormCode() + ",\t" + listForm.getOwner().getEmpName().toString() + ",\t" + listForm.);
 			}
 			// System.out.println(listForms);
 			System.out.println("*******************************************************");
