@@ -448,9 +448,9 @@ public class TestData implements Serializable {
 			
 			//add(new DepartmentApprover("D002", "HR", 2, "102", "Thai"));
 			
-			add(new DepartmentApprover("D001", "IT", 1, "105", "Manager1"));
-			add(new DepartmentApprover("D001", "IT", 2, "106", "Manager2"));
-			add(new DepartmentApprover("D001", "IT", 3, "107", "Manager3"));
+			add(new DepartmentApprover("D001", "IT", 2, "105", "Manager1"));
+			add(new DepartmentApprover("D001", "IT", 3, "106", "Manager2"));
+			add(new DepartmentApprover("D001", "IT", 4, "107", "Manager3"));
 			add(new DepartmentApprover("D003", "Admin", 3, "103", "Azeez"));
 			add(new DepartmentApprover("D004", "Sale", 4, "104", "Bee"));
 		}
