@@ -542,8 +542,8 @@ public class TestData implements Serializable {
 		{
 			//Date date1 = new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime();
 			//Date date2 = new GregorianCalendar(1982, Calendar.FEBRUARY, 11).getTime();
-			add(new FormLog("AT01", "101", "CREATED", "Created AT form"));
-			add(new FormLog("OT01", "102", "APPROVED_1ST", "Created OT form"));								
+			add(new FormLog("AT10222_20190202_162536", "101", "CREATED", "Created AT form"));
+			add(new FormLog("OT10222_20190202_213925", "102", "APPROVED_1ST", "Created OT form"));								
 			
 		}
 	};
