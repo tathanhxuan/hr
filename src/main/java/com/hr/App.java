@@ -35,14 +35,7 @@ public class App {
 
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception {
-
-		// *************************************
 		Login();
-
-		// Login();
-		// LoadMenuByUserRole();
-		// GetWaitedApproveForms();
-
 	}
 
 	public static void Login() throws Exception {
@@ -68,9 +61,10 @@ public class App {
 		String empID = user.getEmpID();
 
 		loginUser = da.getEmployeeById(empID);
-		;
+		
 
-		userRole = user.getIsApprover() ? "APPROVER" : "STAFF";
+		userRole =loginUser.getIsApprover() ? "APPROVER" : "STAFF";
+	
 		LoadMenuByUserRole();
 	}
 
@@ -113,7 +107,7 @@ public class App {
 		System.out.println("----------------------");
 		System.out.println("4.FORM REFUSE");
 		System.out.println("----------------------");
-		System.out.println("5.FORM SEARCH");
+		System.out.println("5.FORM HISTORY");
 		System.out.println("----------------------");
 		System.out.println("6.FORM APPROVAL");
 		System.out.println("----------------------");
@@ -266,6 +260,7 @@ public class App {
 
 	}
 
+	// CREATE AT FORM
 	public static void CreateATForm() throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("******AT REGISTRAR********");
@@ -310,10 +305,8 @@ public class App {
 		case "STAFF":
 			LoadStaffMenu();
 			break;
-
 		case "APPROVER":
 			LoadApproverMenu();
-
 		case "HR":
 
 		default:
@@ -341,11 +334,9 @@ public class App {
 			break;
 		case "5":
 			ReportMaker rm = new ReportMaker();
-			GeneralReport.Builder A = new GeneralReport.Builder();
-			A.aTReport().oTReport().leaveReport().build();
-
-			// rm. loginUser.(getEmpID());
-
+			rm.searchByEmpId(loginUser.getEmpID());
+			FormHistoryQuery();
+			break;
 		case "6":
 
 			loginUser = null;
@@ -377,7 +368,10 @@ public class App {
 			GetRefusedForms();
 			break;
 		case "5":
-
+			ReportMaker rm = new ReportMaker();
+			rm.searchByEmpId(loginUser.getEmpID());
+			FormHistoryQuery();
+			break;
 		case "6":
 			GetWaitedApproveForms();
 			break;
@@ -461,6 +455,18 @@ public class App {
 		}
 	}
 
+	public static void FormHistoryQuery() throws Exception {
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("------FORM HISTORY QUERY-------");
+		System.out.println("Input FORM CODE : ");
+		String Code = scanner.nextLine();
+		
+		
+		
+		LoadMenuByUserRole();
+	}
+	
 	// Search Menu
 	public static void searchMenu() throws Exception {
 
