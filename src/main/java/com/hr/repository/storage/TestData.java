@@ -66,10 +66,10 @@ public class TestData implements Serializable {
 		td.departmentApproversData();
 		//td.employeesData();
 		// td.stepApproversData();
-		//td.formApproversData();
+		td.formApproversData();
 		//td.departmentsData();
 		//td.formStatusData();
-		//td.formLogsData();
+		td.formLogsData();
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 
@@ -448,11 +448,11 @@ public class TestData implements Serializable {
 			
 			//add(new DepartmentApprover("D002", "HR", 2, "102", "Thai"));
 			
-			add(new DepartmentApprover("D001", "IT", 2, "105", "Manager1"));
-			//add(new DepartmentApprover("D001", "IT", 3, "106", "Manager2"));
-			//add(new DepartmentApprover("D001", "IT", 4, "107", "Manager3"));
-			add(new DepartmentApprover("D003", "Admin", 3, "103", "Azeez"));
-			add(new DepartmentApprover("D004", "Sale", 4, "104", "Bee"));
+			add(new DepartmentApprover("1", "D001", "IT", 2, "105", "Manager1"));
+			add(new DepartmentApprover("2", "D001", "IT", 3, "106", "Manager2"));
+			add(new DepartmentApprover("3", "D001", "IT", 4, "107", "Manager3"));
+			add(new DepartmentApprover("4", "D003", "Admin", 3, "103", "Azeez"));
+			add(new DepartmentApprover("5", "D004", "Sale", 4, "104", "Bee"));
 		}
 	};
 

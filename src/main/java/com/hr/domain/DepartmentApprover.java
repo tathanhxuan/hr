@@ -1,7 +1,9 @@
 package com.hr.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -9,6 +11,7 @@ import com.hr.domain.ApprovalCore.IApproval;
 import com.hr.repository.storage.DataAccessRepositoryFacade;
 
 public class DepartmentApprover implements Serializable {
+	String id;
 	String deptID;
 	String deptName;
 	int approvalLevel;
@@ -25,8 +28,10 @@ public class DepartmentApprover implements Serializable {
 	}
 
 	
-	public DepartmentApprover(String deptID, String deptName, int approvalLevel, String empID, String nameApprover) {
+	public DepartmentApprover(String id, String deptID, String deptName, int approvalLevel, String empID, String nameApprover) {
 		super();
+		//this.id = CodeInterpreter();
+		this.id = id;
 		this.deptID = deptID;
 		this.deptName = deptName;
 		this.approvalLevel = approvalLevel;
@@ -84,6 +89,23 @@ public class DepartmentApprover implements Serializable {
 
 	public DepartmentApprover(String deptID) {
 		this.deptID = deptID;
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public String CodeInterpreter() {
+		// TODO Auto-generated method stub
+
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+		return "DA" + "_" + timeStamp;
 	}
 	
 	@Override
