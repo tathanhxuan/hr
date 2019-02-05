@@ -477,9 +477,11 @@ public class App {
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 		ArrayList<FormLog> lst = da.getListFormLogByFormCode(Code);
 		
+		System.out.println("------------------FORM ACTION HISTORY---------------------------");
 		for(FormLog item : lst) {
-			System.out.println("---------------------------------------------");
-			item.toString();
+		
+			System.out.println(item.toString());
+			System.out.println("------------------------------------");
 		}
 		
 		LoadMenuByUserRole();

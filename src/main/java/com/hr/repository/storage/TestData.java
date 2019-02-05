@@ -47,6 +47,7 @@ public class TestData implements Serializable {
 		TestData td = new TestData();
 
 		td.systemUserData();
+		td.employeesData();
 		td.leaveFormsData();		 
 		td.aTFormsData();
 		td.oTFormsData();
@@ -54,7 +55,6 @@ public class TestData implements Serializable {
 		td.formApproversData();
 		td.formLogsData();
 		// td.userData();
-		
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
@@ -66,7 +66,6 @@ public class TestData implements Serializable {
 		// td.stepApproversData();
 		//td.departmentsData();
 		//td.formStatusData();
-		
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
 		System.out.println(da.readDepartmentApproverMap());
@@ -97,7 +96,7 @@ public class TestData implements Serializable {
 
 		//System.out.println(da.readOTFormMap());
 
-		//System.out.println(da.readLeaveFormMap());
+		System.out.println(da.readLeaveFormMap());
 		//System.out.println(da.readOTForm());
 		
 		//System.out.println(da.readOTFormMap());
@@ -142,7 +141,7 @@ public class TestData implements Serializable {
 		//System.out.println(da.readFormApproverMap());
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
-		//System.out.println(da.readFormLogMap());
+		System.out.println(da.readFormLogMap());
 		//System.out.println(da.readEmployeeMap());
 		//System.out.println(da.readSystemUserMap());
 		System.out.println("Test data is created successfully!");
