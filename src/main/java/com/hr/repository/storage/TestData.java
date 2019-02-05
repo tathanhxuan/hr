@@ -46,32 +46,30 @@ public class TestData implements Serializable {
 	public static void main(String[] args) {
 		TestData td = new TestData();
 
+		td.systemUserData();
+		td.leaveFormsData();		 
+		td.aTFormsData();
+		td.oTFormsData();
+		td.departmentApproversData();
+		td.formApproversData();
+		td.formLogsData();
 		// td.userData();
-		//td.systemUserData();
+		
 		// td.attendanceData();
 		// td.shiftData();
 		// td.overtimeData();
 
 		// td.employeeGroupsData();
-		td.leaveFormsData();		 
-
-
-		td.aTFormsData();
-
-		td.oTFormsData();
-
 		//td.aTFormsData();
 		//td.oTFormsData();
-
-		td.departmentApproversData();
 		//td.employeesData();
 		// td.stepApproversData();
-		td.formApproversData();
 		//td.departmentsData();
 		//td.formStatusData();
-		td.formLogsData();
+		
 
 		DataAccessRepositoryFacade da = new DataAccessRepositoryFacade();
+		System.out.println(da.readDepartmentApproverMap());
 
 		// System.out.println(da.readUserMap());
 		//System.out.println(da.readSystemUserMap());
@@ -142,17 +140,12 @@ public class TestData implements Serializable {
 		//System.out.println(da.readEmployeeServiceImplMap());
 		//System.out.println(da.readStepApproverServiceImplMap());
 		//System.out.println(da.readFormApproverMap());
-		System.out.println(da.readDepartmentApproverMap());
 		//System.out.println(da.readDepartmentMap());
 		//System.out.println(da.readFormStatusMap());
 		//System.out.println(da.readFormLogMap());
 		//System.out.println(da.readEmployeeMap());
-
-
-
 		//System.out.println(da.readSystemUserMap());
-
-
+		System.out.println("Test data is created successfully!");
 	}
 
 	@SuppressWarnings("serial")
